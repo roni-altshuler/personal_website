@@ -1,0 +1,118 @@
+.container {
+  max-width: 900px;
+  margin: 2rem auto;
+  padding: 2rem;
+}
+
+.pageTitle {
+  text-align: center;
+  margin-bottom: 3rem;
+  font-size: 2.5rem;
+  position: relative;
+  padding-bottom: 1rem;
+}
+
+.pageTitle::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 4px;
+  background-color: var(--primary-color);
+  border-radius: 2px;
+}
+
+.card {
+  background-color: var(--card-background-color);
+  color: var(--card-text-color);
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+  border: 1px solid var(--border-color);
+  padding: 1.5rem 2rem;
+  margin-bottom: 2rem;
+  transition: box-shadow 0.3s ease;
+}
+
+.card h3,
+.card p,
+.card li {
+    color: var(--card-text-color);
+}
+
+.card:hover {
+  box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+}
+
+.card h3 {
+  margin-top: 0;
+  margin-bottom: 0.25rem;
+  font-size: 1.4rem;
+}
+
+.date {
+  color: var(--secondary-color);
+  font-style: italic;
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+
+.card ul {
+  padding-left: 20px;
+  margin: 0;
+  line-height: 1.6;
+}
+
+.glowLink {
+    text-decoration: none;
+    color: var(--primary-color);
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+.glowLink:hover {
+    text-shadow: 0 0 8px var(--secondary-color);
+}
+
+.skillsSection {
+  margin-top: 1rem;
+  padding-top: 2rem;
+}
+
+.skillsTitle {
+  text-align: center;
+  margin-bottom: 2rem;
+  position: relative;
+  padding-bottom: 1rem;
+}
+
+.skillsTitle::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 4px;
+  background-color: var(--primary-color);
+  border-radius: 2px;
+}
+
+.skillsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+}
+
+.skillsGrid > div {
+  text-align: center;
+}
+
+.skillsGrid h4 {
+  border-bottom: 2px solid var(--primary-color);
+  padding-bottom: 0.5rem;
+}
+
+.skillsGrid p {
+  line-height: 1.6;
+}
