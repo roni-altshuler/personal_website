@@ -1,0 +1,19 @@
+# Environment variables for API keys
+.env
+
+# Gemini configuration files created locally
+.gemini/
+
+# Next.js build output
+.next/
+
+# Next.js cache directory
+.turbo/
+
+# Node.js artifacts
+node_modules/
+npm-debug.log*
+
+# Build output directories
+dist/
+build/
