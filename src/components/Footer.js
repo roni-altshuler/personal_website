@@ -4,7 +4,7 @@ import styles from '../styles/Footer.module.css';
 export default function Footer() {
   return (
     <footer className={styles.footer}>
-      <p>&copy; 2025 Roni Oshri Altshuler</p>
+      <p>&copy; 2025 Ron Oshri Altshuler</p>
     </footer>
   );
 }

@@ -30,9 +30,24 @@
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0,0,0,0.05);
   border: 1px solid var(--border-color);
-  padding: 1.5rem 2rem;
   margin-bottom: 2rem;
   transition: box-shadow 0.3s ease;
+}
+
+.card:hover {
+  box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+}
+
+.cardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.cardBody {
+  padding: 1.5rem;
 }
 
 .card h3,
@@ -41,24 +56,37 @@
     color: var(--card-text-color);
 }
 
-.card:hover {
-  box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+.titleContainer {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
 }
 
-.card h3 {
-  margin-top: 0;
-  margin-bottom: 0.25rem;
+.logo {
+    width: 50px;
+    height: 50px;
+    object-fit: contain;
+}
+
+.logoLarge {
+    width: 150px;
+    height: 50px;
+    object-fit: contain;
+}
+
+.cardHeader h3 {
+  margin: 0;
   font-size: 1.4rem;
 }
 
 .date {
   color: var(--secondary-color);
   font-style: italic;
-  margin-top: 0;
-  margin-bottom: 1rem;
+  white-space: nowrap;
+  margin-left: 1rem;
 }
 
-.card ul {
+.cardBody ul {
   padding-left: 20px;
   margin: 0;
   line-height: 1.6;

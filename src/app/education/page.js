@@ -1,4 +1,7 @@
+import Image from 'next/image';
 import styles from './education.module.css';
+import technionLogo from '@../../../public/logo/Technion_logo.svg';
+import ucscLogo from '@../../../public/logo/UC_Santa_Cruz_Baskin_Engineering_logo.svg';
 
 export default function Education() {
   return (
@@ -7,7 +10,10 @@ export default function Education() {
       <div className={styles.timeline}>
         <div className={styles.card}>
           <div className={styles.cardHeader}>
-            <h3><a href="https://www.ronharellab.com/" target="_blank" rel="noopener noreferrer" className={styles.glowLink}>Technion – Israel Institute of Technology</a></h3>
+            <div className={styles.titleContainer}>
+              <Image src={technionLogo} alt="Technion Logo" className={styles.logo} />
+              <h3><a href="https://www.ronharellab.com/" target="_blank" rel="noopener noreferrer" className={styles.glowLink}>Technion – Israel Institute of Technology</a></h3>
+            </div>
             <p className={styles.date}>2025 – Present</p>
           </div>
           <div className={styles.cardBody}>
@@ -19,7 +25,10 @@ export default function Education() {
 
         <div className={styles.card}>
           <div className={styles.cardHeader}>
-            <h3><a href="https://engineering.ucsc.edu/" target="_blank" rel="noopener noreferrer" className={styles.glowLink}>University of California, Santa Cruz</a></h3>
+            <div className={styles.titleContainer}>
+                <Image src={ucscLogo} alt="UCSC Baskin Engineering Logo" className={styles.logoLarge} />
+                <h3><a href="https://engineering.ucsc.edu/" target="_blank" rel="noopener noreferrer" className={styles.glowLink}>University of California, Santa Cruz</a></h3>
+            </div>
             <p className={styles.date}>2023 – 2024</p>
           </div>
           <div className={styles.cardBody}>
@@ -30,7 +39,10 @@ export default function Education() {
 
         <div className={styles.card}>
           <div className={styles.cardHeader}>
-            <h3><a href="https://engineering.ucsc.edu/" target="_blank" rel="noopener noreferrer" className={styles.glowLink}>University of California, Santa Cruz</a></h3>
+            <div className={styles.titleContainer}>
+                <Image src={ucscLogo} alt="UCSC Baskin Engineering Logo" className={styles.logoLarge} />
+                <h3><a href="https://engineering.ucsc.edu/" target="_blank" rel="noopener noreferrer" className={styles.glowLink}>University of California, Santa Cruz</a></h3>
+            </div>
             <p className={styles.date}>2020 – 2023</p>
           </div>
           <div className={styles.cardBody}>
