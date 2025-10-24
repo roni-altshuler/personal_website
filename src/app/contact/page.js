@@ -45,10 +45,7 @@ export default function Contact() {
   return (
     <div className={styles.container}>
       <section className={styles.section}>
-        <div className={styles.titleContainer}>
-          <h2>Contact Me</h2>
-          <i className={`fas fa-envelope ${styles.icon}`}></i>
-        </div>
+        <h1 className={styles.pageTitle}>Contact Me</h1>
         <p>Have a question or want to work together? Fill out the form below.</p>
         <form className={styles.form} onSubmit={handleSubmit}>
           <div className={styles.formGroup}>
