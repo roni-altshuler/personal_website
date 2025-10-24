@@ -6,6 +6,9 @@ import '../styles/globals.css';
 export const metadata = {
   title: 'Roni Altshuler',
   description: 'Personal website for Roni Altshuler, Biomolecular Engineer and Bioinformatician.',
+  icons: {
+    icon: '/favicon.ico',
+  },
 };
 
 export default function RootLayout({ children }) {

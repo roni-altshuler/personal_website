@@ -8,6 +8,7 @@ export default function Navbar() {
       <Link href="/" className={styles.logo}>Roni Altshuler</Link>
       <div className={styles.navLinks}>
         <Link href="/">Home</Link>
+        <Link href="/projects">Projects</Link>
         <Link href="/education">Education</Link>
         <Link href="/experience">Experience</Link>
         <Link href="/contact">Contact</Link>

@@ -23,10 +23,10 @@ export default function Home() {
 
       <main className={styles.main}>
         <p className={styles.blurb}>
-          As a first-year PhD student at the Technion, I am diving deep into immunometabolism and aging, a journey that demands a goal-oriented mindset and a diligent work ethic. My path as a Biomolecular Engineer and Bioinformatician is defined by a persistent determination to tackle complex challenges at the intersection of computational biology and genomic sciences. Whether developing sophisticated bioinformatics workflows or leveraging advanced techniques like spatial transcriptomics and CRISPR/Cas9, I am driven by a resilience that turns intricate biological data into actionable insights. My perseverance is fueled by a passion for unraveling the molecular complexities of disease, pushing toward the next generation of therapeutic discoveries.
+          I am a PhD student at the Technion, specializing in Immunometabolism and Aging. As a Biomolecular Engineer and Bioinformatician, I tackle complex challenges in computational biology and genomic sciences, developing bioinformatics workflows and leveraging techniques like spatial transcriptomics and CRISPR/Cas9 to translate biological data into therapeutic discoveries.
         </p>
         <p className={styles.blurb}>
-          Outside of the lab, my disciplined approach to life is mirrored in my pursuits as an endurance athlete and soccer player. Achieving a marathon personal best of 2:59:14 and a half-marathon time of 1:22:13 required immense dedication, placing me in the top 5% of runners and demonstrating a capacity for sustained, hard work. This same resilience and focus on teamwork were instrumental in leading my soccer team to a California State Cup championship, shaping my collaborative and determined approach to every scientific endeavor.
+          Beyond my research, I am an endurance athlete and soccer player. My dedication led to a marathon personal best of 2:59:14 and a half-marathon of 1:22:13, placing me in the top 5% of runners. This same resilience and teamwork helped lead my soccer team to a California State Cup championship, influencing my collaborative approach to science.
         </p>
       </main>
     </div>
