@@ -14,11 +14,10 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en" suppressHydrationWarning={true}>
-      <body>
+      <body suppressHydrationWarning={true}>
         <Navbar />
         {children}
         <Footer />
-        <Script src="https://kit.fontawesome.com/885a523834.js" crossOrigin="anonymous" />
       </body>
     </html>
   );
