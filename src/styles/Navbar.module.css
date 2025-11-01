@@ -17,6 +17,10 @@
   color: var(--text-color);
 }
 
+.navLinks {
+  display: flex;
+}
+
 .navLinks a {
   margin: 0 1rem;
   color: var(--secondary-color);
@@ -27,4 +31,36 @@
 .navLinks a:hover {
   color: var(--primary-color);
   text-decoration: none;
+}
+
+.menuIcon {
+  display: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .navLinks {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    background-color: var(--background-color);
+    border-top: 1px solid var(--primary-color);
+  }
+
+  .navLinks.navActive {
+    display: flex;
+  }
+
+  .navLinks a {
+    margin: 1rem 0;
+    text-align: center;
+  }
+
+  .menuIcon {
+    display: block;
+  }
 }

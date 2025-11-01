@@ -92,3 +92,17 @@
   color: var(--primary-color);
   text-shadow: 0 0 8px var(--secondary-color);
 }
+
+@media (max-width: 768px) {
+  .container {
+    padding: 1rem;
+  }
+
+  .pageTitle {
+    font-size: 2rem;
+  }
+
+  .projectCard {
+    padding: 1rem;
+  }
+}

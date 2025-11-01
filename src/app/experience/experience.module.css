@@ -144,3 +144,36 @@
 .skillsGrid p {
   line-height: 1.6;
 }
+
+@media (max-width: 768px) {
+  .container {
+    padding: 1rem;
+  }
+
+  .pageTitle {
+    font-size: 2rem;
+  }
+
+  .cardHeader {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .cardHeader h3 {
+    font-size: 1.2rem;
+  }
+
+  .date {
+    white-space: normal;
+    margin-left: 0;
+  }
+
+  .cardBody {
+    padding: 1rem;
+  }
+
+  .skillsGrid {
+    gap: 1rem;
+  }
+}

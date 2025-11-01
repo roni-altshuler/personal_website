@@ -11,6 +11,12 @@ export default function Home() {
           width={200}
           height={200}
           className={styles.profileImage}
+          style={{
+            width: '100%',
+            height: 'auto',
+            maxWidth: '200px'
+          }}
+          sizes="(max-width: 768px) 150px, 200px"
         />
         <h1 className={styles.title}>Roni Altshuler</h1>
         <p className={styles.subtitle}>Biomolecular Engineer & Bioinformatician</p>

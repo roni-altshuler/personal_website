@@ -6,3 +6,10 @@
   border-top: 1px solid var(--primary-color);
   color: var(--secondary-color);
 }
+
+@media (max-width: 768px) {
+  .footer {
+    margin-top: 2rem;
+    padding: 1rem 0;
+  }
+}
