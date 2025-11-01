@@ -1,34 +1,20 @@
-# Personal Website
+# Personal Portfolio Website
 
-This is a personal website built with Next.js to showcase the professional profile of Roni Altshuler, a Biomolecular Engineer and Bioinformatician.
+This repository contains the source code for the personal portfolio of Roni Altshuler, a Biomolecular Engineer and Bioinformatician. The website showcases Roni's professional profile, including experience, education, and technical skills.
 
-## Features
+The live website can be viewed at: [ronialtshuler.com](https://ronialtshuler.com)
 
-- **Minimalist Design**: Clean, organized, and professional design with a neutral color palette.
-- **Responsive Layout**: Adapts to different screen sizes for a seamless experience on any device.
-- **Dynamic Content**: Easily updatable content by modifying the page components.
-- **Interactive Elements**: Hover effects on social media icons.
+## Overview
 
-## Sections
+*   **Professional Summary**: A concise introduction to Roni's background and expertise.
+*   **Experience**: A detailed timeline of professional roles and accomplishments.
+*   **Education**: An overview of academic background and qualifications.
+*   **Technical Skills**: A comprehensive list of programming languages, software tools, and laboratory techniques.
+*   **Minimalist & Responsive Design**: The site is designed to be clean, organized, and accessible on all devices.
 
-- **About**: A brief summary of Roni's background and expertise.
-- **Experience**: A timeline of work experience with links to relevant organizations.
-- **Education**: An overview of academic qualifications.
-- **Technical Skills**: A list of programming languages, tools, and laboratory techniques.
+## Built With
 
-## Getting Started
-
-To run the development server:
-
-```bash
-npm run dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-## Technologies Used
-
-- [Next.js](https://nextjs.org/) - React framework for production.
-- [React](https://reactjs.org/) - A JavaScript library for building user interfaces.
-- [CSS Modules](https://github.com/css-modules/css-modules) - For locally scoped CSS.
-- [Font Awesome](https://fontawesome.com/) - For social media icons.
+*   [Next.js](https://nextjs.org/) - React framework for server-rendered applications.
+*   [React](https://reactjs.org/) - A JavaScript library for building user interfaces.
+*   [CSS Modules](https://github.com/css-modules/css-modules) - For modular and locally scoped CSS.
+*   [Font Awesome](https://fontawesome.com/) - For social media and other icons.
