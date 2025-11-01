@@ -4,7 +4,7 @@ export default function Projects() {
   return (
     <div className={styles.container}>
       <section className={styles.section}>
-        <h1 className={styles.pageTitle}>Projects</h1>
+        <h1 className={styles.pageTitle}>Personal Projects</h1>
 
         {/* Placeholder for project listings */}
         <div className={styles.projectList}>
