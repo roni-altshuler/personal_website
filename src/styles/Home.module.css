@@ -54,6 +54,17 @@
     text-align: center;
 }
 
+.glowLink {
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+.glowLink:hover {
+    text-shadow: 0 0 8px var(--secondary-color);
+    text-decoration: none;
+}
+
 @media (max-width: 768px) {
   .container {
     padding: 1rem;
