@@ -2,6 +2,7 @@ import Script from 'next/script';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import '../styles/globals.css';
+import { Analytics } from "@vercel/analytics/next";
 
 export const metadata = {
   title: 'Roni Altshuler',
@@ -24,6 +25,7 @@ export default function RootLayout({ children }) {
         <Navbar />
         {children}
         <Footer />
+        <Analytics />
       </body>
     </html>
   );

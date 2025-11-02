@@ -1,0 +1,39 @@
+.card {
+  background-color: var(--card-background-color);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+  transition: transform 0.2s ease-in-out;
+  cursor: pointer; /* Indicate that the card is clickable */
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.card h2 {
+  margin: 0;
+  font-size: 1.5rem;
+  color: inherit;
+}
+
+.card p {
+  color: var(--card-text-color);
+  flex-grow: 1;
+}
+
+.card a {
+  color: var(--primary-color);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+@media (max-width: 768px) {
+  .card {
+    padding: 1rem;
+  }
+}

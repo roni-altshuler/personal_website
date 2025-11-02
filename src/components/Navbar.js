@@ -11,18 +11,22 @@ export default function Navbar() {
     setIsOpen(!isOpen);
   };
 
+  const closeMenu = () => {
+    setIsOpen(false);
+  };
+
   return (
     <nav className={styles.navbar}>
-      <Link href="/" className={styles.logo}>Roni Altshuler</Link>
+      <Link href="/" className={styles.logo} onClick={closeMenu}>Roni Altshuler</Link>
       <div className={styles.menuIcon} onClick={toggleMenu}>
         <i className={isOpen ? 'fas fa-times' : 'fas fa-bars'}></i>
       </div>
       <div className={`${styles.navLinks} ${isOpen ? styles.navActive : ''}`}>
-        <Link href="/">Home</Link>
-        <Link href="/projects">Projects</Link>
-        <Link href="/education">Education</Link>
-        <Link href="/experience">Experience</Link>
-        <Link href="/contact">Contact</Link>
+        <Link href="/" onClick={closeMenu}>Home</Link>
+        <Link href="/projects" onClick={closeMenu}>Projects</Link>
+        <Link href="/education" onClick={closeMenu}>Education</Link>
+        <Link href="/experience" onClick={closeMenu}>Experience</Link>
+        <Link href="/contact" onClick={closeMenu}>Contact</Link>
       </div>
     </nav>
   );
