@@ -79,7 +79,7 @@ export default function Contact() {
             </form>
           </>
         ) : (
-          <p>The contact form is currently unavailable. Please try again later.</p>
+          <p>The contact form is currently unavailable because the reCAPTCHA site key is not configured. Please contact the site administrator.</p>
         )}
       </section>
     </div>
