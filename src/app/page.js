@@ -24,10 +24,7 @@ export default function Home() {
 
       <main className={styles.main}>
         <p className={styles.blurb}>
-          I am a PhD student at the Technion, specializing in Immunometabolism and Aging. As a Biomolecular Engineer and Bioinformatician, I tackle complex challenges in computational biology and genomic sciences, developing bioinformatics workflows and leveraging techniques like spatial transcriptomics and CRISPR/Cas9 to translate biological data into therapeutic discoveries.
-        </p>
-        <p className={styles.blurb}>
-          Beyond my research, I am an endurance athlete and soccer player. My dedication led to a marathon personal best of 2:59:14 and a half-marathon of 1:22:13, placing me in the top 5% of runners. This same resilience and teamwork helped lead my soccer team to a California State Cup championship, influencing my collaborative approach to science.
+          Hi, I'm  Roni Altshuler, a PhD student at the <a href="https://www.ronharellab.com/" target="_blank" rel="noopener noreferrer" className={styles.glowLink}>Technion</a>, studying Immunometabolism and Aging. My research explores how immune and metabolic pathways interact to shape health and disease, with the goal of turning scientific discoveries into real therapeutic impact. Before starting my PhD, I trained as a Biomolecular Engineer and Bioinformatician, developing computational workflows and working with cutting-edge techniques like spatial transcriptomics and CRISPR/Cas9 to make sense of complex biological data. I’m passionate about using science to uncover how our bodies work, and how we can help them work better. Outside the lab, you’ll probably find me training for my next <a href="https://www.strava.com/athletes/roni_altshuler" target="_blank" rel="noopener noreferrer" className={styles.glowLink}>endurance challenge</a>, always striving to push boundaries both in science and in life.
         </p>
       </main>
     </div>

@@ -109,7 +109,7 @@
 }
 
 .projectTitleLink {
-  color: var(--card-text-color);
+  color: var(--primary-color);
   text-decoration: none;
   font-size: 1.5rem;
   font-weight: 600;
@@ -117,8 +117,8 @@
 }
 
 .projectTitleLink:hover {
-  color: var(--primary-color);
   text-shadow: 0 0 8px var(--secondary-color);
+  text-decoration: none;
 }
 
 .projectDescription {
