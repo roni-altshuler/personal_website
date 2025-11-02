@@ -1,0 +1,3 @@
+Items to be updated:
+1. I want the project cards for project, education, and experience to still display the contents of the respective card on the card, and i don't want the user to have to click on the card to see the contents. Ensure the title of the project card is the same blue as the website.
+2. The contact form is unavailable, please fix this so users can send me an email
