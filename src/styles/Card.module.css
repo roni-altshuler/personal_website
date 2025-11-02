@@ -1,25 +1,50 @@
 .card {
   background-color: var(--card-background-color);
   border: 1px solid var(--border-color);
-  border-radius: 8px;
-  padding: 1.5rem;
+  border-radius: 12px;
+  padding: 2rem;
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.05);
-  transition: transform 0.2s ease-in-out;
-  cursor: pointer; /* Indicate that the card is clickable */
+  gap: 1rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.1);
 }
 
 .cardHeader {
   display: flex;
-  justify-content: space-between;
   align-items: flex-start;
-  gap: 1rem;
+  gap: 1.5rem;
 }
 
-.cardBody {
-  margin-top: 1rem;
+.logo {
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
+  border-radius: 8px;
+}
+
+.titleContainer {
+  flex-grow: 1;
+}
+
+.card h2.title {
+  color: var(--primary-color);
+  margin-bottom: 0.25rem;
+}
+
+.card h2 {
+  margin: 0;
+  font-size: 1.25rem;
+}
+
+.card p {
+  color: var(--card-text-color);
+  line-height: 1.6;
 }
 
 .date {
@@ -28,23 +53,9 @@
   white-space: nowrap;
 }
 
-.card:hover {
-  transform: translateY(-5px);
-}
-
-.card h2.title {
-  color: var(--primary-color);
-}
-
-.card h2 {
-  margin: 0;
-  font-size: 1.5rem;
-  color: inherit;
-}
-
-.card p {
-  color: var(--card-text-color);
-  flex-grow: 1;
+.cardBody {
+  padding-top: 1rem;
+  border-top: 1px solid var(--border-color);
 }
 
 .card a.glowLink {
@@ -54,18 +65,25 @@
 }
 
 .card a.glowLink:hover {
-  color: var(--primary-color);
   text-shadow: 0 0 8px var(--secondary-color);
-}
-
-.card a {
-  color: var(--primary-color);
-  text-decoration: none;
-  font-weight: 500;
 }
 
 @media (max-width: 768px) {
   .card {
-    padding: 1rem;
+    padding: 1.5rem;
+  }
+
+  .cardHeader {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .logo {
+    width: 50px;
+    height: 50px;
+  }
+
+  .card h2 {
+    font-size: 1.1rem;
   }
 }

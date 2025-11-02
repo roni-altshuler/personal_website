@@ -42,7 +42,7 @@ export default function Education() {
       link: 'https://engineering.ucsc.edu/',
       modalContent: (
         <>
-          <p><strong>Honors:</strong> Dean’s Honors List (2021, 2022, 2023).</p>
+          <p><strong>Honors:</strong> Dean’s Honors List (2021, 2022, 2023)</p>
         </>
       ),
     },
@@ -55,14 +55,12 @@ export default function Education() {
         {educationEntries.map((entry, index) => (
           <Card
             key={index}
-            title={(
-              <div className={styles.titleContainer}>
-                <Image src={entry.logo} alt={entry.logoAlt} className={styles.logo} />
-                <h3><a href={entry.link} target='_blank' rel='noopener noreferrer' className={styles.glowLink}>{entry.title}</a></h3>
-              </div>
-            )}
+            logo={entry.logo}
+            logoAlt={entry.logoAlt}
+            title={entry.title}
             description={entry.description}
             date={entry.date}
+            link={entry.link}
             modalContent={entry.modalContent}
           />
         ))}
