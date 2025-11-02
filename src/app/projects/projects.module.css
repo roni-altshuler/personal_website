@@ -38,27 +38,119 @@
 }
 
 .icon {
-    font-size: 24px; /* Adjusted for better baseline alignment */
+    font-size: 24px;
     color: var(--primary-color);
 }
 
+.titleWithIcon {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.titleWithIcon svg {
+    flex-shrink: 0;
+}
+
 .projectList {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 1.5rem;
   margin-top: 2rem;
+  width: 100%;
 }
 
 .projectCard {
   background-color: var(--card-background-color);
-  border: 1px solid var(--border-color);
+  color: var(--card-text-color);
   border-radius: 8px;
-  padding: 1.5rem;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+  border: 1px solid var(--border-color);
+  padding: 2rem;
+  width: 100%;
+  cursor: pointer;
+  transition: box-shadow 0.3s ease;
+}
+
+.projectCard:hover {
+  box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+}
+
+.container {
+  max-width: 900px;
+  width: 100%;
+  margin: 2rem auto;
+  padding: 2rem;
+}
+
+.projectContent {
   display: flex;
   flex-direction: column;
+  width: 100%;
+}
+
+.projectHeader {
+  padding: 1.75rem;
+  width: 100%;
+}
+
+.projectTitle {
+  display: flex;
+  align-items: center;
   gap: 0.75rem;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.05);
-  transition: transform 0.2s ease-in-out;
+  margin-bottom: 1rem;
+}
+
+.projectTitle svg {
+  flex-shrink: 0;
+  color: var(--primary-color);
+  width: 24px;
+  height: 24px;
+}
+
+.projectTitleLink {
+  color: var(--card-text-color);
+  text-decoration: none;
+  font-size: 1.5rem;
+  font-weight: 600;
+  transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+.projectTitleLink:hover {
+  color: var(--primary-color);
+  text-shadow: 0 0 8px var(--secondary-color);
+}
+
+.projectDescription {
+  color: var(--card-text-color);
+  line-height: 1.6;
+  margin: 0;
+  padding-top: 0.5rem;
+  font-size: 1rem;
+}
+
+.description {
+  color: var(--card-text-color);
+  line-height: 1.6;
+  margin: 0;
+  width: 100%;
+  text-align: left;
+  font-size: 1rem;
+  padding: 0.5rem 0;
+  font-weight: 400;
+}
+
+.projectCard a {
+  color: var(--primary-color);
+  text-decoration: none;
+  transition: color 0.3s ease, text-shadow 0.3s ease;
+  width: 100%;
+  display: inline;
+  font-size: 1.5rem;
+}
+
+.projectCard a:hover {
+  text-shadow: 0 0 8px var(--secondary-color);
 }
 
 .projectCard:hover {
@@ -104,5 +196,20 @@
 
   .projectCard {
     padding: 1rem;
+  }
+
+  .projectDetails {
+    gap: 1.5rem;
+  }
+
+  .projectDetails h3 {
+    font-size: 1.1rem;
+  }
+
+  .features li,
+  .techStack li,
+  .implementation li {
+    font-size: 0.95rem;
+    margin-bottom: 0.5rem;
   }
 }

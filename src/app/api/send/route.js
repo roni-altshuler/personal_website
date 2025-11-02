@@ -6,7 +6,7 @@ export async function POST(request) {
   try {
     const { name, email, message } = await request.json();
 
-    // If verification is successful, send the email
+    // Send the email
     const { data, error } = await resend.emails.send({
       from: 'Contact Form <onboarding@resend.dev>',
       to: ['roni.altshuler@gmail.com'],
