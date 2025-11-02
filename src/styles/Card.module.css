@@ -11,6 +11,19 @@
   cursor: pointer; /* Indicate that the card is clickable */
 }
 
+.cardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.date {
+  color: var(--secondary-color);
+  font-size: 0.9rem;
+  white-space: nowrap;
+}
+
 .card:hover {
   transform: translateY(-5px);
 }
@@ -28,6 +41,17 @@
 .card p {
   color: var(--card-text-color);
   flex-grow: 1;
+}
+
+.card a.glowLink {
+  color: var(--primary-color);
+  text-decoration: none;
+  transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+.card a.glowLink:hover {
+  color: var(--primary-color);
+  text-shadow: 0 0 8px var(--secondary-color);
 }
 
 .card a {

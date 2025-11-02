@@ -1,12 +1,22 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --primary-color: #0070f3;
+  --secondary-color: #6c757d;
+  --card-background-color: #f8f9fa;
+  --card-text-color: #343a40;
+  --border-color: #dee2e6;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
+    --primary-color: #00aaff;
+    --secondary-color: #adb5bd;
+    --card-background-color: #1a1a1a;
+    --card-text-color: #ced4da;
+    --border-color: #495057;
   }
 }
 

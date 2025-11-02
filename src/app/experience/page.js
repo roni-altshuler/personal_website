@@ -9,7 +9,8 @@ export default function Experience() {
   const experienceEntries = [
     {
       title: 'Research Associate II | Chan Zuckerberg Biohub SF',
-      description: '2024 – 2025',
+      description: '',
+      date: '2024 – 2025',
       logo: czBiohubLogo,
       logoAlt: 'CZ Biohub SF Logo',
       link: 'https://www.czbiohub.org/genomics/',
@@ -26,7 +27,8 @@ export default function Experience() {
     },
     {
       title: 'Master’s Research | UC Santa Cruz Genomics Institute',
-      description: '2023 – 2024',
+      description: '',
+      date: '2023 – 2024',
       logo: ucscGenomicsLogo,
       logoAlt: 'UCSC Genomics Institute Logo',
       link: 'https://cglgenomics.ucsc.edu/',
@@ -42,7 +44,8 @@ export default function Experience() {
     },
     {
       title: 'CRISPR-X Intern | CRISPR Therapeutics',
-      description: '2023',
+      description: '',
+      date: '2023',
       logo: crisprLogo,
       logoAlt: 'CRISPR Therapeutics Logo',
       link: 'https://crisprtx.com/focus-areas/crispr-x',
@@ -57,7 +60,8 @@ export default function Experience() {
     },
     {
       title: 'Autoimmune Intern | CRISPR Therapeutics',
-      description: '2022',
+      description: '',
+      date: '2022',
       logo: crisprLogo,
       logoAlt: 'CRISPR Therapeutics Logo',
       link: 'https://crisprtx.com/focus-areas/crispr-x',
@@ -87,6 +91,7 @@ export default function Experience() {
               </div>
             )}
             description={entry.description}
+            date={entry.date}
             modalContent={entry.modalContent}
           />
         ))}

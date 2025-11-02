@@ -1,3 +1,9 @@
 Items to be updated:
-1. I want the project cards for project, education, and experience to still display the contents of the respective card on the card, and i don't want the user to have to click on the card to see the contents. Ensure the title of the project card is the same blue as the website.
-2. The contact form is unavailable, please fix this so users can send me an email
+
+In general, ensure that all formatting and style is held consistent and professional to what my existing website currently has.
+
+1. All font color should be held consistent for the entire page and on the project page, education page, and experience page, should be in contrast to the off-white/cream color of the card.
+2. Project card on the projects page should be more concise and the user should be able to hover on the title of the project and it should have a blue glow, and when the user hovers over it should be a hyperlink to the respective page.
+3. Experience and Education project cards need to be updated slightly. On the education page, the dates of education should be organized on the right hand side and the degree information and relevant other information should be underneath the title of the education.
+4. Experience project card should have the dates organized on the right hand side of the page
+5. Contact page needs to have google recaptcha verification so that I don't get spammed and some sort of security
