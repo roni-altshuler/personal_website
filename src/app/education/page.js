@@ -14,12 +14,10 @@ export default function Education() {
       link: 'https://www.ronharellab.com/',
       modalContent: (
         <>
-          <h3>Technion – Israel Institute of Technology</h3>
           <p><strong>Dates:</strong> 2025 – Present</p>
           <p><strong>Degree:</strong> PhD in Biology</p>
           <p><strong>Status:</strong> First-Year PhD Student</p>
           <p><strong>Focus:</strong> Graduate Researcher in the Ron-Harel Lab, focusing on ImmunoMetabolism & Aging.</p>
-          <p>Learn more at <a href='https://www.ronharellab.com/' target='_blank' rel='noopener noreferrer'>Ron-Harel Lab</a>.</p>
         </>
       ),
     },
@@ -31,11 +29,9 @@ export default function Education() {
       link: 'https://engineering.ucsc.edu/',
       modalContent: (
         <>
-          <h3>University of California, Santa Cruz</h3>
           <p><strong>Dates:</strong> 2023 – 2024</p>
           <p><strong>Degree:</strong> Master of Science in Biomolecular Engineering and Bioinformatics</p>
           <p><strong>Thesis:</strong> Spatial Transcriptomic Analysis of Cell Type Distribution and Gene Expression Patterns in a Human Breast Cancer Model.</p>
-          <p>Learn more at <a href='https://engineering.ucsc.edu/' target='_blank' rel='noopener noreferrer'>UCSC Baskin Engineering</a>.</p>
         </>
       ),
     },
@@ -47,11 +43,9 @@ export default function Education() {
       link: 'https://engineering.ucsc.edu/',
       modalContent: (
         <>
-          <h3>University of California, Santa Cruz</h3>
           <p><strong>Dates:</strong> 2020 – 2023</p>
           <p><strong>Degree:</strong> Bachelor of Science in Biomolecular Engineering and Bioinformatics with Honors</p>
           <p><strong>Honors:</strong> Dean’s Honors List (2021, 2022, 2023).</p>
-          <p>Learn more at <a href='https://engineering.ucsc.edu/' target='_blank' rel='noopener noreferrer'>UCSC Baskin Engineering</a>.</p>
         </>
       ),
     },
