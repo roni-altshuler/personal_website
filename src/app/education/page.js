@@ -8,14 +8,13 @@ export default function Education() {
   const educationEntries = [
     {
       title: 'Technion – Israel Institute of Technology',
-      description: 'PhD in Biology, 2025 – Present',
+      description: 'PhD in Biology',
+      date: '2025 – Present',
       logo: technionLogo,
       logoAlt: 'Technion Logo',
       link: 'https://www.ronharellab.com/',
       modalContent: (
         <>
-          <p><strong>Dates:</strong> 2025 – Present</p>
-          <p><strong>Degree:</strong> PhD in Biology</p>
           <p><strong>Status:</strong> First-Year PhD Student</p>
           <p><strong>Focus:</strong> Graduate Researcher in the Ron-Harel Lab, focusing on ImmunoMetabolism & Aging.</p>
         </>
@@ -23,28 +22,26 @@ export default function Education() {
     },
     {
       title: 'University of California, Santa Cruz',
-      description: 'Master of Science in Biomolecular Engineering and Bioinformatics, 2023 – 2024',
+      description: 'Master of Science in Biomolecular Engineering and Bioinformatics',
+      date: '2023 – 2024',
       logo: ucscLogo,
       logoAlt: 'UCSC Baskin Engineering Logo',
       link: 'https://engineering.ucsc.edu/',
       modalContent: (
         <>
-          <p><strong>Dates:</strong> 2023 – 2024</p>
-          <p><strong>Degree:</strong> Master of Science in Biomolecular Engineering and Bioinformatics</p>
           <p><strong>Thesis:</strong> Spatial Transcriptomic Analysis of Cell Type Distribution and Gene Expression Patterns in a Human Breast Cancer Model.</p>
         </>
       ),
     },
     {
       title: 'University of California, Santa Cruz',
-      description: 'Bachelor of Science in Biomolecular Engineering and Bioinformatics with Honors, 2020 – 2023',
+      description: 'Bachelor of Science in Biomolecular Engineering and Bioinformatics with Honors',
+      date: '2020 – 2023',
       logo: ucscLogo,
       logoAlt: 'UCSC Baskin Engineering Logo',
       link: 'https://engineering.ucsc.edu/',
       modalContent: (
         <>
-          <p><strong>Dates:</strong> 2020 – 2023</p>
-          <p><strong>Degree:</strong> Bachelor of Science in Biomolecular Engineering and Bioinformatics with Honors</p>
           <p><strong>Honors:</strong> Dean’s Honors List (2021, 2022, 2023).</p>
         </>
       ),
@@ -65,6 +62,7 @@ export default function Education() {
               </div>
             )}
             description={entry.description}
+            date={entry.date}
             modalContent={entry.modalContent}
           />
         ))}

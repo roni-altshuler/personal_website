@@ -5,14 +5,8 @@ export default function Projects() {
   const projects = [
     {
       title: 'Soccer Predictor',
-      description: 'Soccer Stats Predictor is a Next.js web app that lets users generate clear, data-driven soccer match predictions between teams or across leagues. Powered by machine learning on historical data, it shows intuitive win/draw/loss probabilities in an interactive, professional interface.',
-      modalContent: (
-        <div>
-          <p>This project utilizes machine learning models to predict outcomes of soccer matches based on historical data. It provides users with win/draw/loss probabilities and detailed statistics.</p>
-          <p>Technologies used: Next.js, React, Python (for ML models), scikit-learn, pandas.</p>
-          <p>You can view the code on <a href='https://github.com/roni-altshuler/soccer_predictor' target='_blank' rel='noopener noreferrer'>GitHub</a>.</p>
-        </div>
-      ),
+      description: 'A Next.js web app that generates data-driven soccer match predictions using machine learning.',
+      link: 'https://github.com/roni-altshuler/soccer_predictor',
     },
   ];
 
@@ -27,7 +21,7 @@ export default function Projects() {
               key={index}
               title={project.title}
               description={project.description}
-              modalContent={project.modalContent}
+              link={project.link}
             />
           ))}
         </div>
