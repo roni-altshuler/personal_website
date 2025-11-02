@@ -4,21 +4,7 @@ const resend = new Resend(process.env.RESEND_API_KEY);
 
 export async function POST(request) {
   try {
-    const { name, email, message, token } = await request.json();
-
-    // The reCAPTCHA secret key is expected to be provided as an environment variable.
-    const recaptchaRes = await fetch('https://www.google.com/recaptcha/api/siteverify', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/x-www-form-urlencoded',
-        },
-        body: `secret=${process.env.RECAPTCHA_SECRET_KEY}&response=${token}`,
-    });
-    const recaptchaData = await recaptchaRes.json();
-
-    if (!recaptchaData.success) {
-        return new Response(JSON.stringify({ error: 'reCAPTCHA verification failed.' }), { status: 400 });
-    }
+    const { name, email, message } = await request.json();
 
     // If verification is successful, send the email
     const { data, error } = await resend.emails.send({
