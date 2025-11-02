@@ -1,6 +1,5 @@
 'use client';
 
-import { useState, useRef } from 'react';
 import { useState } from 'react';
 import styles from './contact.module.css';
 
@@ -60,8 +59,5 @@ export default function Contact() {
         </>
       </section>
     </div>
-    );
-  }
-  
-
+  );
 }
