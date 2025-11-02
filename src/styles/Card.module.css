@@ -17,13 +17,14 @@
 
 .cardHeader {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
+  justify-content: space-between;
   gap: 1.5rem;
 }
 
 .logo {
-  width: 60px;
-  height: 60px;
+  max-width: 80px;
+  max-height: 80px;
   object-fit: contain;
   border-radius: 8px;
 }
@@ -51,6 +52,11 @@
   color: var(--secondary-color);
   font-size: 0.9rem;
   white-space: nowrap;
+}
+
+.cardBody ul,
+.cardBody li {
+  color: var(--card-text-color);
 }
 
 .cardBody {

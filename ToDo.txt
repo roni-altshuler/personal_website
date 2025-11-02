@@ -1,5 +1,0 @@
-Items to be updated:
-
-Experience page:
-    font color should be darker like the rest of the website, to have contrast with the off-white/cream color of the project card
-    scale the logo of Chan Zuckerberg Biohub SF slightly larger so the user can actually make out the image

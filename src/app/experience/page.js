@@ -84,14 +84,12 @@ export default function Experience() {
         {experienceEntries.map((entry, index) => (
           <Card
             key={index}
-            title={(
-              <div className={styles.titleContainer}>
-                <Image src={entry.logo} alt={entry.logoAlt} className={styles.logo} />
-                <h3><a href={entry.link} target='_blank' rel='noopener noreferrer' className={styles.glowLink}>{entry.title}</a></h3>
-              </div>
-            )}
+            logo={entry.logo}
+            logoAlt={entry.logoAlt}
+            title={entry.title}
             description={entry.description}
             date={entry.date}
+            link={entry.link}
             modalContent={entry.modalContent}
           />
         ))}
