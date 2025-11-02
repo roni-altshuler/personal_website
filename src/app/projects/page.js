@@ -11,7 +11,7 @@ export default function Projects() {
           <h3>Soccer Predictor Details</h3>
           <p>This project utilizes machine learning models to predict outcomes of soccer matches based on historical data. It provides users with win/draw/loss probabilities and detailed statistics.</p>
           <p>Technologies used: Next.js, React, Python (for ML models), scikit-learn, pandas.</p>
-          <p>You can view the code on <a href=\"https://github.com/roni-altshuler/soccer_predictor\" target=\"_blank\" rel=\"noopener noreferrer\">GitHub</a>.</p>
+          <p>You can view the code on <a href='https://github.com/roni-altshuler/soccer_predictor' target='_blank' rel='noopener noreferrer'>GitHub</a>.</p>
         </div>
       ),
     },
