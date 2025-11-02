@@ -5,7 +5,7 @@ export default function Projects() {
   const projects = [
     {
       title: 'Soccer Predictor',
-      description: 'A Next.js web app that generates data-driven soccer match predictions using machine learning.',
+      description: 'Soccer Stats Predictor is a Next.js web app that lets users generate clear, data-driven soccer match predictions between teams or across leagues. Powered by machine learning on historical data, it shows intuitive win/draw/loss probabilities in an interactive, professional interface.',
       link: 'https://github.com/roni-altshuler/soccer_predictor',
     },
   ];

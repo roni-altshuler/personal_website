@@ -18,6 +18,10 @@
   gap: 1rem;
 }
 
+.cardBody {
+  margin-top: 1rem;
+}
+
 .date {
   color: var(--secondary-color);
   font-size: 0.9rem;

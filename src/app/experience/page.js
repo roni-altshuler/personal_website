@@ -87,7 +87,7 @@ export default function Experience() {
             title={(
               <div className={styles.titleContainer}>
                 <Image src={entry.logo} alt={entry.logoAlt} className={styles.logo} />
-                <h3><a href={entry.link} target='_blank' rel='noopener noreferrer' className={styles.glowLink}>{entry.title.split(' | ')[0]}</a> | <a href={entry.link} target='_blank' rel='noopener noreferrer' className={styles.glowLink}>{entry.title.split(' | ')[1]}</a></h3>
+                <h3><a href={entry.link} target='_blank' rel='noopener noreferrer' className={styles.glowLink}>{entry.title}</a></h3>
               </div>
             )}
             description={entry.description}

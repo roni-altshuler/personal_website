@@ -19,8 +19,10 @@ const Card = ({ title, description, date, link, modalContent }) => {
         </h2>
         {date && <p className={styles.date}>{date}</p>}
       </div>
-      <p>{description}</p>
-      {modalContent}
+      <div className={styles.cardBody}>
+        <p>{description}</p>
+        {modalContent}
+      </div>
     </div>
   );
 };

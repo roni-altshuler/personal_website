@@ -1,9 +1,101 @@
 Items to be updated:
 
-In general, ensure that all formatting and style is held consistent and professional to what my existing website currently has.
+My resume for reference:
+Roni Altshuler 
+(408) 668-4464 | roni.altshuler@gmail.com | LinkedIn 
+Summary   
+Biomolecular Engineer and Bioinformatician exploring how immune and metabolic pathways shape health and disease. 
+Experienced in spatial transcriptomics, CRISPR/Cas9, and cancer genomics, with a focus on translating discovery into 
+therapeutic impact. 
+Education   
+Technion – Israel Institute of Technology                                         
+PhD., Biology  
+2025 – Present    
+Graduate Researcher in the Ron-Harel Lab (Advisor: Dr. Noga Ron-Harel) - focus on ImmunoMetabolism & Aging  
+University of California, Santa Cruz                                              
+Master of Science in Biomolecular Engineering and Bioinformatics   
+2023 – 2024   
+Thesis: Spatial Transcriptomic Analysis of Cell Type Distribution and Gene Expression Patterns in a Human Breast Cancer 
+Model  
+Relevant Coursework: Applied RNA Bioinformatics, Machine Learning, Stem Cell Biology, Entrepreneurship in Biotech   
+University of California, Santa Cruz                                                                  
+Bachelor of Science in Biomolecular Engineering and Bioinformatics with Honors        
+2020 – 2023  
+Dean’s Honors List: 2021, 2022, 2023  
+Relevant Coursework: Bioinformatics Models and Algorithms, Computational Genomics, Data Structures and Algorithms,  
+Database Management Systems, Applied Bayesian Statistics, Python Programming, C Programming, Organic Chemistry, 
+Biochemistry, Molecular Biology  
+Experience   
+Research Associate II | Chan Zuckerberg Biohub SF                                                      
+● Designed and implemented a custom Cellpose-based zebrafish cell segmentation model.  
+2024 – 2025 
+○  Developed methods to generate training/testing field-of-view datasets from whole-embryo MERFISH 
+images, including a novel strategy to select training data using Shannon’s entropy.  
+○  Increased model F1 score from 53% to 85%, significantly enhancing segmentation accuracy to support 
+upstream data analysis processes.  
+● Contributed to the Tabula Sapiens Rosetta Donor project, integrating isoform-level information with traditional 
+single-cell gene expression analyses to add a new dimension to the consortium’s data resources.  
+● Performed high-throughput sequencing for internal and external investigators, including QC workflows 
+(TapeStation, qPCR), sequencing (MiSeq i100, NextSeq 2000, and NovaSeq X), and post-run analysis 
+(demultiplexing reports, AWS-based data tokenization and delivery).  
+Master’s Research | University of California, Santa Cruz Genomics Institute               
+2023 – 2024  
+● Developed a custom Cellpose2.0 model for spatial transcriptomic data analysis, achieving precision and recall 
+metrics of 84% and 90%.  
+● Identified critical gene expression patterns through spatial differential analysis, revealing tumor 
+microenvironment insights.  
+● Visualized spatial distributions and performed clustering analyses using Python tools like UMAP.  
+CRISPR-X Intern | CRISPR Therapeutics                                                                                     
+● Led a project on 3’-overhang dsDNA integration, boosting CRISPR/Cas9 knock-in efficiency (validated via 
+NGS). 
+2023   
+● Optimized T cell editing by integrating promoterless GFP transgenes and analyzing results with flow cytometry.  
+Autoimmune Intern | CRISPR Therapeutics                                                         
+● Enhanced CAR-T cell performance by analyzing costimulatory domain variations and improving targeting 
+efficiency. 
+● Evaluated cancer cell targeting outcomes using advanced flow cytometry and ddPCR techniques.   
+Technical Skills   
+2022  
+Programming & Tools: Python, Linux/Unix, R, C/C++, MATLAB, SQL, Jupyter, CellPose, AlphaFold, MatplotLib, Squidpy, Scanpy, 
+Seaborn, Pandas, Git, AWS  
+Laboratory Techniques: Next Generation Sequencing, CRISPR/Cas9 Editing, PCR (qPCR, ddPCR), Flow Cytometry, Gel 
+Electrophoresis, Tissue Culture  
+General: SnapGene, GraphPad Prism, FlowJo, Microsoft Office, Google Suite  
+Publications   
+1.  
+TBD publication for MERFISH zebrafish 24hpf project  
+Presentations   
+Poster Presentations  
+1. “Consecutive Sections MERFISH Reveals Spatially Resolved Gene Expression Dynamics in 
+24hpf Zebrafish Embryos”                  
+Amanda Seng, Roni Altshuler, Shruthi VijayKumar, Andy Zhou, Xiang Zhao, Merlin Lange, 
+Loic A. Royer, Norma Neff. Biohub SF Inter-lab Confab. May 2025. San Francisco, USA.   
+2. “Emerging Transcriptomics at CZ Biohub SF”            
+Ritwicq Arjyal, Amanda Seng, Andy Zhou, Thomas Gottilla, Roni Altshuler, Norma Neff. 
+Biohub SF Inter-lab Confab. May 2025. San Francisco, USA.  
+3. “Investigating The Cellular Response to External Perturbations At a Molecular Level Using 
+High-Throughput Screens”                    
+Leah C. Dorman, Karen Cheng, Chad Liu, Duo Peng, Cassidy Jones, Madhurya Sekhar, 
+Ritwicq Arjyal, Thomas Gottilla, Roni Altshuler, Norma Neff, Carolina Arias, Manu Leonetti, 
+Yasin Senbabaoglu. Biohub SF Inter-lab Confab. May 2025. San Francisco, USA.  
+4. “Emerging Spatiotemporal Transcriptomics at CZ Biohub SF”        
+Ritwicq Arjyal, Amanda Seng, Andy Zhou, Thomas Gottilla, Roni Altshuler, Norma Neff. 
+Biohub SF Inter-lab Confab. October 2024. San Francisco, USA.  
+5. “Spatially Dependent Differential Analysis of T-Cells in Hepatocellular Carcinoma using 
+Spatial Transcriptomics.”                  
+Michael Borja, Nick Keener, Cecilia Cisar, Roni Altshuler, Uyen Nguyen, Benedict Paten.  
+UCSC Poster Session. March 2024. Santa Cruz, USA. 
 
-1. All font color should be held consistent for the entire page and on the project page, education page, and experience page, should be in contrast to the off-white/cream color of the card.
-2. Project card on the projects page should be more concise and the user should be able to hover on the title of the project and it should have a blue glow, and when the user hovers over it should be a hyperlink to the respective page.
-3. Experience and Education project cards need to be updated slightly. On the education page, the dates of education should be organized on the right hand side and the degree information and relevant other information should be underneath the title of the education.
-4. Experience project card should have the dates organized on the right hand side of the page
-5. Contact page needs to have google recaptcha verification so that I don't get spammed and some sort of security
+Projects page:
+    soccer predictor blurb I want: Soccer Stats Predictor is a Next.js web app that lets users generate clear, data-driven soccer match predictions between teams or across leagues. Powered by machine learning on historical data, it shows intuitive win/draw/loss probabilities in an interactive, professional interface.
+
+Education page:
+    formatting should be similar to LinkedIn education page for user profile
+
+Experience page:
+    font color should be darker like the rest of the website, to have contrast with the off-white/cream color of the project card
+    the entire title, for example Research Associate II | Chan Zuckerberg Biohub SF should glow when user hovers over
+    also scale the logo of Chan Zuckerberg Biohub SF slightly larger so the user can actually make out the image
+
+Contact page:
+    form is unavailable, fix using google recaptcha that is in this project repo
