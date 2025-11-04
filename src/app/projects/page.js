@@ -66,6 +66,7 @@ export default function Projects() {
                   <p className={styles.projectDescription}>{project.description}</p>
                 </div>
               }
+              children={true}
             />
           ))}
         </div>
