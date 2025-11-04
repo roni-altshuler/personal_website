@@ -41,7 +41,7 @@ const Card = ({ title, description, date, link, modalContent, logo, logoAlt, chi
             {date && <p className={styles.date}>{date}</p>}
           </div>
         )}
-        {!children && modalContent && (
+        {!children && !customHeader && modalContent && (
           <div className={styles.cardBody}>
             {modalContent}
           </div>
