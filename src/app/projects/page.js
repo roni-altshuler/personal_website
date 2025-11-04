@@ -4,10 +4,12 @@ import styles from './projects.module.css';
 import Card from '../../components/Card';
 
 export default function Projects() {
+  const soccerDescription = 'Soccer Stats Predictor is a Next.js web app that lets users generate clear, data-driven soccer match predictions between teams or across leagues. Powered by machine learning on historical data, it shows intuitive win/draw/loss probabilities in an interactive, professional interface.';
+  
   const projects = [
     {
       title: 'Soccer Predictor',
-      description: 'Soccer Stats Predictor is a Next.js web app that lets users generate clear, data-driven soccer match predictions between teams or across leagues. Powered by machine learning on historical data, it shows intuitive win/draw/loss probabilities in an interactive, professional interface.',
+      description: soccerDescription,
       link: 'https://github.com/roni-altshuler/soccer_predictor',
       icon: (
         <svg
@@ -27,44 +29,9 @@ export default function Projects() {
       ),
       modalContent: (
         <div>
-          <h3 style={{ marginBottom: '1rem', fontSize: '1.3rem', color: 'var(--primary-color)' }}>About the Project</h3>
-          <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
-            Soccer Stats Predictor is an AI-powered web application that predicts soccer match outcomes using machine learning. 
-            The system analyzes historical data from over 150,000 matches across 9 major leagues and competitions.
+          <p style={{ lineHeight: '1.6' }}>
+            {soccerDescription}
           </p>
-          
-          <h3 style={{ marginBottom: '0.75rem', marginTop: '1.5rem', fontSize: '1.3rem', color: 'var(--primary-color)' }}>Key Features</h3>
-          <ul style={{ marginLeft: '1.5rem', marginBottom: '1rem', lineHeight: '1.8' }}>
-            <li><strong>Head-to-Head Predictions:</strong> Compare teams within the same league</li>
-            <li><strong>Cross-League Analysis:</strong> Compare teams from different leagues and competitions</li>
-            <li><strong>Win/Draw/Loss Probabilities:</strong> Clear percentage breakdowns for match outcomes</li>
-            <li><strong>Predicted Scorelines:</strong> Most likely score predictions based on historical patterns</li>
-            <li><strong>Interactive Interface:</strong> Modern, responsive design built with Next.js and Tailwind CSS</li>
-          </ul>
-
-          <h3 style={{ marginBottom: '0.75rem', marginTop: '1.5rem', fontSize: '1.3rem', color: 'var(--primary-color)' }}>Technology Stack</h3>
-          <ul style={{ marginLeft: '1.5rem', marginBottom: '1rem', lineHeight: '1.8' }}>
-            <li><strong>Frontend:</strong> Next.js, React, Tailwind CSS, Zustand (state management)</li>
-            <li><strong>Backend:</strong> Python, Flask, scikit-learn</li>
-            <li><strong>Machine Learning:</strong> Gradient Boosting, Random Forest, XGBoost</li>
-            <li><strong>Data Processing:</strong> pandas, NumPy</li>
-            <li><strong>Deployment:</strong> Vercel (frontend), Railway (backend API)</li>
-          </ul>
-
-          <h3 style={{ marginBottom: '0.75rem', marginTop: '1.5rem', fontSize: '1.3rem', color: 'var(--primary-color)' }}>Data Coverage</h3>
-          <p style={{ marginBottom: '0.5rem', lineHeight: '1.6' }}>
-            The model is trained on comprehensive match data from:
-          </p>
-          <ul style={{ marginLeft: '1.5rem', lineHeight: '1.8' }}>
-            <li>English Premier League</li>
-            <li>Spanish La Liga</li>
-            <li>German Bundesliga</li>
-            <li>Italian Serie A</li>
-            <li>French Ligue 1</li>
-            <li>UEFA Champions League</li>
-            <li>UEFA Europa League</li>
-            <li>And more...</li>
-          </ul>
         </div>
       ),
     },
