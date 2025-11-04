@@ -15,14 +15,14 @@
 }
 
 .modalContent {
-  background: var(--background-color);
+  background: var(--card-background-color);
   padding: 2.5rem;
   border-radius: 12px;
   width: 90%;
   max-width: 800px;
   position: relative;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-  color: var(--text-color);
+  color: var(--card-text-color);
   max-height: 90vh;
   overflow-y: auto;
   animation: slideUp 0.3s ease-out;
@@ -36,7 +36,7 @@
   border: none;
   font-size: 2rem;
   cursor: pointer;
-  color: var(--text-color);
+  color: var(--card-text-color);
   width: 40px;
   height: 40px;
   display: flex;
