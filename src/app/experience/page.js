@@ -13,7 +13,7 @@ export default function Experience() {
       date: '2024 – 2025',
       logo: czBiohubLogo,
       logoAlt: 'CZ Biohub SF Logo',
-      link: 'https://biohub.org/',
+      link: 'https://biohub.org/genomics/',
       modalContent: (
         <>
           <ul>
