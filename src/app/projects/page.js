@@ -6,7 +6,7 @@ import Card from '../../components/Card';
 export default function Projects() {
   const soccerDescription = 'Soccer Stats Predictor is a Next.js web app that lets users generate clear, data-driven soccer match predictions between teams or across leagues. Powered by machine learning on historical data, it shows intuitive win/draw/loss probabilities in an interactive, professional interface.';
   
-  const songAnalyzerDescription = 'Song Lyric Analyzer - A modern, minimalist web application that analyzes song lyrics to determine mood, vibe, and emotional insights. Built with Next.js, TypeScript, and Tailwind CSS.';
+  const songAnalyzerDescription = 'Song Lyric Analyzer is a modern, minimalist web application that analyzes song lyrics to determine mood, vibe, and emotional insights. Built with Next.js, TypeScript, and Tailwind CSS.';
   
   const projects = [
     {

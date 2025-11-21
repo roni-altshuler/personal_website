@@ -58,6 +58,9 @@
 .projectList {
   margin-top: 2rem;
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
 }
 
 .projectCard {
