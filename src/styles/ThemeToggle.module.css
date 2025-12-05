@@ -1,0 +1,20 @@
+.toggle {
+  background: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--secondary-color);
+  transition: color 0.3s ease;
+  margin: 0 1rem;
+}
+
+.toggle:hover {
+  color: var(--primary-color);
+}
+
+.toggle i {
+  font-size: 1.1rem;
+}

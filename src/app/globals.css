@@ -8,8 +8,21 @@
   --border-color: #dee2e6;
 }
 
+/* Dark theme via data attribute (for toggle) */
+html[data-theme="dark"] {
+  --background: #0a0a0a;
+  --foreground: #ededed;
+  --primary-color: #00aaff;
+  --secondary-color: #adb5bd;
+  --card-background-color: #1a1a1a;
+  --card-text-color: #ced4da;
+  --border-color: #495057;
+  color-scheme: dark;
+}
+
+/* System preference fallback (when no theme is set) */
 @media (prefers-color-scheme: dark) {
-  :root {
+  html:not([data-theme="light"]) {
     --background: #0a0a0a;
     --foreground: #ededed;
     --primary-color: #00aaff;
@@ -46,7 +59,7 @@ a {
 }
 
 @media (prefers-color-scheme: dark) {
-  html {
+  html:not([data-theme="light"]) {
     color-scheme: dark;
   }
 }

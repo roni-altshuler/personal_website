@@ -66,17 +66,18 @@
 .projectCard {
   background-color: var(--card-background-color);
   color: var(--card-text-color);
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+  border-radius: 12px;
+  box-shadow: 0 4px 16px var(--shadow-color);
   border: 1px solid var(--border-color);
   padding: 2rem;
   width: 100%;
   cursor: pointer;
-  transition: box-shadow 0.3s ease;
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
 }
 
 .projectCard:hover {
-  box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+  box-shadow: 0 8px 24px var(--shadow-hover);
+  transform: translateY(-4px);
 }
 
 .container {
