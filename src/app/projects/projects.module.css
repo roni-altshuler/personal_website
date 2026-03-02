@@ -1,5 +1,6 @@
 .container {
-  max-width: 800px;
+  max-width: 960px;
+  width: 100%;
   margin: 2rem auto;
   padding: 2rem;
 }
@@ -28,166 +29,119 @@
   margin: 0;
 }
 
-.titleContainer {
-    display: inline-flex;
-    align-items: flex-end;
-    gap: 0.5rem;
-    border-bottom: 2px solid var(--primary-color);
-    padding-bottom: 0.5rem;
-    margin-bottom: 1.5rem;
-}
+/* ── GitHub-style repo card grid ── */
 
-.icon {
-    font-size: 24px;
-    color: var(--primary-color);
-}
-
-.titleWithIcon {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
-.titleWithIcon svg {
-    flex-shrink: 0;
-}
-
-.projectList {
+.projectGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.25rem;
   margin-top: 2rem;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 2.5rem;
 }
 
-.projectCard {
+.repoCard {
+  display: flex;
+  flex-direction: column;
   background-color: var(--card-background-color);
-  color: var(--card-text-color);
-  border-radius: 12px;
-  box-shadow: 0 4px 16px var(--shadow-color);
   border: 1px solid var(--border-color);
-  padding: 2rem;
-  width: 100%;
+  border-radius: 8px;
+  padding: 1.25rem;
+  text-decoration: none;
+  color: var(--card-text-color);
+  transition: box-shadow 0.25s ease, transform 0.25s ease, border-color 0.25s ease;
   cursor: pointer;
-  transition: box-shadow 0.3s ease, transform 0.3s ease;
+  min-height: 160px;
 }
 
-.projectCard:hover {
-  box-shadow: 0 8px 24px var(--shadow-hover);
-  transform: translateY(-4px);
+.repoCard:hover {
+  box-shadow: 0 8px 24px var(--shadow-hover, rgba(0,0,0,0.12));
+  transform: translateY(-3px);
+  border-color: var(--primary-color);
 }
 
-.container {
-  max-width: 900px;
-  width: 100%;
-  margin: 2rem auto;
-  padding: 2rem;
-}
-
-.projectContent {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-}
-
-.projectHeader {
-  padding: 1.75rem;
-  width: 100%;
-}
-
-.projectTitle {
+/* header row: icon + name + badge */
+.repoHeader {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
-  margin-bottom: 1rem;
+  gap: 0.5rem;
+  margin-bottom: 0.625rem;
+  flex-wrap: wrap;
 }
 
-.projectTitle svg {
+.repoIcon {
   flex-shrink: 0;
-  color: var(--primary-color);
-  width: 24px;
-  height: 24px;
+  color: var(--secondary-color);
+  width: 16px;
+  height: 16px;
 }
 
-.projectTitleLink {
-  color: var(--primary-color);
-  text-decoration: none;
-  font-size: 1.5rem;
+.repoName {
+  font-size: 1.15rem;
   font-weight: 600;
-  transition: color 0.3s ease, text-shadow 0.3s ease;
-}
-
-.projectTitleLink:hover {
-  text-shadow: 0 0 8px var(--secondary-color);
-  text-decoration: none;
-}
-
-.projectDescription {
-  color: var(--card-text-color);
-  line-height: 1.6;
-  margin: 0;
-  padding-top: 0.5rem;
-  font-size: 1rem;
-}
-
-.description {
-  color: var(--card-text-color);
-  line-height: 1.6;
-  margin: 0;
-  width: 100%;
-  text-align: left;
-  font-size: 1rem;
-  padding: 0.5rem 0;
-  font-weight: 400;
-}
-
-.projectCard a {
   color: var(--primary-color);
-  text-decoration: none;
-  transition: color 0.3s ease, text-shadow 0.3s ease;
-  width: 100%;
-  display: inline;
-  font-size: 1.5rem;
+  line-height: 1.3;
 }
 
-.projectCard a:hover {
-  text-shadow: 0 0 8px var(--secondary-color);
-}
-
-.projectCard:hover {
-  transform: translateY(-5px);
-}
-
-.projectCard h2 {
-  margin: 0;
-  font-size: 1.5rem;
-  color: inherit; /* Ensure color inheritance from glowLink */
-}
-
-.projectCard p {
-  color: var(--card-text-color);
-  flex-grow: 1;
-}
-
-.projectCard a {
-  color: var(--primary-color);
-  text-decoration: none;
+.publicBadge {
+  font-size: 0.7rem;
   font-weight: 500;
+  padding: 0.1em 0.5em;
+  border: 1px solid var(--border-color);
+  border-radius: 2em;
+  color: var(--secondary-color);
+  line-height: 1;
+  white-space: nowrap;
+  margin-left: auto;
 }
 
-.glowLink {
-  color: var(--primary-color);
-  text-decoration: none;
-  transition: color 0.3s ease, text-shadow 0.3s ease;
+/* description */
+.repoDescription {
+  flex: 1;
+  font-size: 0.875rem;
+  line-height: 1.55;
+  color: var(--card-text-color);
+  margin: 0 0 1rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
-.glowLink:hover {
-  color: var(--primary-color);
-  text-shadow: 0 0 8px var(--secondary-color);
+/* bottom meta row: language · stars · forks */
+.repoMeta {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-top: auto;
+  font-size: 0.8rem;
+  color: var(--secondary-color);
 }
+
+.languageTag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.languageDot {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.metaItem {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.metaItem svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* ── Responsive ── */
 
 @media (max-width: 768px) {
   .container {
@@ -200,27 +154,8 @@
     margin-bottom: 2rem;
   }
 
-  .projectHeader {
-    padding: 1.25rem;
-  }
-
-  .projectTitle {
-    gap: 0.5rem;
-    margin-bottom: 0.75rem;
-  }
-
-  .projectTitleLink {
-    font-size: 1.25rem;
-  }
-
-  .projectTitle svg {
-    width: 20px;
-    height: 20px;
-  }
-
-  .projectDescription {
-    font-size: 0.95rem;
-    line-height: 1.5;
+  .projectGrid {
+    grid-template-columns: 1fr;
   }
 }
 
@@ -235,24 +170,11 @@
     margin-bottom: 1.5rem;
   }
 
-  .projectHeader {
+  .repoCard {
     padding: 1rem;
   }
 
-  .projectTitle {
-    gap: 0.4rem;
-  }
-
-  .projectTitleLink {
-    font-size: 1.1rem;
-  }
-
-  .projectTitle svg {
-    width: 18px;
-    height: 18px;
-  }
-
-  .projectDescription {
-    font-size: 0.9rem;
+  .repoName {
+    font-size: 1.05rem;
   }
 }
