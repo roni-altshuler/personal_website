@@ -1,5 +1,6 @@
 'use client';
 
+import { useEffect, useState } from 'react';
 import styles from './projects.module.css';
 
 const LANGUAGE_COLORS = {
@@ -21,39 +22,67 @@ const ForkIcon = () => (
   </svg>
 );
 
+const DEFAULT_PROJECTS = [
+  {
+    name: 'soccer_predictor',
+    displayName: 'Soccer Predictor',
+    description:
+      'A Next.js web app that generates data-driven soccer match predictions between teams or across leagues using machine learning on historical data.',
+    link: 'https://github.com/roni-altshuler/soccer_predictor',
+    language: 'TypeScript',
+    stars: 0,
+    forks: 0,
+  },
+  {
+    name: 'SongAnalyzer',
+    displayName: 'Song Lyric Analyzer',
+    description:
+      'A modern, minimalist web app that analyzes song lyrics to determine mood, vibe, and emotional insights. Built with Next.js, TypeScript, and Tailwind CSS.',
+    link: 'https://github.com/roni-altshuler/SongAnalyzer',
+    language: 'TypeScript',
+    stars: 0,
+    forks: 0,
+  },
+  {
+    name: 'f1_predictions',
+    displayName: 'F1 Predictor',
+    description:
+      'A Python-based Formula 1 race prediction framework that uses historical data, telemetry analysis, and weather integration to forecast race results for the 2026 season.',
+    link: 'https://github.com/roni-altshuler/f1_predictions',
+    language: 'Python',
+    stars: 0,
+    forks: 0,
+  },
+];
+
 export default function Projects() {
-  const projects = [
-    {
-      name: 'soccer_predictor',
-      displayName: 'Soccer Predictor',
-      description:
-        'A Next.js web app that generates data-driven soccer match predictions between teams or across leagues using machine learning on historical data.',
-      link: 'https://github.com/roni-altshuler/soccer_predictor',
-      language: 'TypeScript',
-      stars: 1,
-      forks: 1,
-    },
-    {
-      name: 'SongAnalyzer',
-      displayName: 'Song Lyric Analyzer',
-      description:
-        'A modern, minimalist web app that analyzes song lyrics to determine mood, vibe, and emotional insights. Built with Next.js, TypeScript, and Tailwind CSS.',
-      link: 'https://github.com/roni-altshuler/SongAnalyzer',
-      language: 'TypeScript',
-      stars: 0,
-      forks: 0,
-    },
-    {
-      name: 'f1_predictions',
-      displayName: 'F1 Predictor',
-      description:
-        'A Python-based Formula 1 race prediction framework that uses historical data, telemetry analysis, and weather integration to forecast race results for the 2026 season.',
-      link: 'https://github.com/roni-altshuler/f1_predictions',
-      language: 'Python',
-      stars: 0,
-      forks: 0,
-    },
-  ];
+  const [projects, setProjects] = useState(DEFAULT_PROJECTS);
+
+  useEffect(() => {
+    async function fetchGitHubStats() {
+      try {
+        const res = await fetch('/api/github');
+        if (!res.ok) return;
+        const repoData = await res.json();
+
+        setProjects((prev) =>
+          prev.map((project) => {
+            const live = repoData.find((r) => r.name === project.name);
+            if (!live) return project;
+            return {
+              ...project,
+              stars: live.stars,
+              forks: live.forks,
+              language: live.language || project.language,
+            };
+          })
+        );
+      } catch {
+        // keep defaults on error
+      }
+    }
+    fetchGitHubStats();
+  }, []);
 
   return (
     <div className={styles.container}>
