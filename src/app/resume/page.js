@@ -1,0 +1,67 @@
+import fs from 'node:fs';
+import path from 'node:path';
+import styles from './resume.module.css';
+
+const PDF_FILENAME = 'RoniAltshulerCurrent.pdf';
+const PDF_PATH = `/${PDF_FILENAME}`;
+
+function pdfExists() {
+  try {
+    return fs.existsSync(path.join(process.cwd(), 'public', PDF_FILENAME));
+  } catch {
+    return false;
+  }
+}
+
+export default function Resume() {
+  const hasPdf = pdfExists();
+
+  return (
+    <div className={styles.container}>
+      <h1 className={styles.pageTitle}>Resume</h1>
+      <p className={styles.tagline}>
+        A concise overview of my education, experience, and skills.
+      </p>
+
+      <div className={styles.actions}>
+        {hasPdf ? (
+          <>
+            <a
+              href={PDF_PATH}
+              download
+              className={styles.downloadButton}
+              rel="noopener"
+            >
+              Download PDF
+            </a>
+            <a
+              href={PDF_PATH}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={styles.secondaryButton}
+            >
+              Open in new tab
+            </a>
+          </>
+        ) : (
+          <span className={styles.secondaryButton}>PDF coming soon</span>
+        )}
+      </div>
+
+      {hasPdf ? (
+        <iframe
+          src={PDF_PATH}
+          title="Roni Altshuler Resume"
+          className={styles.preview}
+          loading="lazy"
+        />
+      ) : (
+        <div className={styles.pdfStub}>
+          <p>
+            <strong>The downloadable PDF will live here.</strong>
+          </p>
+        </div>
+      )}
+    </div>
+  );
+}

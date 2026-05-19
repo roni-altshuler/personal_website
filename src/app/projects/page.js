@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { PROJECTS, LANGUAGE_COLORS } from '../../data/projects';
-import styles from './build.module.css';
+import styles from './projects.module.css';
 
 const StarIcon = () => (
   <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
@@ -16,7 +16,7 @@ const ForkIcon = () => (
   </svg>
 );
 
-export default function Build() {
+export default function Projects() {
   const [projects, setProjects] = useState(PROJECTS);
 
   useEffect(() => {
@@ -48,7 +48,7 @@ export default function Build() {
   return (
     <div className={styles.container}>
       <section className={styles.section}>
-        <h1 className={styles.pageTitle}>Build</h1>
+        <h1 className={styles.pageTitle}>Projects</h1>
 
         <div className={styles.projectGrid}>
           {projects.map((project) => (

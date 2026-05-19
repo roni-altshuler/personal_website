@@ -33,11 +33,11 @@ export async function generateMetadata({ params }) {
   return {
     title: `${title} — Case Study`,
     description: summary,
-    alternates: { canonical: `/research/${params.slug}` },
+    alternates: { canonical: `/work-experience/${params.slug}` },
     openGraph: {
       title: `${title} · Roni Altshuler`,
       description: summary,
-      url: `/research/${params.slug}`,
+      url: `/work-experience/${params.slug}`,
     },
   };
 }
