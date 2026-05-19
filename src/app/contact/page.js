@@ -82,16 +82,23 @@ export default function Contact() {
     setIsLoading(true);
 
     try {
+      const siteKey = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY;
+      let recaptchaToken = '';
+      if (siteKey && typeof window !== 'undefined' && window.grecaptcha) {
+        await new Promise((resolve) => window.grecaptcha.ready(resolve));
+        recaptchaToken = await window.grecaptcha.execute(siteKey, { action: 'contact' });
+      }
 
       const res = await fetch('/api/send', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ 
-          name, 
-          email, 
-          message
+        body: JSON.stringify({
+          name,
+          email,
+          message,
+          recaptchaToken,
         }),
       });
 

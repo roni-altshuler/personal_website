@@ -1,5 +1,12 @@
 import Image from 'next/image';
 import styles from './education.module.css';
+
+export const metadata = {
+  title: 'Education',
+  description: 'Education of Roni Altshuler — PhD at Technion, MS and BS at UC Santa Cruz.',
+  alternates: { canonical: '/education' },
+  openGraph: { title: 'Education · Roni Altshuler', url: '/education' },
+};
 import technionLogo from '@../../../public/logo/Technion_logo.svg';
 import ucscLogo from '@../../../public/logo/UC_Santa_Cruz_Baskin_Engineering_logo.svg';
 import Card from '../../components/Card';
