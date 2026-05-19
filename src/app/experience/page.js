@@ -1,5 +1,12 @@
 import Image from 'next/image';
 import styles from './experience.module.css';
+
+export const metadata = {
+  title: 'Experience',
+  description: 'Research and industry experience of Roni Altshuler — CZ Biohub, UCSC Genomics Institute, CRISPR Therapeutics.',
+  alternates: { canonical: '/experience' },
+  openGraph: { title: 'Experience · Roni Altshuler', url: '/experience' },
+};
 import czBiohubLogo from '@../../../public/logo/CZ-Biohub-SF-Color-RGB.png';
 import ucscGenomicsLogo from '@../../../public/logo/GenomicsInstitute.png';
 import crisprLogo from '@../../../public/logo/CRISPR Therapeutics_idsoX7FvVl_1.svg';

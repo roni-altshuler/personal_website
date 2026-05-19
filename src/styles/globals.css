@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 :root {
   /* Light mode - Clean, professional with subtle warmth */
   --background-color: #f8fafc;
