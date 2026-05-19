@@ -23,10 +23,9 @@ export default function Navbar() {
         <i className={isOpen ? 'fas fa-times' : 'fas fa-bars'}></i>
       </div>
       <div className={`${styles.navLinks} ${isOpen ? styles.navActive : ''}`}>
-        <Link href="/" onClick={closeMenu}>Home</Link>
-        <Link href="/projects" onClick={closeMenu}>Projects</Link>
-        <Link href="/education" onClick={closeMenu}>Education</Link>
-        <Link href="/experience" onClick={closeMenu}>Experience</Link>
+        <Link href="/research" onClick={closeMenu}>Research</Link>
+        <Link href="/build" onClick={closeMenu}>Build</Link>
+        <Link href="/cv" onClick={closeMenu}>CV</Link>
         <Link href="/contact" onClick={closeMenu}>Contact</Link>
         <ThemeToggle />
       </div>
