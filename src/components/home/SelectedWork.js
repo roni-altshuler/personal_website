@@ -1,31 +1,19 @@
 import Link from 'next/link';
 import Card from '../Card';
-import { RESEARCH } from '../../data/research';
-
-const FEATURED_IDS = ['cz-biohub', 'ucsc-genomics', 'internships'];
+import { RESEARCH, FEATURED_WORK_IDS } from '../../data/research';
 
 function ModalBody({ entry }) {
   return (
-    <>
-      <ul>
-        {entry.bullets.map((b, i) => (
-          <li key={i}>{b}</li>
-        ))}
-      </ul>
-      {entry.caseStudy && (
-        <Link
-          href={`/work-experience/${entry.caseStudy}`}
-          className="mt-3 inline-flex items-center gap-1 rounded-full border border-primary px-3 py-1 text-sm text-primary transition-colors hover:bg-primary hover:text-card"
-        >
-          Read case study →
-        </Link>
-      )}
-    </>
+    <ul>
+      {entry.bullets.map((b, i) => (
+        <li key={i}>{b}</li>
+      ))}
+    </ul>
   );
 }
 
 export default function SelectedWork() {
-  const featured = FEATURED_IDS
+  const featured = FEATURED_WORK_IDS
     .map((id) => RESEARCH.find((e) => e.id === id))
     .filter(Boolean);
 

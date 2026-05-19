@@ -37,25 +37,6 @@
   gap: 1.5rem;
 }
 
-.caseStudyCta {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  margin-top: 0.75rem;
-  padding: 0.4rem 0.85rem;
-  border: 1px solid var(--primary-color);
-  border-radius: 999px;
-  font-size: 0.9rem;
-  color: var(--primary-color);
-  text-decoration: none;
-  transition: background-color 0.2s ease, color 0.2s ease;
-}
-
-.caseStudyCta:hover {
-  background-color: var(--primary-color);
-  color: var(--card-background-color);
-}
-
 .skillsSection {
   margin-top: 3rem;
   padding-top: 2rem;
