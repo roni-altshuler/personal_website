@@ -1,4 +1,3 @@
-import Link from 'next/link';
 import Card from '../../components/Card';
 import { workEntries } from '../../data/research';
 import { SKILLS } from '../../data/skills';
@@ -6,18 +5,11 @@ import styles from './work-experience.module.css';
 
 function ModalBody({ entry }) {
   return (
-    <>
-      <ul>
-        {entry.bullets.map((b, i) => (
-          <li key={i}>{b}</li>
-        ))}
-      </ul>
-      {entry.caseStudy && (
-        <Link href={`/work-experience/${entry.caseStudy}`} className={styles.caseStudyCta}>
-          Read case study →
-        </Link>
-      )}
-    </>
+    <ul>
+      {entry.bullets.map((b, i) => (
+        <li key={i}>{b}</li>
+      ))}
+    </ul>
   );
 }
 
