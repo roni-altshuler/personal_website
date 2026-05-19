@@ -6,9 +6,13 @@ export const TRACKS = {
   undergrad: { label: 'Undergraduate', order: 4 },
 };
 
+// area splits entries onto /education vs /work-experience.
+// 'education' = degrees and academic standing; 'work' = jobs, internships,
+// and research positions (master's research counted as work, not education).
 export const RESEARCH = [
   {
     id: 'technion-phd',
+    area: 'education',
     track: 'doctoral',
     title: 'Technion – Israel Institute of Technology',
     subtitle: 'PhD in Biology',
@@ -26,6 +30,7 @@ export const RESEARCH = [
   },
   {
     id: 'cz-biohub',
+    area: 'work',
     track: 'industry',
     title: 'Research Associate II',
     subtitle: 'Chan Zuckerberg Biohub SF',
@@ -48,6 +53,7 @@ export const RESEARCH = [
   },
   {
     id: 'ucsc-genomics',
+    area: 'work',
     track: 'masters',
     title: "Master's Research",
     subtitle: 'UC Santa Cruz Genomics Institute',
@@ -70,6 +76,7 @@ export const RESEARCH = [
   },
   {
     id: 'ucsc-ms',
+    area: 'education',
     track: 'masters',
     title: 'University of California, Santa Cruz',
     subtitle: 'M.S. in Biomolecular Engineering & Bioinformatics',
@@ -86,6 +93,7 @@ export const RESEARCH = [
   },
   {
     id: 'internships',
+    area: 'work',
     track: 'internships',
     title: 'CRISPR Therapeutics Internships',
     subtitle: 'CRISPR-X (2023) & Autoimmune (2022)',
@@ -105,6 +113,7 @@ export const RESEARCH = [
   },
   {
     id: 'ucsc-bs',
+    area: 'education',
     track: 'undergrad',
     title: 'University of California, Santa Cruz',
     subtitle: 'B.S. in Biomolecular Engineering & Bioinformatics, with Honors',
@@ -135,4 +144,12 @@ export function groupedResearch() {
   return [...groups.entries()]
     .sort((a, b) => TRACKS[a[0]].order - TRACKS[b[0]].order)
     .map(([track, entries]) => ({ track, label: TRACKS[track].label, entries }));
+}
+
+export function educationEntries() {
+  return RESEARCH.filter((entry) => entry.area === 'education');
+}
+
+export function workEntries() {
+  return RESEARCH.filter((entry) => entry.area === 'work');
 }

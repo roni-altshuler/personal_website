@@ -24,7 +24,7 @@
   border-radius: 2px;
 }
 
-.intro {
+.tagline {
   text-align: center;
   max-width: 640px;
   margin: 0 auto 2rem;
@@ -94,43 +94,6 @@
   color: var(--card-text-color);
   border: 1px dashed var(--border-color);
   border-radius: 8px;
-}
-
-.summary {
-  margin-top: 3rem;
-  display: grid;
-  gap: 1.25rem;
-  line-height: 1.7;
-}
-
-.statList {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: 1rem;
-  margin-top: 1.5rem;
-  padding: 1.5rem;
-  background-color: var(--card-background-color);
-  color: var(--card-text-color);
-  border: 1px solid var(--border-color);
-  border-radius: 8px;
-}
-
-.stat {
-  text-align: center;
-}
-
-.statValue {
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: var(--primary-color);
-  display: block;
-}
-
-.statLabel {
-  font-size: 0.875rem;
-  color: var(--secondary-color);
-  margin-top: 0.25rem;
-  display: block;
 }
 
 @media (max-width: 768px) {

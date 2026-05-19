@@ -15,10 +15,10 @@ export default function CaseStudyHeader({
   return (
     <header className="border-b border-border pb-8 mb-8">
       <Link
-        href="/research"
+        href="/work-experience"
         className="inline-flex items-center gap-1 text-sm text-secondary hover:text-primary transition-colors"
       >
-        ← Back to Research
+        ← Back to Work Experience
       </Link>
 
       <div className="mt-6 flex flex-col gap-4 md:flex-row md:items-center">

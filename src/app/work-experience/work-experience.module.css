@@ -31,15 +31,6 @@
   color: var(--text-color);
 }
 
-.trackHeader {
-  text-align: center;
-  margin: 2.5rem 0 1.25rem;
-  font-size: 1.25rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--secondary-color);
-}
-
 .timeline {
   display: flex;
   flex-direction: column;

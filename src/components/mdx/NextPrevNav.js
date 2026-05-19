@@ -5,7 +5,7 @@ export default function NextPrevNav({ prev, next }) {
     <nav className="mt-12 grid gap-4 border-t border-border pt-8 sm:grid-cols-2">
       {prev ? (
         <Link
-          href={`/research/${prev.slug}`}
+          href={`/work-experience/${prev.slug}`}
           className="group flex flex-col rounded-lg border border-border bg-card p-4 transition-shadow hover:shadow-hover"
         >
           <span className="text-xs uppercase tracking-wider text-secondary">
@@ -20,7 +20,7 @@ export default function NextPrevNav({ prev, next }) {
       )}
       {next ? (
         <Link
-          href={`/research/${next.slug}`}
+          href={`/work-experience/${next.slug}`}
           className="group flex flex-col rounded-lg border border-border bg-card p-4 text-right transition-shadow hover:shadow-hover sm:ml-auto sm:w-full"
         >
           <span className="text-xs uppercase tracking-wider text-secondary">
