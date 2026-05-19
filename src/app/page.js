@@ -1,32 +1,76 @@
 import Image from 'next/image';
-import styles from '../styles/Home.module.css';
+import Link from 'next/link';
+import KineticHero from '../components/hero/KineticHero';
+import SelectedWork from '../components/home/SelectedWork';
+import SelectedProjects from '../components/home/SelectedProjects';
+import ContactCTA from '../components/home/ContactCTA';
 
 export default function Home() {
   return (
-    <div className={styles.container}>
-      <header className={styles.header}>
-        <Image
-          src="/profile.PNG"
-          alt="Roni Altshuler"
-          width={200}
-          height={200}
-          className={styles.profileImage}
-          sizes="(max-width: 768px) 150px, 200px"
-        />
-        <h1 className={styles.title}>Roni Altshuler</h1>
-        <p className={styles.subtitle}>Biomolecular Engineer & Bioinformatician</p>
-        <div className={styles.socialIcons}>
-          <a href="https://github.com/roni-altshuler" target="_blank" rel="noopener noreferrer"><i className="fab fa-github"></i></a>
-          <a href="mailto:roni.altshuler@gmail.com"><i className="fas fa-envelope"></i></a>
-          <a href="https://www.linkedin.com/in/roni-altshuler/" target="_blank" rel="noopener noreferrer"><i className="fab fa-linkedin"></i></a>
-        </div>
-      </header>
+    <>
+      <KineticHero />
 
-      <main className={styles.main}>
-        <p className={styles.blurb}>
-          Hi, I&apos;m Roni Altshuler, a PhD student at the <a href="https://www.ronharellab.com/" target="_blank" rel="noopener noreferrer" className={styles.glowLink}>Technion</a>, studying Immunometabolism and Aging. My research explores how immune and metabolic pathways interact to shape health and disease, with the goal of turning scientific discoveries into real therapeutic impact. Before starting my PhD, I trained as a Biomolecular Engineer and Bioinformatician, developing computational workflows and working with cutting-edge techniques like spatial transcriptomics and CRISPR/Cas9 to make sense of complex biological data. I&apos;m passionate about using science to uncover how our bodies work, and how we can help them work better. Outside the lab, you&apos;ll probably find me training for my next endurance challenge, always striving to push boundaries both in science and in life.
-        </p>
-      </main>
-    </div>
+      <section className="mx-auto max-w-4xl px-6 py-8">
+        <div className="flex flex-col items-start gap-6 md:flex-row md:items-center">
+          <Image
+            src="/profile.PNG"
+            alt="Roni Altshuler"
+            width={160}
+            height={160}
+            sizes="(max-width: 768px) 120px, 160px"
+            className="h-32 w-32 shrink-0 rounded-full object-cover md:h-40 md:w-40"
+            priority
+          />
+          <div className="flex flex-col gap-3">
+            <p className="text-base leading-relaxed text-text md:text-lg">
+              I&apos;m a PhD student at the{' '}
+              <a
+                href="https://www.ronharellab.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-primary hover:underline"
+              >
+                Technion
+              </a>{' '}
+              studying immunometabolism and aging. Before that I trained as a
+              biomolecular engineer and bioinformatician, building computational
+              pipelines on spatial transcriptomics, single-cell, and CRISPR/Cas9
+              data — and I keep ending up at the seam between biology and code.
+            </p>
+            <div className="flex gap-4 text-xl text-secondary">
+              <a
+                href="https://github.com/roni-altshuler"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="GitHub"
+                className="transition-colors hover:text-primary"
+              >
+                <i className="fab fa-github"></i>
+              </a>
+              <a
+                href="https://www.linkedin.com/in/roni-altshuler/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="LinkedIn"
+                className="transition-colors hover:text-primary"
+              >
+                <i className="fab fa-linkedin"></i>
+              </a>
+              <Link
+                href="/contact"
+                aria-label="Contact"
+                className="transition-colors hover:text-primary"
+              >
+                <i className="fas fa-envelope"></i>
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <SelectedWork />
+      <SelectedProjects />
+      <ContactCTA />
+    </>
   );
 }

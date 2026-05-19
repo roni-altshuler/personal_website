@@ -1,12 +1,14 @@
 'use client';
 
 import React, { useState } from 'react';
+import { motion, useReducedMotion } from 'framer-motion';
 import styles from '../styles/Card.module.css';
 import Modal from './Modal';
 import Image from 'next/image';
 
 const Card = ({ title, description, date, link, modalContent, logo, logoAlt, children, customHeader }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const reduced = useReducedMotion();
 
   const handleCardClick = (e) => {
     // Don't open modal if clicking a link
@@ -16,7 +18,14 @@ const Card = ({ title, description, date, link, modalContent, logo, logoAlt, chi
 
   return (
     <>
-      <div className={styles.card} onClick={handleCardClick}>
+      <motion.div
+        className={styles.card}
+        onClick={handleCardClick}
+        initial={reduced ? false : { opacity: 0, y: 16 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.2 }}
+        transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
+      >
         {customHeader || children || (
           <div className={styles.cardHeader}>
             {logo && <Image src={logo} alt={logoAlt} className={styles.logo} />}
@@ -46,7 +55,7 @@ const Card = ({ title, description, date, link, modalContent, logo, logoAlt, chi
             {modalContent}
           </div>
         )}
-      </div>
+      </motion.div>
 
       {isModalOpen && (
         <Modal onClose={() => setIsModalOpen(false)}>
