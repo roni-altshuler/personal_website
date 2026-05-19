@@ -132,6 +132,40 @@ a:hover {
   text-decoration: none;
 }
 
+/* Skip-to-main link: visually hidden until focused. */
+.skip-to-main {
+  position: absolute;
+  left: 0.5rem;
+  top: -3rem;
+  z-index: 100;
+  padding: 0.6rem 1rem;
+  border-radius: 6px;
+  background-color: var(--primary-color);
+  color: var(--card-background-color);
+  font-weight: 600;
+  text-decoration: none;
+  transition: top 0.18s ease;
+}
+
+.skip-to-main:focus,
+.skip-to-main:focus-visible {
+  top: 0.5rem;
+  color: var(--card-background-color);
+  outline: 3px solid var(--accent-glow);
+  outline-offset: 2px;
+}
+
+/* Keyboard focus ring: visible on tab, hidden on mouse click. */
+:focus-visible {
+  outline: 2px solid var(--primary-color);
+  outline-offset: 2px;
+  border-radius: 3px;
+}
+
+#main-content:focus-visible {
+  outline: none;
+}
+
 h1, h2, h3, h4, h5, h6 {
   color: var(--text-color);
   font-weight: 600;

@@ -1,5 +1,6 @@
 import fs from 'node:fs';
 import path from 'node:path';
+import ResumeDownloadLink from '../../components/analytics/ResumeDownloadLink';
 import styles from './resume.module.css';
 
 const PDF_FILENAME = 'RoniAltshulerCurrent.pdf';
@@ -26,14 +27,9 @@ export default function Resume() {
       <div className={styles.actions}>
         {hasPdf ? (
           <>
-            <a
-              href={PDF_PATH}
-              download
-              className={styles.downloadButton}
-              rel="noopener"
-            >
+            <ResumeDownloadLink href={PDF_PATH} className={styles.downloadButton}>
               Download PDF
-            </a>
+            </ResumeDownloadLink>
             <a
               href={PDF_PATH}
               target="_blank"

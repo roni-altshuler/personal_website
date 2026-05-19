@@ -33,13 +33,37 @@ With segmentation working, I:
 - Ran **UMAP clustering** to identify cell-type subpopulations and their spatial distributions.
 - Used **Squidpy** for neighborhood-graph analyses and **Scanpy** for the single-cell side.
 
-<Figure caption="Placeholder — UMAP of identified cell-type clusters projected back onto tissue coordinates." />
+<Figure
+  src="/research/ucsc-genomics/model-accuracy-channels.png"
+  width={1440}
+  height={689}
+  caption="Custom Cellpose 2.0 segmentation performance: precision / recall / F1 across IoU thresholds (left), and a sweep across staining-channel combinations to find the most informative inputs for the model (right)."
+/>
+
+<Figure
+  src="/research/ucsc-genomics/cell-type-clusters.png"
+  width={1440}
+  height={689}
+  caption="UMAP comparison before and after the custom Cellpose 2.0 model — both major (top) and minor (bottom) cell-type annotations show tighter, more separable clusters once segmentation improves."
+/>
 
 ## Results
 
 The analysis revealed cell-type distribution patterns and gene expression signatures that varied with position in the tumor microenvironment — informative for understanding tumor-stroma and tumor-immune interactions.
 
-<Figure caption="Placeholder — spatial differential expression heatmap, tumor vs. stromal regions." />
+<Figure
+  src="/research/ucsc-genomics/spatial-major.png"
+  width={1440}
+  height={665}
+  caption="Spatial landscape of major cell types — epithelial, stromal, lymphoid, myeloid, and endothelial populations mapped back to tissue coordinates."
+/>
+
+<Figure
+  src="/research/ucsc-genomics/spatial-minor.png"
+  width={1440}
+  height={665}
+  caption="Minor cell-type resolution: cancer epithelial, normal epithelial, T-cells, B-cells, NK cells, M1 / M2 macrophages, monocytes, plasmablasts, stromal, and endothelial mapped spatially. T-cell infiltration at the tumor margin and the tumor-immune interface become readable directly from the tissue."
+/>
 
 ## Connection to the CZ Biohub work
 
