@@ -1,0 +1,73 @@
+export const frontmatter = {
+  slug: 'cz-biohub',
+  title: 'Research Associate II',
+  subtitle: 'Chan Zuckerberg Biohub SF',
+  date: '2024 – 2025',
+  logo: '/logo/CZ-Biohub-SF-Color-RGB.png',
+  logoAlt: 'CZ Biohub SF Logo',
+  link: 'https://biohub.org/genomics/',
+  summary:
+    'Built a custom Cellpose-based zebrafish cell segmentation model that lifted F1 from 53% to 85% on whole-embryo MERFISH images, and contributed to the Tabula Sapiens Rosetta Donor project.',
+  metrics: [
+    { value: '85%', label: 'F1 score', from: '53%' },
+  ],
+};
+
+## Problem
+
+Cell segmentation on whole-embryo zebrafish MERFISH images is the gating step for every downstream spatial-transcriptomics analysis. The out-of-the-box Cellpose model performed at an **F1 of ~53%** on our images — densely packed cells, thin membranes, heterogeneous tissue contexts, and channel noise all hurt boundary recall. Anything we built on top of that segmentation inherited its errors.
+
+The team needed a segmentation pipeline that was accurate enough to trust for transcript assignment, and a training-data strategy that scaled — manually annotating every cell in a multi-gigabyte embryo image was not viable.
+
+## Approach
+
+<TwoColumn>
+  <div>
+    **Model.** I trained a custom Cellpose model on zebrafish-specific training data, tuning the diameter, flow threshold, and cellprob parameters against held-out crops.
+  </div>
+  <div>
+    **Training data selection.** I built a sampling strategy based on **Shannon entropy** across image patches — high-entropy regions tend to contain rare cell types, dense boundaries, and edge cases that disproportionately improve generalization.
+  </div>
+</TwoColumn>
+
+The entropy-driven sampling meant we got more model improvement per labeled patch, which is what made the project tractable at MERFISH scale.
+
+<Figure caption="Placeholder — example segmentation: baseline Cellpose (left) vs. custom-trained model (right) on a representative zebrafish embryo region." />
+
+## Results
+
+<MetricCallout value="85%" label="F1 score" from="53%" />
+
+The custom model hit an **F1 of 85%**, up from the 53% baseline — a 32-point absolute lift. Precision and recall both improved without sacrificing the other; boundary localization on thin membranes was the largest win.
+
+Downstream impact: with reliable segmentation, transcript-to-cell assignment became trustworthy enough for spatial differential expression and cell-type clustering across the embryo.
+
+<Figure caption="Placeholder — F1 / precision / recall by tissue region." />
+
+## Tabula Sapiens Rosetta Donor
+
+In parallel, I contributed to the **Tabula Sapiens Rosetta Donor** project, integrating isoform-level information with single-cell gene expression analyses. Isoforms are typically lost in standard single-cell workflows; bringing them back enables more precise cell-type and cell-state distinctions for the atlas.
+
+## Sequencing operations
+
+I also ran high-throughput sequencing workflows end to end — sample QC, MiSeq / NextSeq / NovaSeq runs, demultiplexing, and AWS-based data delivery — so the segmentation and isoform work sat on top of a reliable data pipeline.
+
+<Stack
+  title="Stack & methods"
+  items={[
+    'Cellpose',
+    'MERFISH',
+    'Python',
+    'Shannon entropy sampling',
+    'Squidpy',
+    'Scanpy',
+    'AWS S3',
+    'NGS (MiSeq / NextSeq / NovaSeq)',
+  ]}
+/>
+
+## What I'd do next
+
+- Push the model further with active-learning rounds where it flags its own low-confidence regions.
+- Compare against transformer-based segmentation backbones (e.g. SAM-derived) on the same MERFISH dataset.
+- Publish the entropy-sampling strategy — it's underused outside imaging and could generalize.

@@ -1,58 +1,65 @@
-import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { CASE_STUDY_SLUGS, getResearchEntry } from '../../../data/research';
-import styles from '../research.module.css';
+import CaseStudyHeader from '../../../components/mdx/CaseStudyHeader';
+import NextPrevNav from '../../../components/mdx/NextPrevNav';
+import { CASE_STUDY_SLUGS } from '../../../data/research';
 
 export function generateStaticParams() {
   return CASE_STUDY_SLUGS.map((slug) => ({ slug }));
 }
 
-export function generateMetadata({ params }) {
-  const entry = getResearchEntry(params.slug);
-  if (!entry) return {};
-  const title = `${entry.title} — Case Study`;
+async function loadCaseStudy(slug) {
+  if (!CASE_STUDY_SLUGS.includes(slug)) return null;
+  const mod = await import(`../../../content/research/${slug}.mdx`);
+  return { Content: mod.default, frontmatter: mod.frontmatter };
+}
+
+function neighbors(slug) {
+  const i = CASE_STUDY_SLUGS.indexOf(slug);
+  const prevSlug = i > 0 ? CASE_STUDY_SLUGS[i - 1] : null;
+  const nextSlug = i < CASE_STUDY_SLUGS.length - 1 ? CASE_STUDY_SLUGS[i + 1] : null;
+  return { prevSlug, nextSlug };
+}
+
+async function neighborFrontmatter(slug) {
+  if (!slug) return null;
+  const mod = await import(`../../../content/research/${slug}.mdx`);
+  return { slug, title: mod.frontmatter.title };
+}
+
+export async function generateMetadata({ params }) {
+  const cs = await loadCaseStudy(params.slug);
+  if (!cs) return {};
+  const { title, summary } = cs.frontmatter;
   return {
-    title,
-    description: entry.summary,
+    title: `${title} — Case Study`,
+    description: summary,
     alternates: { canonical: `/research/${params.slug}` },
-    openGraph: { title: `${title} · Roni Altshuler`, url: `/research/${params.slug}` },
+    openGraph: {
+      title: `${title} · Roni Altshuler`,
+      description: summary,
+      url: `/research/${params.slug}`,
+    },
   };
 }
 
-export default function CaseStudyPage({ params }) {
-  const entry = getResearchEntry(params.slug);
-  if (!entry) notFound();
+export default async function CaseStudyPage({ params }) {
+  const cs = await loadCaseStudy(params.slug);
+  if (!cs) notFound();
+
+  const { Content, frontmatter } = cs;
+  const { prevSlug, nextSlug } = neighbors(params.slug);
+  const [prev, next] = await Promise.all([
+    neighborFrontmatter(prevSlug),
+    neighborFrontmatter(nextSlug),
+  ]);
 
   return (
-    <div className={styles.container}>
-      <Link href="/research" className={styles.caseStudyCta}>← Back to Research</Link>
-      <h1 className={styles.pageTitle} style={{ marginTop: '1.5rem' }}>
-        {entry.title}
-      </h1>
-      <p className={styles.intro}>
-        {entry.subtitle} · {entry.date}
-      </p>
-      <p className={styles.intro}>{entry.summary}</p>
-
-      <section style={{ textAlign: 'center', padding: '3rem 1rem', opacity: 0.75 }}>
-        <p>
-          <strong>Full case study coming soon.</strong>
-        </p>
-        <p style={{ marginTop: '0.5rem' }}>
-          A deeper write-up with methods, figures, and outcomes is in the works.
-        </p>
-      </section>
-
-      {entry.bullets?.length > 0 && (
-        <section>
-          <h2 className={styles.trackHeader}>Highlights</h2>
-          <ul style={{ maxWidth: 720, margin: '0 auto', lineHeight: 1.7 }}>
-            {entry.bullets.map((b, i) => (
-              <li key={i}>{b}</li>
-            ))}
-          </ul>
-        </section>
-      )}
-    </div>
+    <article className="mx-auto max-w-3xl px-6 py-12 md:py-16">
+      <CaseStudyHeader {...frontmatter} />
+      <div className="text-text">
+        <Content />
+      </div>
+      <NextPrevNav prev={prev} next={next} />
+    </article>
   );
 }
