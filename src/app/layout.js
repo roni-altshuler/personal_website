@@ -97,8 +97,9 @@ export default function RootLayout({ children }) {
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
         />
+        <a href="#main-content" className="skip-to-main">Skip to main content</a>
         <Navbar />
-        {children}
+        <div id="main-content" tabIndex={-1}>{children}</div>
         <Footer />
         <Analytics />
         {process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY && (

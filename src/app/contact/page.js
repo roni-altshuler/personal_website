@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { track } from '@vercel/analytics';
 import styles from './contact.module.css';
 
 export default function Contact() {
@@ -109,6 +110,7 @@ export default function Contact() {
       }
 
       // Success case
+      track('contact_submit');
       setStatus('Message sent successfully!');
       setName('');
       setEmail('');

@@ -1,6 +1,7 @@
 import { notFound } from 'next/navigation';
 import CaseStudyHeader from '../../../components/mdx/CaseStudyHeader';
 import NextPrevNav from '../../../components/mdx/NextPrevNav';
+import TrackOnMount from '../../../components/analytics/TrackOnMount';
 import { CASE_STUDY_SLUGS } from '../../../data/research';
 
 export function generateStaticParams() {
@@ -55,6 +56,7 @@ export default async function CaseStudyPage({ params }) {
 
   return (
     <article className="mx-auto max-w-3xl px-6 py-12 md:py-16">
+      <TrackOnMount event="case_study_view" data={{ slug: params.slug }} />
       <CaseStudyHeader {...frontmatter} />
       <div className="text-text">
         <Content />

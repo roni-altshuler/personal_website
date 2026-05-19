@@ -32,7 +32,26 @@ The team needed a segmentation pipeline that was accurate enough to trust for tr
 
 The entropy-driven sampling meant we got more model improvement per labeled patch, which is what made the project tractable at MERFISH scale.
 
-<Figure caption="Placeholder — example segmentation: baseline Cellpose (left) vs. custom-trained model (right) on a representative zebrafish embryo region." />
+<Figure
+  src="/research/cz-biohub/color-stains.png"
+  width={1440}
+  height={713}
+  caption="Source MERFISH imagery — DAPI nuclear stain (left) and membrane / cytoplasmic stains (right). Dense tissue, thin membranes, and heterogeneous contrast make boundary detection hard."
+/>
+
+<Figure
+  src="/research/cz-biohub/default-cellpose-fail.png"
+  width={1440}
+  height={713}
+  caption="Default Cellpose Cyto and Cyto3 predictions on a zebrafish FOV — undersegmented in dense regions, missed boundaries, F1 ≈ 53%."
+/>
+
+<Figure
+  src="/research/cz-biohub/hilt-pipeline.png"
+  width={1440}
+  height={689}
+  caption="The human-in-the-loop training pipeline: tile the whole-embryo image into FOVs, select the most informative tiles by Shannon entropy, predict with the current model, correct in the Cellpose GUI, retrain."
+/>
 
 ## Results
 
@@ -42,11 +61,48 @@ The custom model hit an **F1 of 85%**, up from the 53% baseline — a 32-point a
 
 Downstream impact: with reliable segmentation, transcript-to-cell assignment became trustworthy enough for spatial differential expression and cell-type clustering across the embryo.
 
-<Figure caption="Placeholder — F1 / precision / recall by tissue region." />
+<Figure
+  src="/research/cz-biohub/custom-vs-cellpose.png"
+  width={1440}
+  height={689}
+  caption="Custom zebrafish model (left) vs. default Cellpose Cyto (middle) vs. Cyto3 (right) on the same FOV. The custom model captures tighter, more anatomically correct boundaries."
+/>
+
+<Figure
+  src="/research/cz-biohub/iou-thresholds.png"
+  width={1440}
+  height={689}
+  caption="Precision, recall, and F1 across IoU thresholds for the custom model vs. Cellpose Cyto and Cyto3. The custom model dominates the comparable defaults across the operating range."
+/>
+
+<Figure
+  src="/research/cz-biohub/test-data-performance.png"
+  width={1440}
+  height={689}
+  caption="Performance generalization on three held-out zebrafish regions never seen during training — precision/recall/F1 stay high across new tissue contexts."
+/>
 
 ## Tabula Sapiens Rosetta Donor
 
 In parallel, I contributed to the **Tabula Sapiens Rosetta Donor** project, integrating isoform-level information with single-cell gene expression analyses. Isoforms are typically lost in standard single-cell workflows; bringing them back enables more precise cell-type and cell-state distinctions for the atlas.
+
+## Downstream: cell types across the whole embryo
+
+With segmentation trustworthy, transcript-to-cell assignment fed straight into clustering and cell-type annotation across the entire embryo.
+
+<Figure
+  src="/research/cz-biohub/umap-cell-types.png"
+  width={1440}
+  height={770}
+  caption="UMAP of segmented cells across the embryo, annotated by cell type — distinct populations for differentiating neurons, hindbrain, periderm, glial cells, muscle, neural crest, optic cup, notochord, retina, and more."
+/>
+
+<Figure
+  src="/research/cz-biohub/whole-embryo-9dpf.png"
+  width={1440}
+  height={713}
+  caption="The trained model applied to a 9 dpf whole-embryo dataset — DAPI signal (left of each pair) and the resulting segmentation masks (right) across three views."
+/>
 
 ## Sequencing operations
 

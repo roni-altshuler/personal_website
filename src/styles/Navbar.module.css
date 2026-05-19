@@ -48,12 +48,14 @@
   transition: width 0.2s ease;
 }
 
-.navLinks a:hover {
+.navLinks a:hover,
+.navLinks a[aria-current="page"] {
   color: var(--primary-color);
   text-decoration: none;
 }
 
-.navLinks a:hover::after {
+.navLinks a:hover::after,
+.navLinks a[aria-current="page"]::after {
   width: 100%;
 }
 
@@ -61,6 +63,12 @@
   display: none;
   font-size: 1.5rem;
   cursor: pointer;
+  background: transparent;
+  border: 0;
+  padding: 0;
+  color: inherit;
+  font: inherit;
+  line-height: 1;
 }
 
 @media (max-width: 768px) {
