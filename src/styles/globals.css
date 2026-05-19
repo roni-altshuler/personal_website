@@ -73,6 +73,25 @@ html[data-theme="dark"] {
   padding: 0;
 }
 
+/* Smooth theme-toggle: cross-fade color tokens across the site, but only
+ * on properties tied to theming so it doesn't interfere with Framer Motion
+ * transforms or opacity animations. */
+html[data-theme] *,
+html[data-theme] *::before,
+html[data-theme] *::after {
+  transition-property: background-color, border-color, color, fill, stroke, box-shadow;
+  transition-duration: 0.28s;
+  transition-timing-function: ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html[data-theme] *,
+  html[data-theme] *::before,
+  html[data-theme] *::after {
+    transition-duration: 0s;
+  }
+}
+
 body {
   background-color: var(--background-color);
   /* Consistent geometric pattern for both modes */
