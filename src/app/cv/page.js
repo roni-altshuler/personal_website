@@ -2,11 +2,12 @@ import fs from 'node:fs';
 import path from 'node:path';
 import styles from './cv.module.css';
 
-const PDF_PATH = '/roni-altshuler-cv.pdf';
+const PDF_FILENAME = 'RoniAltshulerCurrent.pdf';
+const PDF_PATH = `/${PDF_FILENAME}`;
 
 function pdfExists() {
   try {
-    return fs.existsSync(path.join(process.cwd(), 'public', 'roni-altshuler-cv.pdf'));
+    return fs.existsSync(path.join(process.cwd(), 'public', PDF_FILENAME));
   } catch {
     return false;
   }
