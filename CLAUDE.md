@@ -27,11 +27,11 @@ Routes: `/`, `/education`, `/work-experience`, `/projects`, `/skills`, `/resume`
 
 Timeline data is the single source of truth — pages render filtered views, never their own hardcoded arrays. To add a job/degree/internship, edit [src/data/research.js](src/data/research.js): each entry has an `area` field (`'education'` or `'work'`), and the page-level helpers `educationEntries()` and `workEntries()` filter by it. Side projects live in [src/data/projects.js](src/data/projects.js) and skills in [src/data/skills.js](src/data/skills.js).
 
-The `/projects` page client-fetches `/api/github` on mount to merge live stars/forks/language into the static defaults; failures are silent (the static defaults render). The home page `<SelectedWork>` and `<SelectedProjects>` blocks reuse those same data files filtered by `FEATURED_WORK_IDS` / by full list.
+The `/projects` page client-fetches `/api/github` on mount to merge live stars/forks/language into the static defaults; failures are silent (the static defaults render). The home page is intentionally minimal — KineticHero + profile section only; deeper sections (work, projects, contact) live on their own routes.
 
 ### Styling: dual system
 
-CSS Modules and Tailwind both work, intentionally. The older route pages (Education, Work Experience, Resume) use CSS Modules; new components (hero, home blocks, magnetic button) use Tailwind. **Tailwind preflight is disabled** in [tailwind.config.js](tailwind.config.js) so it doesn't reset what the CSS Modules established. Don't re-enable preflight — it will visually regress every existing page.
+CSS Modules and Tailwind both work, intentionally. The older route pages (Education, Work Experience, Resume) use CSS Modules; newer components (hero, contact, skills) use Tailwind. **Tailwind preflight is disabled** in [tailwind.config.js](tailwind.config.js) so it doesn't reset what the CSS Modules established. Don't re-enable preflight — it will visually regress every existing page.
 
 Tailwind colors are mapped to CSS variables (`text-text`, `bg-card`, `border-border`, `text-primary`, etc.) defined in [src/styles/globals.css](src/styles/globals.css). That keeps dark mode working: theme switching just flips the variables on `html[data-theme="dark"]`. The Tailwind `darkMode` config is wired to the same attribute. Anything you build in Tailwind should use these token classes rather than literal Tailwind colors so dark mode keeps working.
 
@@ -39,15 +39,15 @@ Tailwind colors are mapped to CSS variables (`text-text`, `bg-card`, `border-bor
 
 ### The Card / Modal pattern
 
-[Card.js](src/components/Card.js) is the timeline primitive used on Education, Work Experience, and the home page's Selected Work. Pass `lead={summary}` to surface a lead paragraph above the bullets, and `disableModal` to make the card static (used on Education and Work Experience — bullets show inline, no click-to-open). The home page's Selected Projects keeps the modal. Card is a client component that uses Framer Motion `whileInView` for one-shot scroll-reveal. [Modal.js](src/components/Modal.js) handles ESC + click-outside + body-scroll-lock.
+[Card.js](src/components/Card.js) is the timeline primitive used on Education and Work Experience. Pass `lead={summary}` to surface a lead paragraph above the bullets, and `disableModal` to make the card static (bullets show inline, no click-to-open). Card is a client component that uses Framer Motion `whileInView` for one-shot scroll-reveal. [Modal.js](src/components/Modal.js) handles ESC + click-outside + body-scroll-lock; it's currently only reachable when `disableModal` is not passed.
 
 ### Background
 
-[ParticleField.js](src/components/background/ParticleField.js) renders a site-wide interactive node-network canvas fixed at `z-index: -1`. It reads `--particle-color` and `--particle-line-color` from CSS variables, watches `data-theme` via `MutationObserver` for theme switches without remount, falls back to a single static frame under `prefers-reduced-motion: reduce`, and reduces particle count + skips line drawing under 768px. Mounted via [ParticleFieldLoader.js](src/components/background/ParticleFieldLoader.js) with `dynamic(..., { ssr: false })`.
+[ParticleField.js](src/components/background/ParticleField.js) renders a site-wide canvas fixed at `z-index: -1` showing a pulsing dot grid: dots are laid out on a 32 px (26 px on mobile) lattice covering the viewport, and each dot's radius breathes between `BASE_RADIUS` and `BASE_RADIUS + RADIUS_RANGE` using `Math.sin(now * PULSE_SPEED + phase)`. The phase combines `col * WAVE_K_X + row * WAVE_K_Y` (gives a diagonal travelling wave) plus a per-cell random `PHASE_JITTER` (breaks up the regularity). No cursor interaction. Color reads from `--particle-color`; theme switches re-tint via `MutationObserver` without remount. Reduced-motion: renders a single static frame. Mounted via [ParticleFieldLoader.js](src/components/background/ParticleFieldLoader.js) with `dynamic(..., { ssr: false })`.
 
 ### Motion conventions
 
-Framer Motion is used for the kinetic hero, page transitions, scroll reveals (via Card), magnetic CTAs ([MagneticButton.js](src/components/MagneticButton.js)), and smooth theme toggling. Every motion-using component calls `useReducedMotion()` and degrades to a static/instant variant when the user prefers reduced motion. The site-wide ease is `cubic-bezier(0.16, 1, 0.3, 1)` (Tailwind: `ease-out-expo`). Keep new motion under ~300ms.
+Framer Motion is used for the kinetic hero, page transitions, scroll reveals (via Card), and smooth theme toggling. Every motion-using component calls `useReducedMotion()` and degrades to a static/instant variant when the user prefers reduced motion. The site-wide ease is `cubic-bezier(0.16, 1, 0.3, 1)` (Tailwind: `ease-out-expo`). Keep new motion under ~300ms.
 
 ### API routes
 

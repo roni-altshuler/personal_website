@@ -1,3 +1,5 @@
+import { FadeUp } from '../../components/anim/Reveal';
+
 const CHANNELS = [
   {
     icon: 'fas fa-envelope',
@@ -25,13 +27,15 @@ const CHANNELS = [
 export default function Contact() {
   return (
     <main className="mx-auto max-w-2xl px-6 py-16">
-      <h1 className="mb-3 text-center text-4xl font-bold text-text">Get in touch</h1>
-      <p className="mb-10 text-center text-base text-secondary">
-        Best ways to reach me — happy to chat about research, internships, or collaborations.
-      </p>
+      <FadeUp as="h1" className="mb-3 text-center text-4xl font-bold text-text">
+        Get in touch
+      </FadeUp>
+      <FadeUp delay={0.1} as="p" className="mb-10 text-center text-base text-secondary">
+        Best ways to reach me. Happy to chat about research, internships, or collaborations.
+      </FadeUp>
 
-      <div className="rounded-2xl border border-border bg-card p-8 shadow-soft">
-        <ul className="flex flex-col gap-2">
+      <FadeUp delay={0.2} className="rounded-2xl border border-border bg-card p-8 shadow-soft">
+        <ul className="m-0 flex list-none flex-col gap-2 p-0">
           {CHANNELS.map(({ icon, label, value, href, external }) => (
             <li key={label}>
               <a
@@ -39,11 +43,11 @@ export default function Contact() {
                 {...(external
                   ? { target: '_blank', rel: 'noopener noreferrer' }
                   : {})}
-                className="group flex items-center gap-4 rounded-xl px-4 py-4 transition-colors hover:bg-bg-secondary"
+                className="group flex items-center gap-4 rounded-xl px-4 py-4 transition-all duration-200 ease-out hover:-translate-y-0.5 hover:bg-bg-secondary"
               >
                 <span
                   aria-hidden="true"
-                  className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-border text-lg text-primary transition-colors group-hover:border-primary"
+                  className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-border text-lg text-primary transition-all duration-200 ease-out group-hover:scale-110 group-hover:border-primary"
                 >
                   <i className={icon}></i>
                 </span>
@@ -61,7 +65,7 @@ export default function Contact() {
             </li>
           ))}
         </ul>
-      </div>
+      </FadeUp>
     </main>
   );
 }

@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { PROJECTS, LANGUAGE_COLORS } from '../../data/projects';
+import { FadeUp } from '../../components/anim/Reveal';
 import styles from './projects.module.css';
 
 const StarIcon = () => (
@@ -48,12 +49,15 @@ export default function Projects() {
   return (
     <div className={styles.container}>
       <section className={styles.section}>
-        <h1 className={styles.pageTitle}>Projects</h1>
+        <FadeUp as="h1" className={styles.pageTitle}>Projects</FadeUp>
 
         <div className={styles.projectGrid}>
-          {projects.map((project) => (
-            <a
+          {projects.map((project, i) => (
+            <FadeUp
               key={project.name}
+              whileInView
+              delay={i * 0.06}
+              as="a"
               href={project.link}
               target="_blank"
               rel="noopener noreferrer"
@@ -101,7 +105,7 @@ export default function Projects() {
                   </span>
                 )}
               </div>
-            </a>
+            </FadeUp>
           ))}
         </div>
       </section>

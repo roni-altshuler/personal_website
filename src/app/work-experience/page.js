@@ -1,5 +1,6 @@
 import Card from '../../components/Card';
 import { workEntries } from '../../data/research';
+import { FadeUp } from '../../components/anim/Reveal';
 import styles from './work-experience.module.css';
 
 function Bullets({ entry }) {
@@ -17,7 +18,7 @@ export default function WorkExperience() {
 
   return (
     <div className={styles.container}>
-      <h1 className={styles.pageTitle}>Work Experience</h1>
+      <FadeUp as="h1" className={styles.pageTitle}>Work Experience</FadeUp>
 
       <div className={styles.timeline}>
         {entries.map((entry) => (

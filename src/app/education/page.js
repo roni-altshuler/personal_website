@@ -1,5 +1,6 @@
 import Card from '../../components/Card';
 import { educationEntries } from '../../data/research';
+import { FadeUp } from '../../components/anim/Reveal';
 import styles from './education.module.css';
 
 function Bullets({ entry }) {
@@ -17,7 +18,7 @@ export default function Education() {
 
   return (
     <div className={styles.container}>
-      <h1 className={styles.pageTitle}>Education</h1>
+      <FadeUp as="h1" className={styles.pageTitle}>Education</FadeUp>
       <div className={styles.timeline}>
         {entries.map((entry) => (
           <Card

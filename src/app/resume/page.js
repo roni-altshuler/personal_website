@@ -1,6 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import ResumeDownloadLink from '../../components/analytics/ResumeDownloadLink';
+import { FadeUp } from '../../components/anim/Reveal';
 import styles from './resume.module.css';
 
 const PDF_FILENAME = 'RoniAltshulerCurrent.pdf';
@@ -19,10 +20,10 @@ export default function Resume() {
 
   return (
     <div className={styles.container}>
-      <h1 className={styles.pageTitle}>Resume</h1>
-      <p className={styles.tagline}>
+      <FadeUp as="h1" className={styles.pageTitle}>Resume</FadeUp>
+      <FadeUp delay={0.1} as="p" className={styles.tagline}>
         A concise overview of my education, experience, and skills.
-      </p>
+      </FadeUp>
 
       <div className={styles.actions}>
         {hasPdf ? (
