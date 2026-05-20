@@ -5,13 +5,13 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ## Commands
 
 ```bash
-npm run dev      # next dev — local at http://localhost:3000
-npm run build    # next build — required before checking route map / SSG output
-npm run start    # serve the production build
-npm run lint     # eslint (next/core-web-vitals)
+npm run dev          # next dev — local at http://localhost:3000
+npm run build        # next build — required before checking route map / SSG output
+npm run start        # serve the production build
+npx eslint src       # lint (the package.json "lint" script is bare `eslint` with no path, which prints help; use this instead)
 ```
 
-There is no test suite. Verification on UI changes is `npm run build` + manual smoke test in `npm run dev` (light + dark, mobile width 375px, keyboard nav, and `prefers-reduced-motion: reduce`).
+There is no test suite. Verification on UI changes is `npm run build` + manual smoke test in `npm run dev` (light + dark, mobile width 375px, keyboard nav, and `prefers-reduced-motion: reduce`). `next/image` is strict about string-`src` requiring explicit `width`/`height`: dev throws if you forget, while prod prerender is lenient — always smoke-test in `dev`, not just `build`.
 
 ## High-level architecture
 
@@ -39,7 +39,9 @@ Tailwind colors are mapped to CSS variables (`text-text`, `bg-card`, `border-bor
 
 ### The Card / Modal pattern
 
-[Card.js](src/components/Card.js) is the timeline primitive used on Education and Work Experience. Pass `lead={summary}` to surface a lead paragraph above the bullets, and `disableModal` to make the card static (bullets show inline, no click-to-open). Card is a client component that uses Framer Motion `whileInView` for one-shot scroll-reveal. [Modal.js](src/components/Modal.js) handles ESC + click-outside + body-scroll-lock; it's currently only reachable when `disableModal` is not passed.
+[Card.js](src/components/Card.js) is the timeline primitive used on Education and Work Experience. Pass `lead={summary}` to surface a lead paragraph above the bullets, and `disableModal` to make the card static (bullets show inline, no click-to-open). Both Education and Work Experience currently pass `disableModal`, so [Modal.js](src/components/Modal.js) is effectively unreachable from any route — keep the file (ESC + click-outside + body-scroll-lock are non-trivial), but don't expect to debug a modal in normal usage. Card is a client component that uses Framer Motion `whileInView` for one-shot scroll-reveal, and both static and modal-enabled cards lift + shift their border to `--primary-color` on hover (handled in [Card.module.css](src/styles/Card.module.css)).
+
+Logos in Cards sit inside a deliberate parchment-tile backplate (`#f5f5f0` with border + padding, defined on `.logo` / `.modalLogo`). This is intentional — the org logos (UCSC, CRISPR Therapeutics, Technion shield) have light backgrounds baked into the source files, and the backplate keeps them from floating as white rectangles on the dark slate card.
 
 ### Background
 
@@ -48,6 +50,8 @@ Tailwind colors are mapped to CSS variables (`text-text`, `bg-card`, `border-bor
 ### Motion conventions
 
 Framer Motion is used for the kinetic hero, page transitions, scroll reveals (via Card), and smooth theme toggling. Every motion-using component calls `useReducedMotion()` and degrades to a static/instant variant when the user prefers reduced motion. The site-wide ease is `cubic-bezier(0.16, 1, 0.3, 1)` (Tailwind: `ease-out-expo`). Keep new motion under ~300ms.
+
+[Reveal.js](src/components/anim/Reveal.js) exports `FadeUp` (block-level fade + 16 px lift) and `TypeIn` (word-by-word stagger that preserves line-wrapping). Both respect `useReducedMotion()`. `FadeUp` defaults to firing on mount; pass `whileInView` to switch it to scroll-trigger (used for staggering Skills pillars and Projects cards, ~60–80 ms apart). Use `FadeUp` for new page titles + intro paragraphs so the whole site has consistent entry motion.
 
 ### API routes
 
