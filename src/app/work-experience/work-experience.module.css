@@ -34,62 +34,7 @@
 .timeline {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
-}
-
-.skillsSection {
-  margin-top: 3rem;
-  padding-top: 2rem;
-}
-
-.skillsTitle {
-  text-align: center;
-  margin-bottom: 2rem;
-  position: relative;
-  padding-bottom: 1rem;
-}
-
-.skillsTitle::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 80px;
-  height: 4px;
-  background-color: var(--primary-color);
-  border-radius: 2px;
-}
-
-.skillsGrid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
   gap: 2rem;
-  align-items: start;
-}
-
-.skillsGrid > div {
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-}
-
-.skillsGrid h4 {
-  border-bottom: 2px solid var(--primary-color);
-  padding-bottom: 0.5rem;
-  margin-bottom: 1rem;
-  min-height: 2.5rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  white-space: nowrap;
-  font-size: 1.1rem;
-}
-
-.skillsGrid p {
-  line-height: 1.6;
-  flex: 1;
 }
 
 @media (max-width: 768px) {
@@ -101,12 +46,7 @@
     font-size: 2rem;
   }
 
-  .skillsGrid {
-    grid-template-columns: 1fr;
+  .timeline {
     gap: 1.5rem;
-  }
-
-  .skillsGrid h4 {
-    min-height: auto;
   }
 }

@@ -2,7 +2,7 @@ import Card from '../../components/Card';
 import { educationEntries } from '../../data/research';
 import styles from './education.module.css';
 
-function ModalBody({ entry }) {
+function Bullets({ entry }) {
   return (
     <ul>
       {entry.bullets.map((b, i) => (
@@ -28,7 +28,9 @@ export default function Education() {
             description={entry.subtitle}
             date={entry.date}
             link={entry.link}
-            modalContent={<ModalBody entry={entry} />}
+            lead={entry.summary}
+            modalContent={<Bullets entry={entry} />}
+            disableModal
           />
         ))}
       </div>

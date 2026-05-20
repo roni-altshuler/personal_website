@@ -1,203 +1,67 @@
-'use client';
-
-import { useState } from 'react';
-import { track } from '@vercel/analytics';
-import styles from './contact.module.css';
+const CHANNELS = [
+  {
+    icon: 'fas fa-envelope',
+    label: 'Email',
+    value: 'roni.altshuler@gmail.com',
+    href: 'mailto:roni.altshuler@gmail.com',
+    external: false,
+  },
+  {
+    icon: 'fab fa-linkedin',
+    label: 'LinkedIn',
+    value: 'linkedin.com/in/roni-altshuler',
+    href: 'https://www.linkedin.com/in/roni-altshuler/',
+    external: true,
+  },
+  {
+    icon: 'fab fa-github',
+    label: 'GitHub',
+    value: 'github.com/roni-altshuler',
+    href: 'https://github.com/roni-altshuler',
+    external: true,
+  },
+];
 
 export default function Contact() {
-  // Form states
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [message, setMessage] = useState('');
-  const [status, setStatus] = useState('');
-  const [isLoading, setIsLoading] = useState(false);
-  
-  // Field validation states
-  const [fieldErrors, setFieldErrors] = useState({
-    name: '',
-    email: '',
-    message: ''
-  });
-  
-
-
-  const validateField = (name, value) => {
-    let error = '';
-    
-    switch (name) {
-      case 'name':
-        if (value.trim().length < 2) {
-          error = 'Name must be at least 2 characters long';
-        }
-        break;
-      case 'email':
-        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
-          error = 'Please enter a valid email address';
-        }
-        break;
-      case 'message':
-        if (value.trim().length < 10) {
-          error = 'Message must be at least 10 characters long';
-        }
-        break;
-    }
-    
-    setFieldErrors(prev => ({
-      ...prev,
-      [name]: error
-    }));
-    
-    return !error;
-  };
-
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    switch (name) {
-      case 'name':
-        setName(value);
-        break;
-      case 'email':
-        setEmail(value);
-        break;
-      case 'message':
-        setMessage(value);
-        break;
-    }
-    validateField(name, value);
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    
-    // Validate all fields
-    const isNameValid = validateField('name', name);
-    const isEmailValid = validateField('email', email);
-    const isMessageValid = validateField('message', message);
-    
-    if (!isNameValid || !isEmailValid || !isMessageValid) {
-      setStatus('Please fix the form errors before submitting');
-      return;
-    }
-
-    setStatus('Sending...');
-    setIsLoading(true);
-
-    try {
-      const siteKey = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY;
-      let recaptchaToken = '';
-      if (siteKey && typeof window !== 'undefined' && window.grecaptcha) {
-        await new Promise((resolve) => window.grecaptcha.ready(resolve));
-        recaptchaToken = await window.grecaptcha.execute(siteKey, { action: 'contact' });
-      }
-
-      const res = await fetch('/api/send', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          name,
-          email,
-          message,
-          recaptchaToken,
-        }),
-      });
-
-      const data = await res.json();
-      
-      if (!res.ok) {
-        throw new Error(data.error || 'Failed to send message');
-      }
-
-      // Success case
-      track('contact_submit');
-      setStatus('Message sent successfully!');
-      setName('');
-      setEmail('');
-      setMessage('');
-      setFieldErrors({
-        name: '',
-        email: '',
-        message: ''
-      });
-      
-    } catch (error) {
-      console.error('Form submission error:', error);
-      setStatus(error.message || 'Failed to send message. Please try again.');
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
   return (
-    <div className={styles.container}>
-      <section className={styles.section}>
-        <h1 className={styles.pageTitle}>Contact Me</h1>
-        <p>Have a question or want to work together? Fill out the form below.</p>
-        <form className={styles.form} onSubmit={handleSubmit}>
-          <div className={styles.formGroup}>
-            <label htmlFor="name">Name</label>
-            <input 
-              type="text" 
-              id="name"
-              name="name"
-              value={name} 
-              onChange={handleInputChange}
-              className={fieldErrors.name ? styles.inputError : ''}
-              required 
-            />
-            {fieldErrors.name && (
-              <span className={styles.fieldError}>{fieldErrors.name}</span>
-            )}
-          </div>
-          <div className={styles.formGroup}>
-            <label htmlFor="email">Email</label>
-            <input 
-              type="email" 
-              id="email"
-              name="email" 
-              value={email} 
-              onChange={handleInputChange}
-              className={fieldErrors.email ? styles.inputError : ''}
-              required 
-            />
-            {fieldErrors.email && (
-              <span className={styles.fieldError}>{fieldErrors.email}</span>
-            )}
-          </div>
-          <div className={styles.formGroup}>
-            <label htmlFor="message">Message</label>
-            <textarea 
-              id="message"
-              name="message" 
-              value={message} 
-              onChange={handleInputChange}
-              className={fieldErrors.message ? styles.inputError : ''}
-              rows="5" 
-              required
-            ></textarea>
-            {fieldErrors.message && (
-              <span className={styles.fieldError}>{fieldErrors.message}</span>
-            )}
-          </div>
-          <button 
-            type="submit" 
-            className={styles.button}
-            disabled={isLoading}
-          >
-            {isLoading && <span className={styles.loadingSpinner} />}
-            {isLoading ? 'Sending...' : 'Send Message'}
-          </button>
-          {status && (
-            <p className={`${styles.statusMessage} ${
-              status.includes('successfully') ? styles.success : 
-              status.includes('failed') || status.includes('error') ? styles.error : ''
-            }`}>
-              {status}
-            </p>
-          )}
-        </form>
-      </section>
-    </div>
+    <main className="mx-auto max-w-2xl px-6 py-16">
+      <h1 className="mb-3 text-center text-4xl font-bold text-text">Get in touch</h1>
+      <p className="mb-10 text-center text-base text-secondary">
+        Best ways to reach me — happy to chat about research, internships, or collaborations.
+      </p>
+
+      <div className="rounded-2xl border border-border bg-card p-8 shadow-soft">
+        <ul className="flex flex-col gap-2">
+          {CHANNELS.map(({ icon, label, value, href, external }) => (
+            <li key={label}>
+              <a
+                href={href}
+                {...(external
+                  ? { target: '_blank', rel: 'noopener noreferrer' }
+                  : {})}
+                className="group flex items-center gap-4 rounded-xl px-4 py-4 transition-colors hover:bg-bg-secondary"
+              >
+                <span
+                  aria-hidden="true"
+                  className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-border text-lg text-primary transition-colors group-hover:border-primary"
+                >
+                  <i className={icon}></i>
+                </span>
+                <span className="flex flex-col">
+                  <span className="text-sm font-medium text-secondary">{label}</span>
+                  <span className="text-base font-semibold text-text transition-colors group-hover:text-primary">
+                    {value}
+                  </span>
+                </span>
+                <i
+                  className="fas fa-arrow-up-right-from-square ml-auto text-sm text-secondary opacity-0 transition-opacity group-hover:opacity-100"
+                  aria-hidden="true"
+                ></i>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </main>
   );
 }

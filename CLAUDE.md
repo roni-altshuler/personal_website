@@ -19,7 +19,7 @@ Next.js 15 (App Router) + React 19. Live site: ronialtshuler.com. Deploys from `
 
 ### Information architecture
 
-Routes: `/`, `/education`, `/work-experience`, `/projects`, `/resume`, `/contact`. Plus API routes `/api/github` and `/api/send`. Custom `not-found.js` and `error.js`. `template.js` wraps every route in a Framer Motion fade-in for client-side transitions.
+Routes: `/`, `/education`, `/work-experience`, `/projects`, `/skills`, `/resume`, `/contact`. Plus API route `/api/github`. Custom `not-found.js` and `error.js`. `template.js` wraps every route in a Framer Motion fade-in for client-side transitions.
 
 [next.config.mjs](next.config.mjs) carries 301 redirects from prior URLs (`/research`, `/experience`, `/build`, `/cv`) so existing inbound links keep resolving. Adding a new top-level route generally means: a folder under `src/app/`, a `layout.js` exporting `metadata` (canonical, OG, title — picked up by the title template in [src/app/layout.js](src/app/layout.js)), a `page.js`, and a Navbar entry in the `NAV_ITEMS` array of [src/components/Navbar.js](src/components/Navbar.js).
 
@@ -39,7 +39,11 @@ Tailwind colors are mapped to CSS variables (`text-text`, `bg-card`, `border-bor
 
 ### The Card / Modal pattern
 
-[Card.js](src/components/Card.js) is the timeline primitive used on Education, Work Experience, and the home page's Selected Work. Click opens [Modal.js](src/components/Modal.js) with the bullet content. Card is a client component that uses Framer Motion `whileInView` for one-shot scroll-reveal — keep it that way; the reveal is what gives the timeline pages their feel. Modal handles ESC + click-outside + body-scroll-lock.
+[Card.js](src/components/Card.js) is the timeline primitive used on Education, Work Experience, and the home page's Selected Work. Pass `lead={summary}` to surface a lead paragraph above the bullets, and `disableModal` to make the card static (used on Education and Work Experience — bullets show inline, no click-to-open). The home page's Selected Projects keeps the modal. Card is a client component that uses Framer Motion `whileInView` for one-shot scroll-reveal. [Modal.js](src/components/Modal.js) handles ESC + click-outside + body-scroll-lock.
+
+### Background
+
+[ParticleField.js](src/components/background/ParticleField.js) renders a site-wide interactive node-network canvas fixed at `z-index: -1`. It reads `--particle-color` and `--particle-line-color` from CSS variables, watches `data-theme` via `MutationObserver` for theme switches without remount, falls back to a single static frame under `prefers-reduced-motion: reduce`, and reduces particle count + skips line drawing under 768px. Mounted via [ParticleFieldLoader.js](src/components/background/ParticleFieldLoader.js) with `dynamic(..., { ssr: false })`.
 
 ### Motion conventions
 
@@ -47,15 +51,12 @@ Framer Motion is used for the kinetic hero, page transitions, scroll reveals (vi
 
 ### API routes
 
-[/api/send](src/app/api/send/route.js) sends contact-form mail through Resend. It also verifies a Google reCAPTCHA v3 token (`RECAPTCHA_SECRET_KEY`) and applies a per-IP rate limit (5 / hour, in-memory `Map` — fine for low volume; if you ever scale this, swap to KV/Redis). reCAPTCHA verification and rate-limiting both fail open when env vars are absent so dev/previews don't break. The client side in [contact/page.js](src/app/contact/page.js) executes `grecaptcha.execute()` only when `NEXT_PUBLIC_RECAPTCHA_SITE_KEY` is set.
-
-[/api/github](src/app/api/github/route.js) is a small public-GitHub passthrough with server-side caching.
+[/api/github](src/app/api/github/route.js) is a small public-GitHub passthrough with server-side caching. There is no contact-form API — `/contact` is a static card with direct channels (email, LinkedIn, GitHub).
 
 ### Analytics
 
-`@vercel/analytics` is mounted in [layout.js](src/app/layout.js). Two custom events are wired:
+`@vercel/analytics` is mounted in [layout.js](src/app/layout.js). One custom event is wired:
 - `resume_download` — fires on the Download PDF click via [ResumeDownloadLink.js](src/components/analytics/ResumeDownloadLink.js).
-- `contact_submit` — fires on a successful response from `/api/send` inside [contact/page.js](src/app/contact/page.js).
 
 ### Resume PDF
 
@@ -67,10 +68,4 @@ The CV PDF lives at `public/RoniAltshulerCurrent.pdf` (gitignored top-level `*.p
 
 ## Environment variables
 
-Set in `.env.local` (and Vercel project settings):
-
-- `RESEND_API_KEY` — Resend API key for the contact form
-- `NEXT_PUBLIC_RECAPTCHA_SITE_KEY` — public reCAPTCHA v3 site key
-- `RECAPTCHA_SECRET_KEY` — server-side reCAPTCHA secret
-
-Missing keys: form still sends, but reCAPTCHA verification is skipped (don't ship to production without both keys set).
+No required environment variables. Optional: `GITHUB_TOKEN` raises the unauthenticated rate limit on `/api/github`.

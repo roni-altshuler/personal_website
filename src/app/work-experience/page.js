@@ -1,9 +1,8 @@
 import Card from '../../components/Card';
 import { workEntries } from '../../data/research';
-import { SKILLS } from '../../data/skills';
 import styles from './work-experience.module.css';
 
-function ModalBody({ entry }) {
+function Bullets({ entry }) {
   return (
     <ul>
       {entry.bullets.map((b, i) => (
@@ -30,21 +29,11 @@ export default function WorkExperience() {
             description={entry.subtitle}
             date={entry.date}
             link={entry.link}
-            modalContent={<ModalBody entry={entry} />}
+            lead={entry.summary}
+            modalContent={<Bullets entry={entry} />}
+            disableModal
           />
         ))}
-      </div>
-
-      <div className={styles.skillsSection}>
-        <h2 className={styles.skillsTitle}>Skills</h2>
-        <div className={styles.skillsGrid}>
-          {SKILLS.map(({ group, items }) => (
-            <div key={group}>
-              <h4>{group}</h4>
-              <p>{items.join(', ')}</p>
-            </div>
-          ))}
-        </div>
       </div>
     </div>
   );

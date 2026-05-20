@@ -1,6 +1,6 @@
-import Script from 'next/script';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
+import ParticleFieldLoader from '../components/background/ParticleFieldLoader';
 import '../styles/globals.css';
 import { Analytics } from "@vercel/analytics/next";
 
@@ -58,8 +58,8 @@ const personJsonLd = {
   ],
   affiliation: { '@type': 'CollegeOrUniversity', name: 'Technion – Israel Institute of Technology' },
   sameAs: [
-    'https://github.com/ronialtshuler',
-    'https://www.linkedin.com/in/ronialtshuler',
+    'https://github.com/roni-altshuler',
+    'https://www.linkedin.com/in/roni-altshuler/',
   ],
 };
 
@@ -93,6 +93,7 @@ export default function RootLayout({ children }) {
         />
       </head>
       <body suppressHydrationWarning={true}>
+        <ParticleFieldLoader />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
@@ -102,12 +103,6 @@ export default function RootLayout({ children }) {
         <div id="main-content" tabIndex={-1}>{children}</div>
         <Footer />
         <Analytics />
-        {process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY && (
-          <Script
-            src={`https://www.google.com/recaptcha/api.js?render=${process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY}`}
-            strategy="afterInteractive"
-          />
-        )}
       </body>
     </html>
   );

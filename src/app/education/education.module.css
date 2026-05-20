@@ -34,7 +34,7 @@
 .timeline {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 2rem;
 }
 
 @media (max-width: 768px) {
@@ -44,5 +44,9 @@
 
   .pageTitle {
     font-size: 2rem;
+  }
+
+  .timeline {
+    gap: 1.5rem;
   }
 }
