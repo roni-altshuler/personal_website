@@ -12,10 +12,10 @@ export const RESEARCH = [
     logoAlt: 'Technion Logo',
     link: 'https://www.ronharellab.com/',
     summary:
-      'First-year PhD student in the Ron-Harel Lab studying immunometabolism and aging.',
+      'First-year PhD student in the Ron-Harel Lab studying immunometabolism and aging',
     bullets: [
-      'Graduate Researcher in the Ron-Harel Lab.',
-      'Focus: ImmunoMetabolism & Aging.',
+      'Graduate Researcher in the Ron-Harel Lab',
+      'Focus: ImmunoMetabolism & Aging',
     ],
   },
   {
@@ -28,12 +28,12 @@ export const RESEARCH = [
     logoAlt: 'CZ Biohub SF Logo',
     link: 'https://biohub.org/genomics/',
     summary:
-      'Built a custom Cellpose zebrafish segmentation model that lifted F1 from 53% to 85%.',
+      'Computational biology and single-cell genomics projects spanning computer vision, spatial transcriptomics, and sequencing workflows',
     bullets: [
-      'Designed and implemented a custom Cellpose-based zebrafish cell segmentation model, increasing the F1 score from 53% to 85%.',
-      'Developed novel methods to generate training/testing datasets from whole-embryo MERFISH images, including a new strategy to select training data using Shannon’s entropy.',
-      'Contributed to the Tabula Sapiens Rosetta Donor project by integrating isoform-level information with single-cell gene expression analyses.',
-      'Performed high-throughput sequencing workflows (QC, MiSeq, NextSeq, NovaSeq) and post-run analysis, including demultiplexing and AWS-based data delivery.',
+      'Designed and implemented a custom Cellpose-based zebrafish cell segmentation model, increasing the F1 score from 53% to 85%',
+      'Developed novel methods to generate training/testing datasets from whole-embryo MERFISH images, including a new strategy to select training data using Shannon’s entropy',
+      'Contributed to the Tabula Sapiens Rosetta Donor project by integrating isoform-level information with single-cell gene expression analyses',
+      'Performed high-throughput sequencing workflows (QC, MiSeq, NextSeq, NovaSeq) and post-run analysis, including demultiplexing and AWS-based data delivery',
     ],
   },
   {
@@ -46,11 +46,11 @@ export const RESEARCH = [
     logoAlt: 'UCSC Genomics Institute Logo',
     link: 'https://cglgenomics.ucsc.edu/',
     summary:
-      'Spatial transcriptomic analysis of a human breast-cancer model using a custom Cellpose 2.0 model.',
+      'Spatial transcriptomic analysis of a human breast-cancer model using a custom Cellpose 2.0 model',
     bullets: [
-      'Developed a custom Cellpose 2.0 model for spatial transcriptomic data analysis, achieving precision and recall of 84% and 90%.',
-      'Identified critical gene expression patterns in a human breast cancer model through spatial differential analysis, revealing insights into the tumor microenvironment.',
-      'Visualized spatial distributions and performed clustering analyses (UMAP) using Squidpy and Scanpy.',
+      'Developed a custom Cellpose 2.0 model for spatial transcriptomic data analysis, achieving precision and recall of 84% and 90%',
+      'Identified critical gene expression patterns in a human breast cancer model through spatial differential analysis, revealing insights into the tumor microenvironment',
+      'Visualized spatial distributions and performed clustering analyses (UMAP) using Squidpy and Scanpy',
     ],
   },
   {
@@ -63,10 +63,8 @@ export const RESEARCH = [
     logoAlt: 'UCSC Baskin Engineering Logo',
     link: 'https://engineering.ucsc.edu/',
     summary:
-      'Thesis: Spatial Transcriptomic Analysis of Cell Type Distribution and Gene Expression Patterns in a Human Breast Cancer Model.',
-    bullets: [
-      'Thesis: Spatial Transcriptomic Analysis of Cell Type Distribution and Gene Expression Patterns in a Human Breast Cancer Model.',
-    ],
+      'Thesis: Spatial Transcriptomic Analysis of Cell Type Distribution and Gene Expression Patterns in a Human Breast Cancer Model',
+    bullets: []
   },
   {
     id: 'internships',
@@ -78,12 +76,18 @@ export const RESEARCH = [
     logoAlt: 'CRISPR Therapeutics Logo',
     link: 'https://crisprtx.com/focus-areas/crispr-x',
     summary:
-      'Two consecutive internships at CRISPR Therapeutics on knock-in efficiency and CAR-T optimization.',
+      'Two consecutive internships at CRISPR Therapeutics on knock-in efficiency and CAR-T optimization',
     bullets: [
-      'CRISPR-X (2023): Led a project on 3’-overhang dsDNA integration, significantly boosting CRISPR/Cas9 knock-in efficiency, validated by NGS.',
-      'CRISPR-X (2023): Optimized T cell editing by integrating promoterless GFP transgenes and analyzed results with flow cytometry.',
-      'Autoimmune (2022): Enhanced CAR-T cell performance by analyzing costimulatory domain variations and improving targeting efficiency.',
-      'Autoimmune (2022): Evaluated cancer cell targeting outcomes using advanced flow cytometry and digital droplet PCR (ddPCR).',
+      [
+        '2023',
+        'Led a project on 3’-overhang dsDNA integration, significantly boosting CRISPR/Cas9 knock-in efficiency, validated by NGS',
+        'Optimized T cell editing by integrating promoterless GFP transgenes and analyzed results with flow cytometry',
+      ],
+      [
+        '2022',
+        'Enhanced CAR-T cell performance by analyzing costimulatory domain variations and improving targeting efficiency',
+        'Evaluated cancer cell targeting outcomes using advanced flow cytometry and digital droplet PCR (ddPCR)',
+      ],
     ],
   },
   {
@@ -95,8 +99,8 @@ export const RESEARCH = [
     logo: '/logo/UC_Santa_Cruz_Baskin_Engineering_logo.svg',
     logoAlt: 'UCSC Baskin Engineering Logo',
     link: 'https://engineering.ucsc.edu/',
-    summary: 'Honors: Dean’s Honors List (2021, 2022, 2023).',
-    bullets: ['Honors: Dean’s Honors List (2021, 2022, 2023).'],
+    summary: 'Honors: Dean’s Honors List (2021, 2022, 2023)',
+    bullets: [],
   },
 ];
 

@@ -22,7 +22,7 @@ export default function Resume() {
     <div className={styles.container}>
       <FadeUp as="h1" className={styles.pageTitle}>Resume</FadeUp>
       <FadeUp delay={0.1} as="p" className={styles.tagline}>
-        A concise overview of my education, experience, and skills.
+        A concise overview of my education, experience, and skills
       </FadeUp>
 
       <div className={styles.actions}>

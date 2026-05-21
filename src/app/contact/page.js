@@ -29,7 +29,7 @@ export default function Contact() {
         Get in touch
       </FadeUp>
       <FadeUp delay={0.1} as="p" className="mb-10 text-center text-base text-text">
-        Best ways to reach me. Happy to chat about research, internships, or collaborations.
+        Best ways to reach me. Happy to chat about research, internships, or collaborations
       </FadeUp>
 
       <FadeUp delay={0.2}>

@@ -6,9 +6,22 @@ import styles from './work-experience.module.css';
 function Bullets({ entry }) {
   return (
     <ul>
-      {entry.bullets.map((b, i) => (
-        <li key={i}>{b}</li>
-      ))}
+      {entry.bullets.map((b, i) => {
+        if (Array.isArray(b)) {
+          const [label, ...sub] = b;
+          return (
+            <li key={i}>
+              {label}
+              <ul>
+                {sub.map((s, j) => (
+                  <li key={j}>{s}</li>
+                ))}
+              </ul>
+            </li>
+          );
+        }
+        return <li key={i}>{b}</li>;
+      })}
     </ul>
   );
 }

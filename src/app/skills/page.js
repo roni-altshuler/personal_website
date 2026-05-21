@@ -10,7 +10,7 @@ export default function Skills() {
       </FadeUp>
       <FadeUp delay={0.1} as="p" className="mx-auto mb-10 max-w-2xl text-center text-base text-text">
         A snapshot of the techniques, languages, and tools I work with across the bench
-        and the terminal.
+        and the terminal
       </FadeUp>
 
       <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
