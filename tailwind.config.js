@@ -37,6 +37,8 @@ module.exports = {
       boxShadow: {
         soft: "0 4px 12px var(--shadow-color)",
         hover: "0 8px 24px var(--shadow-hover)",
+        glow:
+          "0 16px 32px var(--shadow-hover), 0 0 0 1px var(--primary-color), 0 0 36px var(--accent-glow)",
       },
       transitionTimingFunction: {
         "out-expo": "cubic-bezier(0.16, 1, 0.3, 1)",

@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 import { PROJECTS, LANGUAGE_COLORS } from '../../data/projects';
 import { FadeUp } from '../../components/anim/Reveal';
+import TiltCard from '../../components/cards/TiltCard';
 import styles from './projects.module.css';
 
 const StarIcon = () => (
@@ -57,54 +58,58 @@ export default function Projects() {
               key={project.name}
               whileInView
               delay={i * 0.06}
-              as="a"
-              href={project.link}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={styles.repoCard}
+              className={styles.cardWrap}
             >
-              <div className={styles.repoHeader}>
-                <svg
-                  width="16"
-                  height="16"
-                  viewBox="0 0 16 16"
-                  fill="currentColor"
-                  className={styles.repoIcon}
-                >
-                  <path d="M2 2.5A2.5 2.5 0 014.5 0h8.75a.75.75 0 01.75.75v12.5a.75.75 0 01-.75.75h-2.5a.75.75 0 110-1.5h1.75v-2h-8a1 1 0 00-.714 1.7.75.75 0 01-1.072 1.05A2.495 2.495 0 012 11.5v-9zm10.5-1h-8a1 1 0 00-1 1v6.708A2.486 2.486 0 014.5 9h8V1.5zm-8 11h8v1.5h-8a1 1 0 010-1.5z" />
-                </svg>
-                <span className={styles.repoName}>{project.displayName}</span>
-                <span className={styles.publicBadge}>Public</span>
-              </div>
+              <TiltCard
+                as="a"
+                href={project.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={styles.repoCard}
+              >
+                <div className={styles.repoHeader}>
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 16 16"
+                    fill="currentColor"
+                    className={styles.repoIcon}
+                  >
+                    <path d="M2 2.5A2.5 2.5 0 014.5 0h8.75a.75.75 0 01.75.75v12.5a.75.75 0 01-.75.75h-2.5a.75.75 0 110-1.5h1.75v-2h-8a1 1 0 00-.714 1.7.75.75 0 01-1.072 1.05A2.495 2.495 0 012 11.5v-9zm10.5-1h-8a1 1 0 00-1 1v6.708A2.486 2.486 0 014.5 9h8V1.5zm-8 11h8v1.5h-8a1 1 0 010-1.5z" />
+                  </svg>
+                  <span className={styles.repoName}>{project.displayName}</span>
+                  <span className={styles.publicBadge}>Public</span>
+                </div>
 
-              <p className={styles.repoDescription}>{project.description}</p>
+                <p className={styles.repoDescription}>{project.description}</p>
 
-              <div className={styles.repoMeta}>
-                <span className={styles.languageTag}>
-                  <span
-                    className={styles.languageDot}
-                    style={{
-                      backgroundColor:
-                        LANGUAGE_COLORS[project.language] || '#ccc',
-                    }}
-                  />
-                  {project.language}
-                </span>
-
-                {project.stars > 0 && (
-                  <span className={styles.metaItem}>
-                    <StarIcon />
-                    {project.stars}
+                <div className={styles.repoMeta}>
+                  <span className={styles.languageTag}>
+                    <span
+                      className={styles.languageDot}
+                      style={{
+                        backgroundColor:
+                          LANGUAGE_COLORS[project.language] || '#ccc',
+                      }}
+                    />
+                    {project.language}
                   </span>
-                )}
 
-                {project.forks > 0 && (
-                  <span className={styles.metaItem}>
-                    <ForkIcon />
-                    {project.forks}
-                  </span>
-                )}
-              </div>
+                  {project.stars > 0 && (
+                    <span className={styles.metaItem}>
+                      <StarIcon />
+                      {project.stars}
+                    </span>
+                  )}
+
+                  {project.forks > 0 && (
+                    <span className={styles.metaItem}>
+                      <ForkIcon />
+                      {project.forks}
+                    </span>
+                  )}
+                </div>
+              </TiltCard>
             </FadeUp>
           ))}
         </div>

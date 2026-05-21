@@ -6,13 +6,20 @@ import { useEffect, useRef } from 'react';
 const SPACING = 32;            // px between dot centers
 const MOBILE_BREAKPOINT = 768;
 
-// Pulse parameters
+// Wave parameters — ocean-swell feel: slow, mostly horizontal, gentle bob.
 const BASE_RADIUS = 0.8;       // smallest dot radius (px)
 const RADIUS_RANGE = 2.4;      // peak-to-peak swing on top of BASE_RADIUS (px)
-const PULSE_SPEED = 0.0026;    // rad per ms — quicker breathing, ~2.4 s cycle
-const WAVE_K_X = 0.45;         // wave phase increment per column
-const WAVE_K_Y = 0.28;         // wave phase increment per row
-const PHASE_JITTER = 0.25;     // lower jitter so the diagonal wave reads cleanly
+const PULSE_SPEED = 0.0028;    // rad/ms — ~2.2 s swell period
+const WAVE_K_X = 0.45;         // wave phase per column — drives right-to-left travel
+const WAVE_K_Y = 0.16;         // wave phase per row — small to keep the wave mostly horizontal
+const PHASE_JITTER = 0.08;     // light jitter — keeps the wave organic without breaking it
+const BOB_AMP = 4;             // vertical bob (px) — dots rise/fall like ocean particles
+
+// Color gradient — hue shifts with the wave so the gradient travels with it.
+// Centered on the site's violet accent; range ±HUE_RANGE degrees.
+const HUE_BASE = 260;          // violet
+const HUE_RANGE = 40;          // ±40° → blue-violet ↔ magenta
+const PALETTE_SIZE = 64;       // quantization of wave [-1, 1] into color stops
 
 export default function ParticleField() {
   const canvasRef = useRef(null);
@@ -33,16 +40,26 @@ export default function ParticleField() {
       offsetY: 0,
       spacing: SPACING,
       jitter: new Float32Array(0),
-      dotColor: 'rgba(31, 41, 55, 0.45)',
+      palette: new Array(PALETTE_SIZE),
       reducedMotion: false,
       rafId: 0,
       running: false,
     };
 
-    const readThemeColors = () => {
-      const styles = getComputedStyle(document.documentElement);
-      const a = styles.getPropertyValue('--particle-color').trim();
-      if (a) state.dotColor = a;
+    const buildPalette = () => {
+      const root = document.documentElement;
+      const dark =
+        root.getAttribute('data-theme') === 'dark' ||
+        (!root.getAttribute('data-theme') &&
+          window.matchMedia('(prefers-color-scheme: dark)').matches);
+      const sat = dark ? 70 : 55;
+      const light = dark ? 70 : 38;
+      const alpha = dark ? 0.55 : 0.5;
+      for (let i = 0; i < PALETTE_SIZE; i++) {
+        const w = (i / (PALETTE_SIZE - 1)) * 2 - 1; // [-1, 1]
+        const hue = HUE_BASE + w * HUE_RANGE;
+        state.palette[i] = `hsla(${hue.toFixed(1)}, ${sat}%, ${light}%, ${alpha})`;
+      }
     };
 
     const layout = () => {
@@ -73,10 +90,10 @@ export default function ParticleField() {
 
     const draw = (now) => {
       ctx.clearRect(0, 0, state.width, state.height);
-      ctx.fillStyle = state.dotColor;
 
-      const { cols, rows, offsetX, offsetY, spacing, jitter } = state;
+      const { cols, rows, offsetX, offsetY, spacing, jitter, palette } = state;
       const t = state.reducedMotion ? 0 : now * PULSE_SPEED;
+      const lastIdx = PALETTE_SIZE - 1;
 
       for (let col = 0; col < cols; col++) {
         const x = offsetX + col * spacing;
@@ -84,11 +101,14 @@ export default function ParticleField() {
         for (let row = 0; row < rows; row++) {
           const y = offsetY + row * spacing;
           const phase = colPhase + row * WAVE_K_Y + jitter[col * rows + row];
-          // sin -> [-1, 1] -> [0, 1]
-          const breath = (Math.sin(t + phase) + 1) * 0.5;
+          // Single wave drives size, vertical bob, and color so they crest together.
+          const wave = Math.sin(t + phase); // [-1, 1]
+          const breath = (wave + 1) * 0.5;  // [0, 1]
           const r = BASE_RADIUS + breath * RADIUS_RANGE;
+          const bob = state.reducedMotion ? 0 : -wave * BOB_AMP; // rise at crest
+          ctx.fillStyle = palette[(breath * lastIdx) | 0];
           ctx.beginPath();
-          ctx.arc(x, y, r, 0, Math.PI * 2);
+          ctx.arc(x, y + bob, r, 0, Math.PI * 2);
           ctx.fill();
         }
       }
@@ -120,7 +140,10 @@ export default function ParticleField() {
       if (state.reducedMotion) draw(0);
     });
 
-    const themeObserver = new MutationObserver(() => readThemeColors());
+    const themeObserver = new MutationObserver(() => {
+      buildPalette();
+      if (state.reducedMotion) draw(0);
+    });
 
     const motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
     const handleMotionChange = () => {
@@ -134,7 +157,7 @@ export default function ParticleField() {
       }
     };
 
-    readThemeColors();
+    buildPalette();
     layout();
 
     state.reducedMotion = motionQuery.matches;
