@@ -19,9 +19,9 @@ Next.js 15 (App Router) + React 19. Live site: ronialtshuler.com. Deploys from `
 
 ### Information architecture
 
-Routes: `/`, `/education`, `/work-experience`, `/projects`, `/skills`, `/resume`, `/contact`. Plus API route `/api/github`. Custom `not-found.js` and `error.js`. `template.js` wraps every route in a Framer Motion fade-in for client-side transitions.
+Routes: `/`, `/education`, `/work-experience`, `/projects`, `/skills`, `/contact`. Plus API route `/api/github`. Custom `not-found.js` and `error.js`. `template.js` wraps every route in a Framer Motion fade-in for client-side transitions.
 
-[next.config.mjs](next.config.mjs) carries 301 redirects from prior URLs (`/research`, `/experience`, `/build`, `/cv`) so existing inbound links keep resolving. Adding a new top-level route generally means: a folder under `src/app/`, a `layout.js` exporting `metadata` (canonical, OG, title — picked up by the title template in [src/app/layout.js](src/app/layout.js)), a `page.js`, and a Navbar entry in the `NAV_ITEMS` array of [src/components/Navbar.js](src/components/Navbar.js).
+[next.config.mjs](next.config.mjs) carries 301 redirects from prior URLs (`/research`, `/experience`, `/build`) so existing inbound links keep resolving. Adding a new top-level route generally means: a folder under `src/app/`, a `layout.js` exporting `metadata` (canonical, OG, title — picked up by the title template in [src/app/layout.js](src/app/layout.js)), a `page.js`, and a Navbar entry in the `NAV_ITEMS` array of [src/components/Navbar.js](src/components/Navbar.js).
 
 ### Data flow
 
@@ -31,7 +31,7 @@ The `/projects` page client-fetches `/api/github` on mount to merge live stars/f
 
 ### Styling: dual system
 
-CSS Modules and Tailwind both work, intentionally. The older route pages (Education, Work Experience, Resume) use CSS Modules; newer components (hero, contact, skills) use Tailwind. **Tailwind preflight is disabled** in [tailwind.config.js](tailwind.config.js) so it doesn't reset what the CSS Modules established. Don't re-enable preflight — it will visually regress every existing page.
+CSS Modules and Tailwind both work, intentionally. The older route pages (Education, Work Experience) use CSS Modules; newer components (hero, contact, skills) use Tailwind. **Tailwind preflight is disabled** in [tailwind.config.js](tailwind.config.js) so it doesn't reset what the CSS Modules established. Don't re-enable preflight — it will visually regress every existing page.
 
 Tailwind colors are mapped to CSS variables (`text-text`, `bg-card`, `border-border`, `text-primary`, etc.) defined in [src/styles/globals.css](src/styles/globals.css). That keeps dark mode working: theme switching just flips the variables on `html[data-theme="dark"]`. The Tailwind `darkMode` config is wired to the same attribute. Anything you build in Tailwind should use these token classes rather than literal Tailwind colors so dark mode keeps working.
 
@@ -79,12 +79,7 @@ Framer Motion is used for the kinetic hero, page transitions, scroll reveals (vi
 
 ### Analytics
 
-`@vercel/analytics` is mounted in [layout.js](src/app/layout.js). One custom event is wired:
-- `resume_download` — fires on the Download PDF click via [ResumeDownloadLink.js](src/components/analytics/ResumeDownloadLink.js).
-
-### Resume PDF
-
-The CV PDF lives at `public/RoniAltshulerCurrent.pdf` (gitignored top-level `*.pdf` excludes other PDFs but this one under `public/` is tracked). `/resume` auto-detects the file at build time via `fs.existsSync` and falls back to a "PDF coming soon" stub if it's missing.
+`@vercel/analytics` is mounted in [layout.js](src/app/layout.js). No custom events are wired.
 
 ### Path aliases
 

@@ -6,7 +6,6 @@ const nextConfig = {
       { source: "/research", destination: "/work-experience", permanent: true },
       { source: "/experience", destination: "/work-experience", permanent: true },
       { source: "/build", destination: "/projects", permanent: true },
-      { source: "/cv", destination: "/resume", permanent: true },
     ];
   },
 };
