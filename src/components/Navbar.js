@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import styles from '../styles/Navbar.module.css';
@@ -26,6 +26,20 @@ export default function Navbar() {
   const toggleMenu = () => setIsOpen((v) => !v);
   const closeMenu = () => setIsOpen(false);
 
+  useEffect(() => {
+    if (!isOpen) return;
+    const handleEscape = (e) => {
+      if (e.key === 'Escape') closeMenu();
+    };
+    document.addEventListener('keydown', handleEscape);
+    const prevOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    return () => {
+      document.removeEventListener('keydown', handleEscape);
+      document.body.style.overflow = prevOverflow;
+    };
+  }, [isOpen]);
+
   return (
     <nav className={styles.navbar} aria-label="Primary">
       <Link
@@ -47,8 +61,16 @@ export default function Navbar() {
         <i className={isOpen ? 'fas fa-times' : 'fas fa-bars'} aria-hidden="true"></i>
       </button>
       <div
+        className={`${styles.backdrop} ${isOpen ? styles.backdropActive : ''}`}
+        onClick={closeMenu}
+        aria-hidden="true"
+      />
+      <div
         id="primary-nav-links"
         className={`${styles.navLinks} ${isOpen ? styles.navActive : ''}`}
+        role="dialog"
+        aria-modal="true"
+        aria-label="Mobile navigation"
       >
         {NAV_ITEMS.map(({ href, label }) => (
           <Link
