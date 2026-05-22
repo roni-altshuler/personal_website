@@ -41,25 +41,39 @@ export default function Navbar() {
   }, [isOpen]);
 
   return (
-    <nav className={styles.navbar} aria-label="Primary">
-      <Link
-        href="/"
-        className={styles.logo}
-        onClick={closeMenu}
-        aria-current={pathname === '/' ? 'page' : undefined}
-      >
-        Roni Altshuler
-      </Link>
-      <button
-        type="button"
-        className={styles.menuIcon}
-        onClick={toggleMenu}
-        aria-expanded={isOpen}
-        aria-controls="primary-nav-links"
-        aria-label={isOpen ? 'Close navigation menu' : 'Open navigation menu'}
-      >
-        <i className={isOpen ? 'fas fa-times' : 'fas fa-bars'} aria-hidden="true"></i>
-      </button>
+    <>
+      <nav className={styles.navbar} aria-label="Primary">
+        <Link
+          href="/"
+          className={styles.logo}
+          onClick={closeMenu}
+          aria-current={pathname === '/' ? 'page' : undefined}
+        >
+          Roni Altshuler
+        </Link>
+        <div className={styles.navLinks}>
+          {NAV_ITEMS.map(({ href, label }) => (
+            <Link
+              key={href}
+              href={href}
+              aria-current={isActive(pathname, href) ? 'page' : undefined}
+            >
+              {label}
+            </Link>
+          ))}
+          <ThemeToggle />
+        </div>
+        <button
+          type="button"
+          className={styles.menuIcon}
+          onClick={toggleMenu}
+          aria-expanded={isOpen}
+          aria-controls="primary-nav-links"
+          aria-label={isOpen ? 'Close navigation menu' : 'Open navigation menu'}
+        >
+          <i className={isOpen ? 'fas fa-times' : 'fas fa-bars'} aria-hidden="true"></i>
+        </button>
+      </nav>
       <div
         className={`${styles.backdrop} ${isOpen ? styles.backdropActive : ''}`}
         onClick={closeMenu}
@@ -67,7 +81,7 @@ export default function Navbar() {
       />
       <div
         id="primary-nav-links"
-        className={`${styles.navLinks} ${isOpen ? styles.navActive : ''}`}
+        className={`${styles.mobileDrawer} ${isOpen ? styles.navActive : ''}`}
         role="dialog"
         aria-modal="true"
         aria-label="Mobile navigation"
@@ -84,6 +98,6 @@ export default function Navbar() {
         ))}
         <ThemeToggle />
       </div>
-    </nav>
+    </>
   );
 }
