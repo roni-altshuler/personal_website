@@ -2,30 +2,29 @@ import Image from "next/image";
 import Link from "next/link";
 import V3Hero from "../components/hero/V3Hero";
 import { FadeUp } from "../components/anim/Reveal";
-import AffiliationsMarquee from "../components/affiliations/AffiliationsMarquee";
 import LinearCard from "../components/cards/LinearCard";
 
 const TEASERS = [
   {
-    eyebrow: "Recent work",
-    title: "Projects",
-    body: "Apps for soccer prediction, lyric analysis, and F1 race forecasting — all open source, all live.",
-    href: "/projects",
-    cta: "Browse the build",
+    eyebrow: "Foundations",
+    title: "Education",
+    body: "Degrees and labs from undergrad through the PhD in progress, UCSC and the Technion.",
+    href: "/education",
+    cta: "See the path",
   },
   {
     eyebrow: "Track record",
     title: "Work experience",
-    body: "Six years across CRISPR Therapeutics, UCSC Genomics Institute, CZ Biohub, and the Technion.",
+    body: "Four years across CRISPR Therapeutics, UCSC Genomics Institute, CZ Biohub, and the Technion.",
     href: "/work-experience",
     cta: "See the lineage",
   },
   {
-    eyebrow: "Toolbox",
-    title: "Skills",
-    body: "Single-cell, spatial omics, ML pipelines, glycoengineering, and the bench skills underneath.",
-    href: "/skills",
-    cta: "Open the toolbox",
+    eyebrow: "Recent work",
+    title: "Projects",
+    body: "Apps for soccer prediction, lyric analysis, and F1 race forecasting, all open source, all live.",
+    href: "/projects",
+    cta: "Browse the build",
   },
 ];
 
@@ -33,15 +32,6 @@ export default function Home() {
   return (
     <>
       <V3Hero />
-
-      <section className="mx-auto max-w-6xl px-6 pb-24 md:pb-28">
-        <FadeUp whileInView>
-          <span className="eyebrow">Trusted collaborators</span>
-        </FadeUp>
-        <FadeUp whileInView delay={0.1} className="mt-6 block">
-          <AffiliationsMarquee />
-        </FadeUp>
-      </section>
 
       <section className="mx-auto max-w-6xl px-6 pb-24 md:pb-32">
         <div className="grid items-start gap-12 md:grid-cols-[260px_1fr] md:gap-16">
@@ -79,7 +69,7 @@ export default function Home() {
             <FadeUp whileInView delay={0.15} as="p" className="mt-6 text-base leading-relaxed text-ink-muted md:text-lg">
               Watching friends battle cancer sparked a lifelong curiosity about
               why diseases occur and how we can treat them. That pulled me into
-              oncology, genomics, and bioinformatics — and into the{" "}
+              oncology, genomics, and bioinformatics, and into the{" "}
               <a
                 href="https://www.ronharellab.com/"
                 target="_blank"

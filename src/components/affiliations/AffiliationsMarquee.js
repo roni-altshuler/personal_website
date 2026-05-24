@@ -4,7 +4,7 @@ import Image from "next/image";
 import { useReducedMotion } from "framer-motion";
 
 /*
- * AffiliationsMarquee — institutional logo cloud, marquee on desktop,
+ * AffiliationsMarquee: institutional logo cloud, marquee on desktop,
  * static grid on reduced-motion. Logos live on a soft off-white tile
  * (Linear style) so their baked-in white backgrounds don't punch out
  * of the canvas. CSS animation defined in tailwind.config.js (`animate-marquee`).

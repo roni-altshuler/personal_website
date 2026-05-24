@@ -5,10 +5,9 @@ import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import Link from "next/link";
 
 /*
- * V3Hero — Linear-style display hero.
- * Eyebrow + giant display headline + lead paragraph + CTA pair.
- * The rotating "focus" line is the only motion piece — Linear keeps motion
- * scarce, but this preserves the kinetic feel from the previous design.
+ * V3Hero: Linear-style display hero with a violet ombre punchline.
+ * Eyebrow + display headline + lead paragraph + CTA pair. The rotating
+ * focus phrase preserves the kinetic feel from the previous design.
  */
 
 const FOCI = [
@@ -61,7 +60,7 @@ export default function V3Hero() {
         }}
       >
         Building tools where{" "}
-        <span className="text-linear-accent">biology meets code</span>.
+        <span className="violet-ombre">biology meets code</span>
       </motion.h1>
 
       <motion.p
@@ -71,7 +70,7 @@ export default function V3Hero() {
         className="mt-6 max-w-2xl text-lg leading-relaxed text-ink-muted md:text-xl"
         style={{ letterSpacing: "-0.005em" }}
       >
-        I&apos;m Roni — a biomolecular engineer and bioinformatician working
+        I&apos;m Roni, a biomolecular engineer and bioinformatician working
         on how immune and metabolic pathways shape health and disease, with
         a current focus on{" "}
         <span
@@ -95,7 +94,6 @@ export default function V3Hero() {
             </motion.span>
           </AnimatePresence>
         </span>
-        .
       </motion.p>
 
       <motion.div

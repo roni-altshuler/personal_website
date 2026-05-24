@@ -15,7 +15,7 @@ export default function GlobalError({ error, reset }) {
         Something glitched.
       </h1>
       <p className="max-w-xl text-base leading-relaxed text-secondary md:text-lg">
-        The page hit an unexpected error. Try again, or head back home — if it
+        The page hit an unexpected error. Try again, or head back home. If it
         keeps happening, let me know via the contact form.
       </p>
       <div className="mt-4 flex flex-wrap gap-3">

@@ -6,7 +6,7 @@ import { FadeUp } from "../anim/Reveal";
 import LinearCard from "../cards/LinearCard";
 
 /*
- * BentoProjects — Linear-themed mixed-size grid.
+ * BentoProjects: Linear-themed mixed-size grid.
  * 6-column desktop, 2-column tablet, 1-column mobile. The first card
  * spans 4×2 (the "feature" tile); the rest take 2×1 cells. GitHub stars
  * + forks render live from /api/github (silent failure → static defaults).
