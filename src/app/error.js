@@ -12,11 +12,11 @@ export default function GlobalError({ error, reset }) {
     <main className="mx-auto flex min-h-[70vh] max-w-2xl flex-col items-start justify-center gap-4 px-6 py-20">
       <p className="text-sm uppercase tracking-wider text-secondary">Error</p>
       <h1 className="text-4xl font-bold tracking-tight text-text md:text-5xl">
-        Something glitched.
+        Something glitched
       </h1>
       <p className="max-w-xl text-base leading-relaxed text-secondary md:text-lg">
-        The page hit an unexpected error. Try again, or head back home — if it
-        keeps happening, let me know via the contact form.
+        The page hit an unexpected error. Try again, or head back home. If it
+        keeps happening, let me know via the contact form
       </p>
       <div className="mt-4 flex flex-wrap gap-3">
         <button

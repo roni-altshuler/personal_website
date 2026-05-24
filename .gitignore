@@ -45,3 +45,8 @@ next-env.d.ts
 # Source presentations for case-study figures (figures extracted to public/research/)
 /*.pdf
 
+# Playwright screenshots (used for design comparison only)
+/screenshots/
+/playwright-report/
+/test-results/
+

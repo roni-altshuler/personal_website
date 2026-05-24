@@ -13,7 +13,7 @@ const LIFT_PX = 10;
 const SCALE_MAX = 1.035;
 
 // Returns props to spread onto a motion element so it tilts toward the cursor
-// and lifts on hover. Returns null when reduced motion is requested — callers
+// and lifts on hover. Returns null when reduced motion is requested. Callers
 // should fall back to a static element.
 export default function useCardTilt() {
   const reduced = useReducedMotion();

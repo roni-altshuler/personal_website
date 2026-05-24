@@ -4,7 +4,6 @@ import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import styles from '../styles/Navbar.module.css';
-import ThemeToggle from './ThemeToggle';
 
 const NAV_ITEMS = [
   { href: '/education', label: 'Education' },
@@ -61,7 +60,6 @@ export default function Navbar() {
               {label}
             </Link>
           ))}
-          <ThemeToggle />
         </div>
         <button
           type="button"
@@ -96,7 +94,6 @@ export default function Navbar() {
             {label}
           </Link>
         ))}
-        <ThemeToggle />
       </div>
     </>
   );

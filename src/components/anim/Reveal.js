@@ -6,7 +6,7 @@ import { motion, useReducedMotion } from 'framer-motion';
 const EASE = [0.16, 1, 0.3, 1];
 
 // Block-level fade-up. `delay` in seconds, `whileInView` for scroll-trigger
-// (default false — fires on mount).
+// (default false, fires on mount).
 export function FadeUp({
   children,
   delay = 0,
@@ -52,7 +52,7 @@ export function FadeUp({
   );
 }
 
-// Word-by-word reveal — preserves natural line-wrapping while reading like
+// Word-by-word reveal that preserves natural line-wrapping while reading like
 // a typing animation. Splits on whitespace; rejoins with the original spaces.
 export function TypeIn({
   text,

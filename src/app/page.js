@@ -1,94 +1,178 @@
-import Image from 'next/image';
-import Link from 'next/link';
-import KineticHero from '../components/hero/KineticHero';
-import { FadeUp } from '../components/anim/Reveal';
+import Image from "next/image";
+import Link from "next/link";
+import V3Hero from "../components/hero/V3Hero";
+import { FadeUp } from "../components/anim/Reveal";
+import LinearCard from "../components/cards/LinearCard";
+
+const TEASERS = [
+  {
+    eyebrow: "Foundations",
+    title: "Education",
+    body: "Degrees and labs from undergrad through the PhD in progress, UCSC and the Technion",
+    href: "/education",
+    cta: "See the path",
+  },
+  {
+    eyebrow: "Track record",
+    title: "Work experience",
+    body: "Four years across CRISPR Therapeutics, UCSC Genomics Institute, CZ Biohub, and the Technion",
+    href: "/work-experience",
+    cta: "See the lineage",
+  },
+  {
+    eyebrow: "Recent work",
+    title: "Projects",
+    body: "Apps for soccer prediction, lyric analysis, and F1 race forecasting, all open source, all live",
+    href: "/projects",
+    cta: "Browse the build",
+  },
+];
 
 export default function Home() {
   return (
     <>
-      <KineticHero />
+      <V3Hero />
 
-      <section className="mx-auto max-w-4xl px-6 pb-24 pt-8">
-        <div className="flex flex-col items-start gap-6 md:flex-row md:items-start">
-          <FadeUp delay={0.1}>
-            <Image
-              src="/profile.PNG"
-              alt="Roni Altshuler"
-              width={160}
-              height={160}
-              sizes="(max-width: 768px) 120px, 160px"
-              className="h-32 w-32 shrink-0 rounded-full object-cover transition-transform duration-300 ease-out hover:scale-[1.03] md:h-40 md:w-40"
-              priority
-            />
+      <section className="mx-auto max-w-6xl px-6 pb-24 md:pb-32">
+        <div className="grid items-start gap-12 md:grid-cols-[260px_1fr] md:gap-16">
+          <FadeUp whileInView className="md:sticky md:top-24">
+            <div className="overflow-hidden rounded-xl border border-hairline bg-surface-1 p-2">
+              <Image
+                src="/profile.PNG"
+                alt="Roni Altshuler"
+                width={240}
+                height={240}
+                sizes="(max-width: 768px) 200px, 240px"
+                className="block h-auto w-full rounded-lg object-cover"
+                priority
+              />
+            </div>
+            <p className="mt-4 text-xs text-ink-subtle">
+              <span className="mono">PhD, in progress</span>
+              <br />
+              Ron-Harel Lab · Technion
+            </p>
           </FadeUp>
-          <div className="flex flex-col gap-4">
-            <FadeUp delay={0.2} as="p" className="text-sm font-medium uppercase tracking-wide text-secondary">
-              PhD Candidate, Immunometabolism &amp; Aging @ Technion
-              <span aria-hidden="true" className="mx-3 text-primary">
-                ●
-              </span>
-              Single-Cell &amp; Spatial Omics
-              <span aria-hidden="true" className="mx-3 text-primary">
-                ●
-              </span>
-              Computational Biology
+
+          <div>
+            <FadeUp whileInView>
+              <span className="eyebrow">About</span>
             </FadeUp>
-            <FadeUp delay={0.35} as="p" className="text-base leading-relaxed text-text md:text-lg">
-              Hi, I&apos;m Roni. Watching friends battle cancer sparked my
-              lifelong curiosity about why diseases occur and how we can better
-              treat them. That passion led me to study oncology, genomics, and
-              bioinformatics, and now as a PhD student in the{' '}
+            <FadeUp whileInView delay={0.05}>
+              <h2
+                className="mt-2 max-w-2xl font-display text-3xl font-semibold text-ink md:text-4xl"
+                style={{ letterSpacing: "-0.032em", lineHeight: 1.1 }}
+              >
+                Curiosity that started with friends, became a career
+              </h2>
+            </FadeUp>
+            <FadeUp whileInView delay={0.15} as="p" className="mt-6 text-base leading-relaxed text-ink-muted md:text-lg">
+              Watching friends battle cancer sparked a lifelong curiosity about
+              why diseases occur and how we can treat them. That pulled me into
+              oncology, genomics, and bioinformatics, and into the{" "}
               <a
                 href="https://www.ronharellab.com/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-primary hover:underline"
+                className="text-linear-accent hover:underline"
               >
                 Ron-Harel Lab
-              </a>{' '}
-              at the Technion, I&apos;m working to uncover how immune and
-              metabolic pathways shape health and disease, with the goal of
-              translating scientific discovery into real therapeutic impact.
+              </a>{" "}
+              at the Technion, where I work to uncover how immune and metabolic
+              pathways shape health and disease
             </FadeUp>
-            <FadeUp delay={0.5} as="p" className="text-base leading-relaxed text-text md:text-lg">
+            <FadeUp whileInView delay={0.2} as="p" className="mt-4 text-base leading-relaxed text-ink-muted md:text-lg">
               Before the PhD I earned my B.S. and M.S. in Biomolecular
-              Engineering &amp; Bioinformatics at UC Santa Cruz, where I built
+              Engineering & Bioinformatics at UC Santa Cruz, where I built
               computational pipelines on spatial transcriptomics, single-cell,
               and CRISPR/Cas9 data. I keep ending up at the seam between
-              biology and code.
+              biology and code
             </FadeUp>
-            <FadeUp delay={0.65} as="p" className="text-base leading-relaxed text-text md:text-lg">
+            <FadeUp whileInView delay={0.25} as="p" className="mt-4 text-base leading-relaxed text-ink-muted md:text-lg">
               Outside the lab, I race endurance events and have played soccer
-              my whole life. Both keep me sharp, both keep me sane.
+              my whole life. Both keep me sharp, both keep me sane
             </FadeUp>
-            <FadeUp delay={0.85} as="div" className="mt-2 flex gap-5 text-2xl text-secondary">
+
+            <FadeUp whileInView delay={0.35} className="mt-8 flex gap-3 text-xl text-ink-subtle">
               <a
                 href="https://github.com/roni-altshuler"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="GitHub"
-                className="transition-all duration-200 ease-out hover:-translate-y-0.5 hover:text-primary"
+                className="inline-flex h-10 w-10 items-center justify-center rounded-md border border-hairline bg-surface-1 transition-colors hover:border-linear-accent-focus hover:text-linear-accent"
               >
-                <i className="fab fa-github"></i>
+                <i className="fab fa-github" aria-hidden="true"></i>
               </a>
               <a
                 href="https://www.linkedin.com/in/roni-altshuler/"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="LinkedIn"
-                className="transition-all duration-200 ease-out hover:-translate-y-0.5 hover:text-primary"
+                className="inline-flex h-10 w-10 items-center justify-center rounded-md border border-hairline bg-surface-1 transition-colors hover:border-linear-accent-focus hover:text-linear-accent"
               >
-                <i className="fab fa-linkedin"></i>
+                <i className="fab fa-linkedin" aria-hidden="true"></i>
               </a>
               <Link
                 href="/contact"
                 aria-label="Contact"
-                className="transition-all duration-200 ease-out hover:-translate-y-0.5 hover:text-primary"
+                className="inline-flex h-10 w-10 items-center justify-center rounded-md border border-hairline bg-surface-1 transition-colors hover:border-linear-accent-focus hover:text-linear-accent"
               >
-                <i className="fas fa-envelope"></i>
+                <i className="fas fa-envelope" aria-hidden="true"></i>
               </Link>
             </FadeUp>
           </div>
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-6xl px-6 pb-32 md:pb-40">
+        <FadeUp whileInView>
+          <span className="eyebrow">Three doors</span>
+        </FadeUp>
+        <FadeUp whileInView delay={0.05}>
+          <h2
+            className="mt-2 max-w-3xl font-display text-3xl font-semibold text-ink md:text-4xl"
+            style={{ letterSpacing: "-0.032em", lineHeight: 1.1 }}
+          >
+            Pick where to start
+          </h2>
+        </FadeUp>
+
+        <div className="mt-10 grid gap-4 md:grid-cols-3 md:gap-5">
+          {TEASERS.map((t, i) => (
+            <FadeUp
+              key={t.href}
+              whileInView
+              delay={0.1 + i * 0.06}
+              className="h-full"
+            >
+              <LinearCard
+                as="a"
+                href={t.href}
+                className="group flex h-full flex-col"
+                padding="p-7"
+              >
+                <span className="eyebrow">{t.eyebrow}</span>
+                <h3
+                  className="mt-2 font-display text-xl font-medium text-ink"
+                  style={{ letterSpacing: "-0.015em" }}
+                >
+                  {t.title}
+                </h3>
+                <p className="mt-3 text-sm leading-relaxed text-ink-muted">
+                  {t.body}
+                </p>
+                <span className="mt-auto inline-flex items-center gap-1.5 pt-6 text-sm font-medium text-linear-accent transition-colors duration-200 ease-out group-hover:text-linear-accent-hover">
+                  {t.cta}{" "}
+                  <span
+                    aria-hidden="true"
+                    className="transition-transform duration-200 ease-out group-hover:translate-x-0.5"
+                  >
+                    →
+                  </span>
+                </span>
+              </LinearCard>
+            </FadeUp>
+          ))}
         </div>
       </section>
     </>

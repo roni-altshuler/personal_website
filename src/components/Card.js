@@ -1,12 +1,18 @@
-'use client';
+"use client";
 
-import React, { useState } from 'react';
-import { motion, useReducedMotion } from 'framer-motion';
-import styles from '../styles/Card.module.css';
-import Modal from './Modal';
-import Image from 'next/image';
-import useCardTilt from './cards/useCardTilt';
+import React, { useState } from "react";
+import { motion, useReducedMotion } from "framer-motion";
+import Image from "next/image";
+import styles from "../styles/Card.module.css";
+import Modal from "./Modal";
+import useCardTilt from "./cards/useCardTilt";
 
+/*
+ * Card: timeline primitive (Education / Work Experience).
+ * Surface-1 bg, hairline border, mouse-tracked 3D tilt + violet glow on
+ * hover. Pass `disableModal` to keep the body inline (default usage on
+ * both pages).
+ */
 const Card = ({
   title,
   description,
@@ -26,7 +32,7 @@ const Card = ({
 
   const handleCardClick = (e) => {
     if (disableModal) return;
-    if (e.target.tagName.toLowerCase() === 'a') return;
+    if (e.target.tagName.toLowerCase() === "a") return;
     setIsModalOpen(true);
   };
 
@@ -35,7 +41,7 @@ const Card = ({
   return (
     <>
       <motion.div
-        className={`${styles.card} ${disableModal ? styles.static : ''}`}
+        className={`${styles.card} ${disableModal ? styles.static : ""}`}
         onClick={handleCardClick}
         onMouseMove={tilt.reduced ? undefined : tilt.onMouseMove}
         onMouseEnter={tilt.reduced ? undefined : tilt.onMouseEnter}
@@ -43,7 +49,7 @@ const Card = ({
         initial={reduced ? false : { opacity: 0, y: 16 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.2 }}
-        transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
+        transition={{ duration: 0.32, ease: [0.16, 1, 0.3, 1] }}
         style={tilt.reduced ? undefined : tilt.style}
       >
         {customHeader || children || (

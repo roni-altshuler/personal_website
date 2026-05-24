@@ -1,61 +1,97 @@
-import { FadeUp } from '../../components/anim/Reveal';
-import TiltCard from '../../components/cards/TiltCard';
+import { FadeUp } from "../../components/anim/Reveal";
+import LinearCard from "../../components/cards/LinearCard";
+
+const EMAIL = "roni.altshuler@gmail.com";
 
 const CHANNELS = [
   {
-    icon: 'fas fa-envelope',
-    label: 'Email',
-    href: 'mailto:roni.altshuler@gmail.com',
+    icon: "fas fa-envelope",
+    label: "Email",
+    handle: EMAIL,
+    href: `mailto:${EMAIL}`,
     external: false,
+    primary: true,
   },
   {
-    icon: 'fab fa-linkedin',
-    label: 'LinkedIn',
-    href: 'https://www.linkedin.com/in/roni-altshuler/',
+    icon: "fab fa-linkedin",
+    label: "LinkedIn",
+    handle: "in/roni-altshuler",
+    href: "https://www.linkedin.com/in/roni-altshuler/",
     external: true,
   },
   {
-    icon: 'fab fa-github',
-    label: 'GitHub',
-    href: 'https://github.com/roni-altshuler',
+    icon: "fab fa-github",
+    label: "GitHub",
+    handle: "roni-altshuler",
+    href: "https://github.com/roni-altshuler",
     external: true,
   },
 ];
 
 export default function Contact() {
   return (
-    <main className="mx-auto max-w-2xl px-6 py-16">
-      <FadeUp as="h1" className="mb-3 text-center text-4xl font-bold text-text">
-        Get in touch
+    <section className="mx-auto max-w-4xl px-6 pb-32 pt-24 md:pt-32">
+      <FadeUp>
+        <span className="eyebrow">Reach out</span>
       </FadeUp>
-      <FadeUp delay={0.1} as="p" className="mb-10 text-center text-base text-text">
-        Best ways to reach me. Happy to chat about research, internships, or collaborations
+      <FadeUp delay={0.05}>
+        <h1
+          className="mt-2 font-display font-semibold text-ink"
+          style={{
+            fontSize: "clamp(2.5rem, 5.5vw, 4.5rem)",
+            letterSpacing: "-0.04em",
+            lineHeight: 1.05,
+          }}
+        >
+          Let&apos;s talk
+        </h1>
+      </FadeUp>
+      <FadeUp delay={0.1}>
+        <p className="mt-5 max-w-2xl text-base leading-relaxed text-ink-muted md:text-lg">
+          Email is fastest. Research collaborations, internship leads, or
+          anything at the seam between biology and code. Open invitation
+        </p>
       </FadeUp>
 
-      <FadeUp delay={0.2}>
-        <TiltCard
-          as="div"
-          className="rounded-2xl border border-border bg-card px-8 py-10 shadow-soft transition-[border-color,box-shadow] duration-300 ease-out hover:border-primary hover:shadow-glow"
-        >
-          <ul className="m-0 flex list-none items-center justify-center gap-10 p-0">
-            {CHANNELS.map(({ icon, label, href, external }) => (
-              <li key={label}>
-                <a
-                  href={href}
-                  aria-label={label}
-                  title={label}
-                  {...(external
-                    ? { target: '_blank', rel: 'noopener noreferrer' }
-                    : {})}
-                  className="inline-flex h-14 w-14 items-center justify-center rounded-full border border-border text-3xl text-primary transition-all duration-200 ease-out hover:scale-110 hover:border-primary hover:text-primary-hover"
+      <div className="mt-14 grid gap-4 md:mt-16">
+        {CHANNELS.map((c, i) => (
+          <FadeUp key={c.label} whileInView delay={i * 0.08}>
+            <LinearCard
+              as="a"
+              href={c.href}
+              padding="p-0"
+              {...(c.external
+                ? { target: "_blank", rel: "noopener noreferrer" }
+                : {})}
+              className="group flex items-center gap-5 px-6 py-5 md:px-7 md:py-6"
+            >
+              <span
+                aria-hidden="true"
+                className="inline-flex h-12 w-12 items-center justify-center rounded-md border border-hairline bg-surface-2 text-xl text-linear-accent transition-colors group-hover:border-linear-accent-focus"
+              >
+                <i className={c.icon}></i>
+              </span>
+
+              <div className="flex flex-col">
+                <span
+                  className="font-display text-base font-medium text-ink md:text-lg"
+                  style={{ letterSpacing: "-0.01em" }}
                 >
-                  <i className={icon} aria-hidden="true"></i>
-                </a>
-              </li>
-            ))}
-          </ul>
-        </TiltCard>
-      </FadeUp>
-    </main>
+                  {c.label}
+                </span>
+                <span className="mono text-xs text-ink-subtle md:text-sm">
+                  {c.handle}
+                </span>
+              </div>
+
+              <span className="ml-auto inline-flex items-center gap-1.5 text-sm font-medium text-ink-subtle transition-colors group-hover:text-linear-accent">
+                {c.primary ? "Compose" : "Open"}
+                <span aria-hidden="true">→</span>
+              </span>
+            </LinearCard>
+          </FadeUp>
+        ))}
+      </div>
+    </section>
   );
 }
