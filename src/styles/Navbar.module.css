@@ -20,22 +20,11 @@
 .logo {
   display: inline-flex;
   align-items: center;
-  gap: 0.55rem;
   font-size: 0.95rem;
   font-weight: 600;
   color: var(--ink);
   letter-spacing: -0.02em;
   transition: color 0.15s ease;
-}
-
-.logo::before {
-  content: '';
-  display: inline-block;
-  width: 14px;
-  height: 14px;
-  background-color: var(--linear-accent);
-  border-radius: 4px;
-  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.06) inset;
 }
 
 .logo:hover {

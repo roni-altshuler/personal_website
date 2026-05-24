@@ -3,58 +3,14 @@
 @tailwind utilities;
 
 /*
- * v3 Linear-anchored theme.
- * Dark = canonical Linear marketing (DESIGN.md). Light = Linear-flavoured
- * inverse (warm white canvas, same lavender accent). All Tailwind utility
- * tokens (text-text, bg-card, border-border, text-primary, shadow-glow, …)
- * still resolve to these CSS vars so existing components keep working.
+ * v3.1 theme: single dark theme, Linear surface ladder + hairlines,
+ * violet ombre accent (replaces lavender-blue). ParticleField + TiltCard
+ * read their colors from these CSS vars, so swapping the accent here
+ * cascades the whole site.
  */
 
 :root {
-  /* Linear canonical surface ladder, inverted for a light marketing canvas */
-  --canvas: #fafafa;
-  --surface-1: #ffffff;
-  --surface-2: #f5f6f6;
-  --surface-3: #ececed;
-  --surface-4: #e4e5e6;
-  --hairline: #e4e5e6;
-  --hairline-strong: #d0d2d6;
-  --hairline-tertiary: #c4c6ca;
-
-  /* Ink ramp */
-  --ink: #08090a;
-  --ink-muted: #2a2c30;
-  --ink-subtle: #62666d;
-  --ink-tertiary: #8a8f98;
-
-  /* Brand accent — Linear lavender-blue, darkened slightly for light contrast */
-  --linear-accent: #4a55b8;
-  --linear-accent-hover: #5e6ad2;
-  --linear-accent-focus: #5e69d1;
-  --linear-success: #1e8a3a;
-
-  /* Legacy token aliases — keep names so existing components stay wired */
-  --background-color: var(--canvas);
-  --background-secondary: var(--surface-2);
-  --card-background-color: var(--surface-1);
-  --text-color: var(--ink);
-  --card-text-color: var(--ink);
-  --primary-color: var(--linear-accent);
-  --primary-hover: var(--linear-accent-hover);
-  --secondary-color: var(--ink-subtle);
-  --border-color: var(--hairline);
-  --shadow-color: rgba(8, 9, 10, 0.06);
-  --shadow-hover: rgba(8, 9, 10, 0.12);
-  --accent-glow: rgba(94, 106, 210, 0.18);
-  --input-background: var(--surface-1);
-  --input-text: var(--ink);
-  --input-border: var(--hairline);
-  --particle-color: rgba(8, 9, 10, 0.35);
-  --navbar-bg: rgba(250, 250, 250, 0.72);
-}
-
-/* Dark theme — canonical Linear marketing values (DESIGN.md) */
-html[data-theme="dark"] {
+  /* Surface ladder (Linear canonical dark) */
   --canvas: #010102;
   --surface-1: #0f1011;
   --surface-2: #141516;
@@ -64,16 +20,27 @@ html[data-theme="dark"] {
   --hairline-strong: #34343a;
   --hairline-tertiary: #3e3e44;
 
+  /* Ink ramp */
   --ink: #f7f8f8;
   --ink-muted: #d0d6e0;
   --ink-subtle: #8a8f98;
   --ink-tertiary: #62666d;
 
-  --linear-accent: #5e6ad2;
-  --linear-accent-hover: #828fff;
-  --linear-accent-focus: #5e69d1;
+  /* Accent: violet ombre */
+  --linear-accent: #a78bfa;
+  --linear-accent-hover: #c4b5fd;
+  --linear-accent-focus: #8b5cf6;
+  --linear-accent-deep: #7c3aed;
   --linear-success: #27a644;
 
+  /* Effects */
+  --shadow-color: rgba(0, 0, 0, 0.5);
+  --shadow-hover: rgba(0, 0, 0, 0.7);
+  --accent-glow: rgba(167, 139, 250, 0.32);
+  --particle-color: rgba(226, 232, 240, 0.40);
+  --navbar-bg: rgba(1, 1, 2, 0.72);
+
+  /* Legacy token aliases (kept so existing components keep working) */
   --background-color: var(--canvas);
   --background-secondary: var(--surface-2);
   --card-background-color: var(--surface-1);
@@ -83,55 +50,15 @@ html[data-theme="dark"] {
   --primary-hover: var(--linear-accent-hover);
   --secondary-color: var(--ink-muted);
   --border-color: var(--hairline);
-  --shadow-color: rgba(0, 0, 0, 0.5);
-  --shadow-hover: rgba(0, 0, 0, 0.7);
-  --accent-glow: rgba(94, 106, 210, 0.32);
   --input-background: var(--surface-1);
   --input-text: var(--ink);
   --input-border: var(--hairline-strong);
-  --particle-color: rgba(247, 248, 248, 0.32);
-  --navbar-bg: rgba(1, 1, 2, 0.72);
 }
 
-/* System preference fallback when no explicit theme has been set */
-@media (prefers-color-scheme: dark) {
-  html:not([data-theme="light"]) {
-    --canvas: #010102;
-    --surface-1: #0f1011;
-    --surface-2: #141516;
-    --surface-3: #18191a;
-    --surface-4: #191a1b;
-    --hairline: #23252a;
-    --hairline-strong: #34343a;
-    --hairline-tertiary: #3e3e44;
-
-    --ink: #f7f8f8;
-    --ink-muted: #d0d6e0;
-    --ink-subtle: #8a8f98;
-    --ink-tertiary: #62666d;
-
-    --linear-accent: #5e6ad2;
-    --linear-accent-hover: #828fff;
-    --linear-accent-focus: #5e69d1;
-
-    --background-color: var(--canvas);
-    --background-secondary: var(--surface-2);
-    --card-background-color: var(--surface-1);
-    --text-color: var(--ink);
-    --card-text-color: var(--ink);
-    --primary-color: var(--linear-accent);
-    --primary-hover: var(--linear-accent-hover);
-    --secondary-color: var(--ink-muted);
-    --border-color: var(--hairline);
-    --shadow-color: rgba(0, 0, 0, 0.5);
-    --shadow-hover: rgba(0, 0, 0, 0.7);
-    --accent-glow: rgba(94, 106, 210, 0.32);
-    --input-background: var(--surface-1);
-    --input-text: var(--ink);
-    --input-border: var(--hairline-strong);
-    --particle-color: rgba(247, 248, 248, 0.32);
-    --navbar-bg: rgba(1, 1, 2, 0.72);
-  }
+/* ThemeToggle has been removed from the nav, but the data-theme attribute
+   may still get set from old localStorage values. We force dark regardless. */
+html[data-theme="light"] {
+  color-scheme: dark;
 }
 
 *, *::before, *::after {
@@ -140,27 +67,9 @@ html[data-theme="dark"] {
   padding: 0;
 }
 
-/* Smooth theme-toggle cross-fade, only on theming properties to avoid
- * interfering with Framer Motion transforms / opacity. */
-html[data-theme] *,
-html[data-theme] *::before,
-html[data-theme] *::after {
-  transition-property: background-color, border-color, color, fill, stroke, box-shadow;
-  transition-duration: 0.28s;
-  transition-timing-function: ease;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  html[data-theme] *,
-  html[data-theme] *::before,
-  html[data-theme] *::after {
-    transition-duration: 0s;
-  }
-}
-
 body {
-  background-color: var(--background-color);
-  color: var(--text-color);
+  background-color: var(--canvas);
+  color: var(--ink);
   font-family: var(--font-display), 'Inter Display', 'Inter', -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   line-height: 1.5;
   font-size: 16px;
@@ -170,7 +79,6 @@ body {
   flex-direction: column;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 #main-content {
@@ -178,13 +86,13 @@ body {
 }
 
 a {
-  color: var(--primary-color);
+  color: var(--linear-accent);
   text-decoration: none;
   transition: color 0.2s ease;
 }
 
 a:hover {
-  color: var(--primary-hover);
+  color: var(--linear-accent-hover);
   text-decoration: none;
 }
 
@@ -196,7 +104,7 @@ a:hover {
   z-index: 100;
   padding: 0.6rem 1rem;
   border-radius: 8px;
-  background-color: var(--primary-color);
+  background-color: var(--linear-accent);
   color: #ffffff;
   font-weight: 500;
   text-decoration: none;
@@ -211,7 +119,7 @@ a:hover {
   outline-offset: 2px;
 }
 
-/* Keyboard focus ring: visible on tab, hidden on mouse click. */
+/* Keyboard focus ring */
 :focus-visible {
   outline: 2px solid var(--linear-accent-focus);
   outline-offset: 2px;
@@ -222,47 +130,20 @@ a:hover {
   outline: none;
 }
 
-/* Linear display type — aggressive negative tracking, scaled to viewport. */
+/* Linear display type: aggressive negative tracking, scaled to viewport. */
 h1, h2, h3, h4, h5, h6 {
-  color: var(--text-color);
+  color: var(--ink);
   font-family: var(--font-display), 'Inter Display', 'Inter', -apple-system, BlinkMacSystemFont, "SF Pro Display", system-ui, sans-serif;
   font-weight: 600;
   line-height: 1.1;
   margin-bottom: 0.5em;
 }
 
-h1 {
-  font-size: clamp(2.5rem, 6vw, 5rem);
-  line-height: 1.05;
-  letter-spacing: -0.045em;
-  font-weight: 600;
-}
-
-h2 {
-  font-size: clamp(2rem, 4.2vw, 3.5rem);
-  line-height: 1.1;
-  letter-spacing: -0.032em;
-}
-
-h3 {
-  font-size: clamp(1.5rem, 2.8vw, 2.5rem);
-  line-height: 1.15;
-  letter-spacing: -0.025em;
-}
-
-h4 {
-  font-size: 1.5rem;
-  line-height: 1.2;
-  letter-spacing: -0.015em;
-}
-
-h5 {
-  font-size: 1.25rem;
-  line-height: 1.25;
-  letter-spacing: -0.01em;
-  font-weight: 500;
-}
-
+h1 { font-size: clamp(2.5rem, 6vw, 5rem);   line-height: 1.05; letter-spacing: -0.045em; font-weight: 600; }
+h2 { font-size: clamp(2rem, 4.2vw, 3.5rem); line-height: 1.10; letter-spacing: -0.032em; }
+h3 { font-size: clamp(1.5rem, 2.8vw, 2.5rem); line-height: 1.15; letter-spacing: -0.025em; }
+h4 { font-size: 1.5rem;  line-height: 1.20; letter-spacing: -0.015em; }
+h5 { font-size: 1.25rem; line-height: 1.25; letter-spacing: -0.01em; font-weight: 500; }
 h6 {
   font-size: 1rem;
   font-weight: 500;
@@ -292,7 +173,7 @@ li {
   }
 }
 
-/* Eyebrow / caption — uppercase tracked label used above section titles */
+/* Eyebrow / caption: uppercase tracked label used above section titles */
 .eyebrow {
   display: inline-block;
   font-size: 12px;
@@ -303,9 +184,18 @@ li {
   margin-bottom: 0.5rem;
 }
 
-/* Mono token — small badges, project meta, status pills */
+/* Mono token: small badges, project meta, status pills */
 .mono {
   font-family: var(--font-mono), 'JetBrains Mono', 'SF Mono', Menlo, ui-monospace, monospace;
   font-size: 0.8125rem;
   letter-spacing: 0;
+}
+
+/* Hero gradient text: violet to deep violet ombre on the punchline */
+.violet-ombre {
+  background-image: linear-gradient(135deg, var(--linear-accent) 0%, var(--linear-accent-deep) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
 }

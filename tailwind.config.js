@@ -87,7 +87,7 @@ module.exports = {
         soft: "0 1px 0 var(--hairline), 0 1px 2px var(--shadow-color)",
         hover: "0 1px 0 var(--hairline), 0 8px 24px var(--shadow-hover)",
         glow:
-          "0 1px 0 var(--hairline-strong), 0 0 0 1px var(--linear-accent-focus), 0 0 48px -8px var(--accent-glow)",
+          "0 16px 32px var(--shadow-hover), 0 0 0 1px var(--linear-accent), 0 0 36px var(--accent-glow)",
         "ring-accent": "0 0 0 1px var(--linear-accent-focus), 0 0 0 4px var(--accent-glow)",
       },
       transitionTimingFunction: {
