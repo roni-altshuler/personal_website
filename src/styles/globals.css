@@ -2,68 +2,135 @@
 @tailwind components;
 @tailwind utilities;
 
+/*
+ * v3 Linear-anchored theme.
+ * Dark = canonical Linear marketing (DESIGN.md). Light = Linear-flavoured
+ * inverse (warm white canvas, same lavender accent). All Tailwind utility
+ * tokens (text-text, bg-card, border-border, text-primary, shadow-glow, …)
+ * still resolve to these CSS vars so existing components keep working.
+ */
+
 :root {
-  /* Light mode — slate + violet */
-  --background-color: #f1f5f9;
-  --background-secondary: #e2e8f0;
-  --card-background-color: #ffffff;
-  --text-color: #1f2937;
-  --card-text-color: #1f2937;
-  --primary-color: #7c3aed;
-  --primary-hover: #6d28d9;
-  --secondary-color: #475569;
-  --border-color: #e2e8f0;
-  --shadow-color: rgba(15, 23, 42, 0.12);
-  --shadow-hover: rgba(15, 23, 42, 0.2);
-  --accent-glow: rgba(124, 58, 237, 0.22);
-  --input-background: #ffffff;
-  --input-text: #1f2937;
-  --input-border: #e2e8f0;
-  --particle-color: rgba(31, 41, 55, 0.45);
-  --navbar-bg: rgba(241, 245, 249, 0.4);
+  /* Linear canonical surface ladder, inverted for a light marketing canvas */
+  --canvas: #fafafa;
+  --surface-1: #ffffff;
+  --surface-2: #f5f6f6;
+  --surface-3: #ececed;
+  --surface-4: #e4e5e6;
+  --hairline: #e4e5e6;
+  --hairline-strong: #d0d2d6;
+  --hairline-tertiary: #c4c6ca;
+
+  /* Ink ramp */
+  --ink: #08090a;
+  --ink-muted: #2a2c30;
+  --ink-subtle: #62666d;
+  --ink-tertiary: #8a8f98;
+
+  /* Brand accent — Linear lavender-blue, darkened slightly for light contrast */
+  --linear-accent: #4a55b8;
+  --linear-accent-hover: #5e6ad2;
+  --linear-accent-focus: #5e69d1;
+  --linear-success: #1e8a3a;
+
+  /* Legacy token aliases — keep names so existing components stay wired */
+  --background-color: var(--canvas);
+  --background-secondary: var(--surface-2);
+  --card-background-color: var(--surface-1);
+  --text-color: var(--ink);
+  --card-text-color: var(--ink);
+  --primary-color: var(--linear-accent);
+  --primary-hover: var(--linear-accent-hover);
+  --secondary-color: var(--ink-subtle);
+  --border-color: var(--hairline);
+  --shadow-color: rgba(8, 9, 10, 0.06);
+  --shadow-hover: rgba(8, 9, 10, 0.12);
+  --accent-glow: rgba(94, 106, 210, 0.18);
+  --input-background: var(--surface-1);
+  --input-text: var(--ink);
+  --input-border: var(--hairline);
+  --particle-color: rgba(8, 9, 10, 0.35);
+  --navbar-bg: rgba(250, 250, 250, 0.72);
 }
 
-/* Dark theme — unified slate, violet accent */
+/* Dark theme — canonical Linear marketing values (DESIGN.md) */
 html[data-theme="dark"] {
-  --background-color: #0f172a;
-  --background-secondary: #1e293b;
-  --card-background-color: #1e293b;
-  --text-color: #e2e8f0;
-  --card-text-color: #e2e8f0;
-  --primary-color: #a78bfa;
-  --primary-hover: #c4b5fd;
-  --secondary-color: #cbd5e1;
-  --border-color: #334155;
-  --shadow-color: rgba(0, 0, 0, 0.4);
-  --shadow-hover: rgba(0, 0, 0, 0.6);
-  --accent-glow: rgba(167, 139, 250, 0.3);
-  --input-background: #1e293b;
-  --input-text: #e2e8f0;
-  --input-border: #334155;
-  --particle-color: rgba(226, 232, 240, 0.40);
-  --navbar-bg: rgba(15, 23, 42, 0.35);
+  --canvas: #010102;
+  --surface-1: #0f1011;
+  --surface-2: #141516;
+  --surface-3: #18191a;
+  --surface-4: #191a1b;
+  --hairline: #23252a;
+  --hairline-strong: #34343a;
+  --hairline-tertiary: #3e3e44;
+
+  --ink: #f7f8f8;
+  --ink-muted: #d0d6e0;
+  --ink-subtle: #8a8f98;
+  --ink-tertiary: #62666d;
+
+  --linear-accent: #5e6ad2;
+  --linear-accent-hover: #828fff;
+  --linear-accent-focus: #5e69d1;
+  --linear-success: #27a644;
+
+  --background-color: var(--canvas);
+  --background-secondary: var(--surface-2);
+  --card-background-color: var(--surface-1);
+  --text-color: var(--ink);
+  --card-text-color: var(--ink);
+  --primary-color: var(--linear-accent);
+  --primary-hover: var(--linear-accent-hover);
+  --secondary-color: var(--ink-muted);
+  --border-color: var(--hairline);
+  --shadow-color: rgba(0, 0, 0, 0.5);
+  --shadow-hover: rgba(0, 0, 0, 0.7);
+  --accent-glow: rgba(94, 106, 210, 0.32);
+  --input-background: var(--surface-1);
+  --input-text: var(--ink);
+  --input-border: var(--hairline-strong);
+  --particle-color: rgba(247, 248, 248, 0.32);
+  --navbar-bg: rgba(1, 1, 2, 0.72);
 }
 
-/* System preference fallback (when no theme is set) */
+/* System preference fallback when no explicit theme has been set */
 @media (prefers-color-scheme: dark) {
   html:not([data-theme="light"]) {
-    --background-color: #0f172a;
-    --background-secondary: #1e293b;
-    --card-background-color: #1e293b;
-    --text-color: #e2e8f0;
-    --card-text-color: #e2e8f0;
-    --primary-color: #a78bfa;
-    --primary-hover: #c4b5fd;
-    --secondary-color: #cbd5e1;
-    --border-color: #334155;
-    --shadow-color: rgba(0, 0, 0, 0.4);
-    --shadow-hover: rgba(0, 0, 0, 0.6);
-    --input-background: #1e293b;
-    --input-text: #e2e8f0;
-    --input-border: #334155;
-    --accent-glow: rgba(167, 139, 250, 0.3);
-    --particle-color: rgba(226, 232, 240, 0.40);
-    --navbar-bg: rgba(15, 23, 42, 0.35);
+    --canvas: #010102;
+    --surface-1: #0f1011;
+    --surface-2: #141516;
+    --surface-3: #18191a;
+    --surface-4: #191a1b;
+    --hairline: #23252a;
+    --hairline-strong: #34343a;
+    --hairline-tertiary: #3e3e44;
+
+    --ink: #f7f8f8;
+    --ink-muted: #d0d6e0;
+    --ink-subtle: #8a8f98;
+    --ink-tertiary: #62666d;
+
+    --linear-accent: #5e6ad2;
+    --linear-accent-hover: #828fff;
+    --linear-accent-focus: #5e69d1;
+
+    --background-color: var(--canvas);
+    --background-secondary: var(--surface-2);
+    --card-background-color: var(--surface-1);
+    --text-color: var(--ink);
+    --card-text-color: var(--ink);
+    --primary-color: var(--linear-accent);
+    --primary-hover: var(--linear-accent-hover);
+    --secondary-color: var(--ink-muted);
+    --border-color: var(--hairline);
+    --shadow-color: rgba(0, 0, 0, 0.5);
+    --shadow-hover: rgba(0, 0, 0, 0.7);
+    --accent-glow: rgba(94, 106, 210, 0.32);
+    --input-background: var(--surface-1);
+    --input-text: var(--ink);
+    --input-border: var(--hairline-strong);
+    --particle-color: rgba(247, 248, 248, 0.32);
+    --navbar-bg: rgba(1, 1, 2, 0.72);
   }
 }
 
@@ -73,9 +140,8 @@ html[data-theme="dark"] {
   padding: 0;
 }
 
-/* Smooth theme-toggle: cross-fade color tokens across the site, but only
- * on properties tied to theming so it doesn't interfere with Framer Motion
- * transforms or opacity animations. */
+/* Smooth theme-toggle cross-fade, only on theming properties to avoid
+ * interfering with Framer Motion transforms / opacity. */
 html[data-theme] *,
 html[data-theme] *::before,
 html[data-theme] *::after {
@@ -95,9 +161,10 @@ html[data-theme] *::after {
 body {
   background-color: var(--background-color);
   color: var(--text-color);
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  line-height: 1.6;
+  font-family: var(--font-display), 'Inter Display', 'Inter', -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  line-height: 1.5;
   font-size: 16px;
+  letter-spacing: -0.05px;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -128,10 +195,10 @@ a:hover {
   top: -3rem;
   z-index: 100;
   padding: 0.6rem 1rem;
-  border-radius: 6px;
+  border-radius: 8px;
   background-color: var(--primary-color);
-  color: var(--card-background-color);
-  font-weight: 600;
+  color: #ffffff;
+  font-weight: 500;
   text-decoration: none;
   transition: top 0.18s ease;
 }
@@ -139,58 +206,75 @@ a:hover {
 .skip-to-main:focus,
 .skip-to-main:focus-visible {
   top: 0.5rem;
-  color: var(--card-background-color);
-  outline: 3px solid var(--accent-glow);
+  color: #ffffff;
+  outline: 2px solid var(--linear-accent-focus);
   outline-offset: 2px;
 }
 
 /* Keyboard focus ring: visible on tab, hidden on mouse click. */
 :focus-visible {
-  outline: 2px solid var(--primary-color);
+  outline: 2px solid var(--linear-accent-focus);
   outline-offset: 2px;
-  border-radius: 3px;
+  border-radius: 4px;
 }
 
 #main-content:focus-visible {
   outline: none;
 }
 
+/* Linear display type — aggressive negative tracking, scaled to viewport. */
 h1, h2, h3, h4, h5, h6 {
   color: var(--text-color);
+  font-family: var(--font-display), 'Inter Display', 'Inter', -apple-system, BlinkMacSystemFont, "SF Pro Display", system-ui, sans-serif;
   font-weight: 600;
-  line-height: 1.3;
+  line-height: 1.1;
   margin-bottom: 0.5em;
-  letter-spacing: -0.02em;
 }
 
 h1 {
-  font-size: 2.5rem;
-  font-weight: 700;
+  font-size: clamp(2.5rem, 6vw, 5rem);
+  line-height: 1.05;
+  letter-spacing: -0.045em;
+  font-weight: 600;
 }
 
 h2 {
-  font-size: 2rem;
+  font-size: clamp(2rem, 4.2vw, 3.5rem);
+  line-height: 1.1;
+  letter-spacing: -0.032em;
 }
 
 h3 {
-  font-size: 1.75rem;
+  font-size: clamp(1.5rem, 2.8vw, 2.5rem);
+  line-height: 1.15;
+  letter-spacing: -0.025em;
 }
 
 h4 {
   font-size: 1.5rem;
+  line-height: 1.2;
+  letter-spacing: -0.015em;
 }
 
 h5 {
   font-size: 1.25rem;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  font-weight: 500;
 }
 
 h6 {
   font-size: 1rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  color: var(--ink-subtle);
 }
 
 p {
   margin-bottom: 1rem;
-  line-height: 1.7;
+  line-height: 1.5;
+  color: var(--ink-muted);
 }
 
 ul, ol {
@@ -199,31 +283,29 @@ ul, ol {
 }
 
 li {
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.4rem;
 }
 
 @media (max-width: 768px) {
   body {
-    font-size: 14px;
+    font-size: 15px;
   }
+}
 
-  h1 {
-    font-size: 2rem;
-  }
+/* Eyebrow / caption — uppercase tracked label used above section titles */
+.eyebrow {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-subtle);
+  margin-bottom: 0.5rem;
+}
 
-  h2 {
-    font-size: 1.75rem;
-  }
-
-  h3 {
-    font-size: 1.5rem;
-  }
-
-  h4 {
-    font-size: 1.25rem;
-  }
-
-  h5, h6 {
-    font-size: 1rem;
-  }
+/* Mono token — small badges, project meta, status pills */
+.mono {
+  font-family: var(--font-mono), 'JetBrains Mono', 'SF Mono', Menlo, ui-monospace, monospace;
+  font-size: 0.8125rem;
+  letter-spacing: 0;
 }
