@@ -21,7 +21,7 @@ const mono = JetBrains_Mono({
 
 const SITE_URL = 'https://ronialtshuler.com';
 const SITE_DESCRIPTION =
-  'Personal website for Roni Altshuler, Biomolecular Engineer and Bioinformatician.';
+  'Personal website for Roni Altshuler, Biomolecular Engineer and Bioinformatician';
 
 export const metadata = {
   metadataBase: new URL(SITE_URL),

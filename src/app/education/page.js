@@ -29,13 +29,13 @@ export default function Education() {
             lineHeight: 1.05,
           }}
         >
-          Education.
+          Education
         </h1>
       </FadeUp>
       <FadeUp delay={0.1}>
         <p className="mt-5 max-w-2xl text-base leading-relaxed text-ink-muted md:text-lg">
           Degrees and the labs that shaped them, from undergrad through the
-          PhD-in-progress.
+          PhD in progress
         </p>
       </FadeUp>
 

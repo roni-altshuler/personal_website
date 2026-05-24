@@ -43,13 +43,13 @@ export default function Contact() {
             lineHeight: 1.05,
           }}
         >
-          Let&apos;s talk.
+          Let&apos;s talk
         </h1>
       </FadeUp>
       <FadeUp delay={0.1}>
         <p className="mt-5 max-w-2xl text-base leading-relaxed text-ink-muted md:text-lg">
           Email is fastest. Research collaborations, internship leads, or
-          anything at the seam between biology and code. Open invitation.
+          anything at the seam between biology and code. Open invitation
         </p>
       </FadeUp>
 

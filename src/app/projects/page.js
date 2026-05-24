@@ -18,14 +18,14 @@ export default function Projects() {
             lineHeight: 1.05,
           }}
         >
-          Things I&apos;m building.
+          Things I&apos;m building
         </h1>
       </FadeUp>
       <FadeUp delay={0.1}>
         <p className="mt-5 max-w-2xl text-base leading-relaxed text-ink-muted md:text-lg">
           Side projects where I get to chase whatever&apos;s pulling at me,
           ML on sports data, NLP on song lyrics, telemetry forecasting. Stars
-          and forks update live from GitHub.
+          and forks update live from GitHub
         </p>
       </FadeUp>
 

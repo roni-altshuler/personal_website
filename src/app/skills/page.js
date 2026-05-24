@@ -5,7 +5,7 @@ import LinearCard from "../../components/cards/LinearCard";
 export const metadata = {
   title: "Skills",
   description:
-    "Wet-lab, computational, and tooling skills used by Roni Altshuler across research and engineering.",
+    "Wet-lab, computational, and tooling skills used by Roni Altshuler across research and engineering",
 };
 
 export default function Skills() {
@@ -23,13 +23,13 @@ export default function Skills() {
             lineHeight: 1.05,
           }}
         >
-          Skills, grouped by where I use them.
+          Skills, grouped by where I use them
         </h1>
       </FadeUp>
       <FadeUp delay={0.1}>
         <p className="mt-5 max-w-2xl text-base leading-relaxed text-ink-muted md:text-lg">
           Three pillars: the bench, the keyboard, and the connective tools
-          that keep both honest. Updated as projects pull in something new.
+          that keep both honest. Updated as projects pull in something new
         </p>
       </FadeUp>
 

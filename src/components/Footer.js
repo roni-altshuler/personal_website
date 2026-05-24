@@ -49,7 +49,7 @@ export default function Footer() {
             </Link>
             <p className="mt-4 max-w-sm text-sm leading-relaxed text-ink-subtle">
               Biomolecular engineer & bioinformatician. PhD candidate in the
-              Ron-Harel Lab, Technion. Working where biology meets code.
+              Ron-Harel Lab, Technion. Working where biology meets code
             </p>
           </div>
           {FOOTER_LINKS.map((col) => (
@@ -83,7 +83,7 @@ export default function Footer() {
         </div>
 
         <div className="mt-12 flex flex-col items-start justify-between gap-3 border-t border-hairline pt-6 text-xs text-ink-tertiary md:flex-row md:items-center">
-          <span>&copy; {year} Ron Oshri Altshuler. All rights reserved.</span>
+          <span>&copy; {year} Ron Oshri Altshuler · All rights reserved</span>
           <span className="mono">
             Built with Next.js · Designed in Linear&apos;s language
           </span>

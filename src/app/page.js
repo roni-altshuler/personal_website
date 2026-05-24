@@ -8,21 +8,21 @@ const TEASERS = [
   {
     eyebrow: "Foundations",
     title: "Education",
-    body: "Degrees and labs from undergrad through the PhD in progress, UCSC and the Technion.",
+    body: "Degrees and labs from undergrad through the PhD in progress, UCSC and the Technion",
     href: "/education",
     cta: "See the path",
   },
   {
     eyebrow: "Track record",
     title: "Work experience",
-    body: "Four years across CRISPR Therapeutics, UCSC Genomics Institute, CZ Biohub, and the Technion.",
+    body: "Four years across CRISPR Therapeutics, UCSC Genomics Institute, CZ Biohub, and the Technion",
     href: "/work-experience",
     cta: "See the lineage",
   },
   {
     eyebrow: "Recent work",
     title: "Projects",
-    body: "Apps for soccer prediction, lyric analysis, and F1 race forecasting, all open source, all live.",
+    body: "Apps for soccer prediction, lyric analysis, and F1 race forecasting, all open source, all live",
     href: "/projects",
     cta: "Browse the build",
   },
@@ -63,7 +63,7 @@ export default function Home() {
                 className="mt-2 max-w-2xl font-display text-3xl font-semibold text-ink md:text-4xl"
                 style={{ letterSpacing: "-0.032em", lineHeight: 1.1 }}
               >
-                Curiosity that started with friends, became a career.
+                Curiosity that started with friends, became a career
               </h2>
             </FadeUp>
             <FadeUp whileInView delay={0.15} as="p" className="mt-6 text-base leading-relaxed text-ink-muted md:text-lg">
@@ -79,18 +79,18 @@ export default function Home() {
                 Ron-Harel Lab
               </a>{" "}
               at the Technion, where I work to uncover how immune and metabolic
-              pathways shape health and disease.
+              pathways shape health and disease
             </FadeUp>
             <FadeUp whileInView delay={0.2} as="p" className="mt-4 text-base leading-relaxed text-ink-muted md:text-lg">
               Before the PhD I earned my B.S. and M.S. in Biomolecular
               Engineering & Bioinformatics at UC Santa Cruz, where I built
               computational pipelines on spatial transcriptomics, single-cell,
               and CRISPR/Cas9 data. I keep ending up at the seam between
-              biology and code.
+              biology and code
             </FadeUp>
             <FadeUp whileInView delay={0.25} as="p" className="mt-4 text-base leading-relaxed text-ink-muted md:text-lg">
               Outside the lab, I race endurance events and have played soccer
-              my whole life. Both keep me sharp, both keep me sane.
+              my whole life. Both keep me sharp, both keep me sane
             </FadeUp>
 
             <FadeUp whileInView delay={0.35} className="mt-8 flex gap-3 text-xl text-ink-subtle">
@@ -133,13 +133,18 @@ export default function Home() {
             className="mt-2 max-w-3xl font-display text-3xl font-semibold text-ink md:text-4xl"
             style={{ letterSpacing: "-0.032em", lineHeight: 1.1 }}
           >
-            Pick where to start.
+            Pick where to start
           </h2>
         </FadeUp>
 
         <div className="mt-10 grid gap-4 md:grid-cols-3 md:gap-5">
           {TEASERS.map((t, i) => (
-            <FadeUp key={t.href} whileInView delay={0.1 + i * 0.06}>
+            <FadeUp
+              key={t.href}
+              whileInView
+              delay={0.1 + i * 0.06}
+              className="h-full"
+            >
               <LinearCard
                 as="a"
                 href={t.href}
@@ -156,8 +161,14 @@ export default function Home() {
                 <p className="mt-3 text-sm leading-relaxed text-ink-muted">
                   {t.body}
                 </p>
-                <span className="mt-6 inline-flex items-center gap-1.5 text-sm font-medium text-linear-accent transition-transform group-hover:translate-x-0.5">
-                  {t.cta} <span aria-hidden="true">→</span>
+                <span className="mt-auto inline-flex items-center gap-1.5 pt-6 text-sm font-medium text-linear-accent transition-colors duration-200 ease-out group-hover:text-linear-accent-hover">
+                  {t.cta}{" "}
+                  <span
+                    aria-hidden="true"
+                    className="transition-transform duration-200 ease-out group-hover:translate-x-0.5"
+                  >
+                    →
+                  </span>
                 </span>
               </LinearCard>
             </FadeUp>
