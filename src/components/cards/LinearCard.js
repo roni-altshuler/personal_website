@@ -1,12 +1,14 @@
 "use client";
 
-import { motion, useReducedMotion } from "framer-motion";
+import { motion } from "framer-motion";
+import useCardTilt from "./useCardTilt";
 
 /*
- * LinearCard — surface-lift card per Linear DESIGN.md.
- * Default: surface-1 background, 1px hairline border, 12px radius.
- * Hover: lifts 1px, swaps border to linear-accent-focus, soft glow.
- * No 3D tilt (Linear doesn't do it). Works inside <FadeUp> for entry stagger.
+ * LinearCard: surface-1 card with hairline border (Linear surfaces).
+ * Interactive variant adds mouse-tracked 3D tilt + lift + violet glow on
+ * hover via useCardTilt. Static variant skips all motion. Reduced-motion
+ * users get the static variant automatically (useCardTilt returns
+ * { reduced: true } in that case).
  */
 export default function LinearCard({
   as: Tag = "div",
@@ -17,18 +19,18 @@ export default function LinearCard({
   interactive = true,
   ...rest
 }) {
-  const reduced = useReducedMotion();
+  const tilt = useCardTilt();
   const isLink = !!href;
-  const MotionTag = motion(isLink ? "a" : Tag);
+  const elementType = isLink ? "a" : Tag;
 
-  const base = `relative block rounded-lg border border-hairline bg-surface-1 ${padding} transition-colors duration-200`;
+  const base = `relative block rounded-lg border border-hairline bg-surface-1 ${padding} transition-[border-color,box-shadow,background-color] duration-300 ease-out`;
   const hover = interactive
-    ? "hover:border-linear-accent-focus hover:bg-surface-2"
+    ? "hover:border-linear-accent hover:bg-surface-2 hover:shadow-glow"
     : "";
   const cls = `${base} ${hover} ${className}`.trim();
 
-  if (reduced || !interactive) {
-    const Plain = isLink ? "a" : Tag;
+  if (!interactive || tilt.reduced) {
+    const Plain = elementType;
     return (
       <Plain href={href} className={cls} {...rest}>
         {children}
@@ -36,12 +38,15 @@ export default function LinearCard({
     );
   }
 
+  const MotionTag = motion[elementType] || motion.div;
   return (
     <MotionTag
       href={href}
       className={cls}
-      whileHover={{ y: -2 }}
-      transition={{ type: "spring", stiffness: 240, damping: 22 }}
+      onMouseMove={tilt.onMouseMove}
+      onMouseEnter={tilt.onMouseEnter}
+      onMouseLeave={tilt.onMouseLeave}
+      style={tilt.style}
       {...rest}
     >
       {children}

@@ -3,14 +3,20 @@
   color: var(--ink);
   border-radius: 12px;
   border: 1px solid var(--hairline);
-  transition: border-color 0.2s ease, background-color 0.2s ease;
+  transition: border-color 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+              background-color 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   position: relative;
   cursor: pointer;
 }
 
 .card:hover {
-  border-color: var(--linear-accent-focus);
+  border-color: var(--linear-accent);
   background-color: var(--surface-2);
+  box-shadow:
+    0 16px 32px var(--shadow-hover),
+    0 0 0 1px var(--linear-accent),
+    0 0 36px var(--accent-glow);
 }
 
 .card.static {
@@ -162,7 +168,7 @@
 
 .cardBody li::before,
 .modalBody li::before {
-  content: '—';
+  content: '\2022';
   position: absolute;
   left: 0;
   top: 0;
