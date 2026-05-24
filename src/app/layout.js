@@ -1,7 +1,7 @@
 import { Inter, JetBrains_Mono } from 'next/font/google';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
-import V3Background from '../components/background/V3Background';
+import ParticleFieldLoader from '../components/background/ParticleFieldLoader';
 import '../styles/globals.css';
 import { Analytics } from "@vercel/analytics/next";
 
@@ -88,21 +88,12 @@ export default function RootLayout({ children }) {
         />
         <script
           dangerouslySetInnerHTML={{
-            __html: `
-              (function() {
-                const saved = localStorage.getItem('theme');
-                if (saved) {
-                  document.documentElement.setAttribute('data-theme', saved);
-                } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-                  document.documentElement.setAttribute('data-theme', 'dark');
-                }
-              })();
-            `,
+            __html: `document.documentElement.setAttribute('data-theme','dark');`,
           }}
         />
       </head>
       <body suppressHydrationWarning={true}>
-        <V3Background />
+        <ParticleFieldLoader />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
