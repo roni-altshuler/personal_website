@@ -7,6 +7,16 @@ export const LANGUAGE_COLORS = {
 
 export const PROJECTS = [
   {
+    name: 'motorsportverse',
+    displayName: 'MotorsportVerse',
+    description:
+      'A unified, open-source motorsport AI ecosystem — a monorepo with a shared ML & data core that powers sport-specific race-prediction projects (Formula 1, Formula 2, and beyond), each calibrated and graded against real race results',
+    link: 'https://github.com/roni-altshuler/motorsportverse',
+    language: 'Python',
+    stars: 0,
+    forks: 0,
+  },
+  {
     name: 'soccer_predictor',
     displayName: 'Soccer Predictor',
     description:
@@ -23,16 +33,6 @@ export const PROJECTS = [
       'A modern, minimalist web app that analyzes song lyrics to determine mood, vibe, and emotional insights. Built with Next.js, TypeScript, and Tailwind CSS',
     link: 'https://github.com/roni-altshuler/SongAnalyzer',
     language: 'TypeScript',
-    stars: 0,
-    forks: 0,
-  },
-  {
-    name: 'f1_predictions',
-    displayName: 'F1 Predictor',
-    description:
-      'A Python-based Formula 1 race prediction framework that uses historical data, telemetry analysis, and weather integration to forecast race results for the 2026 season',
-    link: 'https://github.com/roni-altshuler/f1_predictions',
-    language: 'Python',
     stars: 0,
     forks: 0,
   },
