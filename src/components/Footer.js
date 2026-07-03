@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { EMAIL, GITHUB_URL, LINKEDIN_URL } from "../data/site";
 
 const FOOTER_LINKS = [
   {
@@ -20,13 +21,13 @@ const FOOTER_LINKS = [
   {
     heading: "Elsewhere",
     items: [
-      { label: "GitHub", href: "https://github.com/roni-altshuler", external: true },
+      { label: "GitHub", href: GITHUB_URL, external: true },
       {
         label: "LinkedIn",
-        href: "https://www.linkedin.com/in/roni-altshuler/",
+        href: LINKEDIN_URL,
         external: true,
       },
-      { label: "Email", href: "mailto:ronaltshuler1@gmail.com" },
+      { label: "Email", href: `mailto:${EMAIL}` },
     ],
   },
 ];

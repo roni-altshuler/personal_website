@@ -17,7 +17,10 @@ const VIEWPORTS = [
   { name: "mobile", width: 390, height: 844 },
 ];
 
-const THEMES = ["light", "dark"];
+// The site is forced-dark (an inline script in layout.js sets data-theme="dark"
+// pre-paint, overriding any localStorage value), so there is only one theme to
+// capture. Kept as an array in case a light theme is ever reintroduced.
+const THEMES = ["dark"];
 
 const BASE_URL = process.env.SCREENSHOT_BASE_URL || "http://localhost:3000";
 const PHASE = process.env.SCREENSHOT_PHASE || "00-baseline";

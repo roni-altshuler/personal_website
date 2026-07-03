@@ -3,6 +3,31 @@ import Link from "next/link";
 import V3Hero from "../components/hero/V3Hero";
 import { FadeUp } from "../components/anim/Reveal";
 import LinearCard from "../components/cards/LinearCard";
+import NarrativeScroll from "../components/home/NarrativeScroll";
+import { GITHUB_URL, LINKEDIN_URL } from "../data/site";
+
+const CHAPTERS = [
+  {
+    eyebrow: "01 · Where it began",
+    title: "A question that became a calling",
+    body: "Watching friends battle cancer turned a question into a calling: why do diseases take hold, and how do we treat them? That question has pointed me in the same direction ever since",
+  },
+  {
+    eyebrow: "02 · Into the science",
+    title: "Oncology, genomics, bioinformatics",
+    body: "It pulled me into oncology, genomics, and bioinformatics. At UC Santa Cruz I earned my B.S. and M.S. in Biomolecular Engineering & Bioinformatics, building computational pipelines on spatial transcriptomics, single-cell, and CRISPR/Cas9 data",
+  },
+  {
+    eyebrow: "03 · The seam",
+    title: "Where biology meets code",
+    body: "I keep ending up at the seam between the bench and the keyboard, translating messy biological questions into computation, then turning the results back into biology that means something",
+  },
+  {
+    eyebrow: "04 · Now",
+    title: "Immune and metabolic pathways",
+    body: "Today I'm a PhD candidate in the Ron-Harel Lab at the Technion, working to uncover how immune and metabolic pathways shape health and disease",
+  },
+];
 
 const TEASERS = [
   {
@@ -33,7 +58,7 @@ export default function Home() {
     <>
       <V3Hero />
 
-      <section className="mx-auto max-w-6xl px-6 pb-24 md:pb-32">
+      <section id="about" className="mx-auto max-w-6xl px-6 pb-24 pt-4 scroll-mt-24 md:pb-32">
         <div className="grid items-start gap-12 md:grid-cols-[260px_1fr] md:gap-16">
           <FadeUp whileInView className="md:sticky md:top-24">
             <div className="overflow-hidden rounded-xl border border-hairline bg-surface-1 p-2">
@@ -63,13 +88,12 @@ export default function Home() {
                 className="mt-2 max-w-2xl font-display text-3xl font-semibold text-ink md:text-4xl"
                 style={{ letterSpacing: "-0.032em", lineHeight: 1.1 }}
               >
-                Curiosity that started with friends, became a career
+                The short version
               </h2>
             </FadeUp>
             <FadeUp whileInView delay={0.15} as="p" className="mt-6 text-base leading-relaxed text-ink-muted md:text-lg">
-              Watching friends battle cancer sparked a lifelong curiosity about
-              why diseases occur and how we can treat them. That pulled me into
-              oncology, genomics, and bioinformatics, and into the{" "}
+              I&apos;m a biomolecular engineer and bioinformatician, and a PhD
+              candidate in the{" "}
               <a
                 href="https://www.ronharellab.com/"
                 target="_blank"
@@ -78,24 +102,18 @@ export default function Home() {
               >
                 Ron-Harel Lab
               </a>{" "}
-              at the Technion, where I work to uncover how immune and metabolic
-              pathways shape health and disease
+              at the Technion. I work at the seam between biology and code, close
+              enough to the bench to know what the data means and fluent enough
+              in code to make it scale
             </FadeUp>
             <FadeUp whileInView delay={0.2} as="p" className="mt-4 text-base leading-relaxed text-ink-muted md:text-lg">
-              Before the PhD I earned my B.S. and M.S. in Biomolecular
-              Engineering & Bioinformatics at UC Santa Cruz, where I built
-              computational pipelines on spatial transcriptomics, single-cell,
-              and CRISPR/Cas9 data. I keep ending up at the seam between
-              biology and code
-            </FadeUp>
-            <FadeUp whileInView delay={0.25} as="p" className="mt-4 text-base leading-relaxed text-ink-muted md:text-lg">
-              Outside the lab, I race endurance events and have played soccer
-              my whole life. Both keep me sharp, both keep me sane
+              Outside the lab, I race endurance events and have played soccer my
+              whole life. Both keep me sharp, both keep me sane
             </FadeUp>
 
             <FadeUp whileInView delay={0.35} className="mt-8 flex gap-3 text-xl text-ink-subtle">
               <a
-                href="https://github.com/roni-altshuler"
+                href={GITHUB_URL}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="GitHub"
@@ -104,7 +122,7 @@ export default function Home() {
                 <i className="fab fa-github" aria-hidden="true"></i>
               </a>
               <a
-                href="https://www.linkedin.com/in/roni-altshuler/"
+                href={LINKEDIN_URL}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="LinkedIn"
@@ -124,7 +142,24 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-6xl px-6 pb-32 md:pb-40">
+      <div id="path" className="scroll-mt-24">
+        <div className="mx-auto max-w-6xl px-6">
+          <FadeUp whileInView>
+            <span className="eyebrow">The path</span>
+          </FadeUp>
+          <FadeUp whileInView delay={0.05}>
+            <h2
+              className="mt-2 max-w-3xl font-display text-3xl font-semibold text-ink md:text-4xl"
+              style={{ letterSpacing: "-0.032em", lineHeight: 1.1 }}
+            >
+              How I got here
+            </h2>
+          </FadeUp>
+        </div>
+        <NarrativeScroll chapters={CHAPTERS} />
+      </div>
+
+      <section id="explore" className="mx-auto max-w-6xl px-6 pb-32 scroll-mt-24 md:pb-40">
         <FadeUp whileInView>
           <span className="eyebrow">Three doors</span>
         </FadeUp>

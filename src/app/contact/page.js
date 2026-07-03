@@ -1,7 +1,12 @@
 import { FadeUp } from "../../components/anim/Reveal";
 import LinearCard from "../../components/cards/LinearCard";
-
-const EMAIL = "roni.altshuler@gmail.com";
+import {
+  EMAIL,
+  GITHUB_HANDLE,
+  GITHUB_URL,
+  LINKEDIN_HANDLE,
+  LINKEDIN_URL,
+} from "../../data/site";
 
 const CHANNELS = [
   {
@@ -15,15 +20,15 @@ const CHANNELS = [
   {
     icon: "fab fa-linkedin",
     label: "LinkedIn",
-    handle: "in/roni-altshuler",
-    href: "https://www.linkedin.com/in/roni-altshuler/",
+    handle: LINKEDIN_HANDLE,
+    href: LINKEDIN_URL,
     external: true,
   },
   {
     icon: "fab fa-github",
     label: "GitHub",
-    handle: "roni-altshuler",
-    href: "https://github.com/roni-altshuler",
+    handle: GITHUB_HANDLE,
+    href: GITHUB_URL,
     external: true,
   },
 ];

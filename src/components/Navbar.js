@@ -4,14 +4,7 @@ import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import styles from '../styles/Navbar.module.css';
-
-const NAV_ITEMS = [
-  { href: '/education', label: 'Education' },
-  { href: '/work-experience', label: 'Work Experience' },
-  { href: '/projects', label: 'Projects' },
-  { href: '/skills', label: 'Skills' },
-  { href: '/contact', label: 'Contact' },
-];
+import { NAV_ITEMS } from '../data/nav';
 
 function isActive(pathname, href) {
   if (href === '/') return pathname === '/';

@@ -8,11 +8,11 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 npm run dev          # next dev — local at http://localhost:3000
 npm run build        # next build — required before checking route map / SSG output
 npm run start        # serve the production build
-npm run screenshots  # Playwright capture of every route × {desktop,mobile} × {light,dark} → screenshots/<phase>/
+npm run screenshots  # Playwright capture of every route × {desktop,mobile} × {dark} → screenshots/<phase>/
 npx eslint src       # lint (the package.json "lint" script is bare `eslint` with no path, which prints help; use this instead)
 ```
 
-There is no test suite. Verification on UI changes is `npm run build` + `npm run screenshots` + manual smoke test in `npm run dev` (light + dark, mobile width 375px, keyboard nav, and `prefers-reduced-motion: reduce`). `next/image` is strict about string-`src` requiring explicit `width`/`height`: dev throws if you forget, while prod prerender is lenient — always smoke-test in `dev`, not just `build`. **Heads-up:** running `npm run build` while `npm run dev` is up can corrupt the `.next` cache for the dev server — if dev starts serving unstyled HTML or webpack module errors after a build, `rm -rf .next` and restart `npm run dev`.
+There is no test suite. Verification on UI changes is `npm run build` + `npm run screenshots` + manual smoke test in `npm run dev` (the site is forced-dark, mobile width 375px, keyboard nav, and `prefers-reduced-motion: reduce`). `next/image` is strict about string-`src` requiring explicit `width`/`height`: dev throws if you forget, while prod prerender is lenient — always smoke-test in `dev`, not just `build`. **Heads-up:** running `npm run build` while `npm run dev` is up can corrupt the `.next` cache for the dev server — if dev starts serving unstyled HTML or webpack module errors after a build, `rm -rf .next` and restart `npm run dev`.
 
 ## High-level architecture
 
@@ -36,7 +36,7 @@ CSS Modules and Tailwind both work, intentionally. [Card.module.css](src/styles/
 
 #### Linear-anchored tokens
 
-Colors, type, spacing, radius all derive from Linear's `DESIGN.md` (see [docs/linear-design.md](docs/linear-design.md)). Tokens live as CSS variables in [src/styles/globals.css](src/styles/globals.css). Dark mode = Linear's canonical near-black canvas (#010102) + lavender accent (#5e6ad2). Light mode = invented Linear-inverse (off-white canvas, darkened lavender for contrast). Linear itself is dark-only on marketing; the light theme is a deliberate departure to preserve the existing `ThemeToggle` UX.
+Colors, type, spacing, radius all derive from Linear's `DESIGN.md` (see [docs/linear-design.md](docs/linear-design.md)). Tokens live as CSS variables in [src/styles/globals.css](src/styles/globals.css). The site is **dark-only** (v3.1): Linear's canonical near-black canvas (`#010102`) + a **violet ombre** accent (`--linear-accent` `#a78bfa` → `--linear-accent-deep` `#7c3aed`), which replaced the earlier lavender-blue. There is no light theme — an earlier `ThemeToggle` was removed and the theme is forced dark (see Background / the inline script in `layout.js`).
 
 | Token group | CSS var pattern | Tailwind class pattern | Notes |
 |---|---|---|---|
@@ -46,7 +46,7 @@ Colors, type, spacing, radius all derive from Linear's `DESIGN.md` (see [docs/li
 | Accent | `--linear-accent`, `--linear-accent-hover`, `--linear-accent-focus` | `text-linear-accent`, `bg-linear-accent`, `border-linear-accent-focus` | Used scarcely per Linear's discipline: brand mark, focus ring, primary CTA, link emphasis |
 | Legacy aliases | `--background-color`, `--primary-color`, etc. | `bg-bg`, `text-primary`, `border-border` | Preserved for backward compat — they resolve to the Linear tokens above |
 
-[ThemeToggle.js](src/components/ThemeToggle.js) persists choice to `localStorage`; an inline script in [layout.js](src/app/layout.js) reads it pre-paint to avoid a flash. Theme transitions cross-fade colors/borders/shadows site-wide (see the `html[data-theme] *` block in globals.css).
+The theme is forced dark: an inline script in [layout.js](src/app/layout.js) sets `data-theme="dark"` pre-paint, overriding any stale `localStorage` value. The old `ThemeToggle` component and its CSS Module have been deleted; `globals.css` keeps a small `html[data-theme="light"] { color-scheme: dark }` guard for any lingering saved value.
 
 Fonts are loaded with `next/font/google`: Inter (display + body via the `--font-display` CSS variable) and JetBrains Mono (`--font-mono`). Linear's actual faces are proprietary; Inter is the recommended open-source substitute per Linear's own DESIGN.md note.
 
@@ -62,7 +62,7 @@ The Linear re-skin (in [Card.module.css](src/styles/Card.module.css)) replaces t
 
 ### Background
 
-[V3Background.js](src/components/background/V3Background.js) renders a site-wide fixed div at `z-index: -10` with a 28px dot grid. Per Linear's discipline ("no atmospheric gradients, no spotlight cards"), there is no canvas animation, no particles, no shader. A linear-gradient mask softens the dots toward the bottom of the viewport. Reduced-motion friendly by default (nothing animates).
+The site-wide ambient background is an animated `<canvas>` mounted in [layout.js](src/app/layout.js) via [ParticleFieldLoader.js](src/components/background/ParticleFieldLoader.js) (a `dynamic(..., { ssr: false })` wrapper so the canvas never runs on the server and adds zero CLS — it's `position: fixed; inset: 0; z-index: -1; pointer-events: none`). The current field is [NetworkField.js](src/components/background/NetworkField.js): a cursor-reactive, abstract node/network graph (synthetic nodes only — never real research data). [ParticleField.js](src/components/background/ParticleField.js) is the earlier violet dot-wave, preserved for rollback — swap the import in the loader to switch. Both follow the same lifecycle discipline: DPR capped at 2, rAF paused on `visibilitychange` (hidden tab), relayout via `ResizeObserver`, a single static frame under `prefers-reduced-motion: reduce` (no loop), and colors read from the `--linear-accent` CSS vars so the accent cascades. Keep the canvas `pointer-events: none` so hero CTAs stay clickable; cursor interaction attaches to `window`, not the canvas, and is disabled on coarse pointers.
 
 ### Motion conventions
 
@@ -80,7 +80,7 @@ Framer Motion is used for the kinetic hero (`V3Hero`'s rotating focus phrase), p
 
 ### Screenshots & visual verification
 
-[scripts/screenshot.mjs](scripts/screenshot.mjs) drives Playwright Chromium across every route × {desktop 1440×900, mobile 390×844} × {light, dark}. Output goes to `screenshots/<SCREENSHOT_PHASE>/` (gitignored). The script scrolls every page top-to-bottom before capturing so framer-motion `whileInView` reveals fire — otherwise content below the initial 900px viewport would render as `opacity: 0`. Use `SCREENSHOT_PHASE=99-final npm run screenshots` to write to a named bucket. The baseline (pre-v3) lives at `screenshots/00-baseline/` for before/after comparison.
+[scripts/screenshot.mjs](scripts/screenshot.mjs) drives Playwright Chromium across every route × {desktop 1440×900, mobile 390×844}. The site is forced-dark, so `THEMES` is `["dark"]` only (a `light` value would just produce dark duplicates, since the inline script overrides `localStorage`). Output goes to `screenshots/<SCREENSHOT_PHASE>/` (gitignored). The script scrolls every page top-to-bottom before capturing so framer-motion `whileInView` reveals fire — otherwise content below the initial 900px viewport would render as `opacity: 0`. Use `SCREENSHOT_PHASE=99-final npm run screenshots` to write to a named bucket. The baseline (pre-v3) lives at `screenshots/00-baseline/` for before/after comparison.
 
 Playwright's bundled Chromium needs `libnspr4`/`libnss3`/`libatk` on Linux; install via `sudo npx playwright install-deps chromium` if `npm run screenshots` fails with a shared-library error.
 
