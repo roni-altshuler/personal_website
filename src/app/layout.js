@@ -45,6 +45,7 @@ export const metadata = {
     'CRISPR',
     'Immunometabolism',
   ],
+  icons: { icon: '/favicon.ico' },
   alternates: { canonical: '/' },
   openGraph: {
     type: 'website',

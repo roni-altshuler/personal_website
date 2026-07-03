@@ -47,7 +47,7 @@ const TEASERS = [
   {
     eyebrow: "Recent work",
     title: "Projects",
-    body: "Apps for soccer prediction, lyric analysis, and F1 race forecasting, all open source, all live",
+    body: "Motorsport AI, soccer prediction, and lyric analysis, all open source, all live",
     href: "/projects",
     cta: "Browse the build",
   },
