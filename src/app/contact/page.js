@@ -54,7 +54,7 @@ export default function Contact() {
       <FadeUp delay={0.1}>
         <p className="mt-5 max-w-2xl text-base leading-relaxed text-ink-muted md:text-lg">
           Email is fastest. Research collaborations, internship leads, or
-          anything at the seam between biology and code. Open invitation
+          anything at the seam between biology and code. Open invitation.
         </p>
       </FadeUp>
 

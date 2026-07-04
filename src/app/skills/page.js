@@ -29,7 +29,7 @@ export default function Skills() {
       <FadeUp delay={0.1}>
         <p className="mt-5 max-w-2xl text-base leading-relaxed text-ink-muted md:text-lg">
           Three pillars: the bench, the keyboard, and the connective tools
-          that keep both honest. Updated as projects pull in something new
+          that keep both honest. Updated as projects pull in something new.
         </p>
       </FadeUp>
 

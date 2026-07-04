@@ -48,7 +48,7 @@ export default function WorkExperience() {
       <FadeUp delay={0.1}>
         <p className="mt-5 max-w-2xl text-base leading-relaxed text-ink-muted md:text-lg">
           Research positions and engineering roles across labs and companies
-          where I&apos;ve built tools, run experiments, and chased questions
+          where I&apos;ve built tools, run experiments, and chased questions.
         </p>
       </FadeUp>
 

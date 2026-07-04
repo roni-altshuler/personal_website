@@ -25,7 +25,7 @@ export default function Projects() {
         <p className="mt-5 max-w-2xl text-base leading-relaxed text-ink-muted md:text-lg">
           Side projects where I get to chase whatever&apos;s pulling at me,
           ML on sports data, NLP on song lyrics, telemetry forecasting. Stars
-          and forks update live from GitHub
+          and forks update live from GitHub.
         </p>
       </FadeUp>
 

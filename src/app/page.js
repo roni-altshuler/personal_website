@@ -10,22 +10,22 @@ const CHAPTERS = [
   {
     eyebrow: "01 · Where it began",
     title: "A question that became a calling",
-    body: "Watching friends battle cancer turned a question into a calling: why do diseases take hold, and how do we treat them? That question has pointed me in the same direction ever since",
+    body: "Watching friends battle cancer turned a question into a calling: why do diseases take hold, and how do we treat them? That question has pointed me in the same direction ever since.",
   },
   {
     eyebrow: "02 · Into the science",
     title: "Oncology, genomics, bioinformatics",
-    body: "It pulled me into oncology, genomics, and bioinformatics. At UC Santa Cruz I earned my B.S. and M.S. in Biomolecular Engineering & Bioinformatics, building computational pipelines on spatial transcriptomics, single-cell, and CRISPR/Cas9 data",
+    body: "It pulled me into oncology, genomics, and bioinformatics. At UC Santa Cruz I earned my B.S. and M.S. in Biomolecular Engineering & Bioinformatics, building computational pipelines on spatial transcriptomics, single-cell, and CRISPR/Cas9 data.",
   },
   {
     eyebrow: "03 · The seam",
     title: "Where biology meets code",
-    body: "I keep ending up at the seam between the bench and the keyboard, translating messy biological questions into computation, then turning the results back into biology that means something",
+    body: "I keep ending up at the seam between the bench and the keyboard, translating messy biological questions into computation, then turning the results back into biology that means something.",
   },
   {
     eyebrow: "04 · Now",
     title: "Immune and metabolic pathways",
-    body: "Today I'm a PhD candidate in the Ron-Harel Lab at the Technion, working to uncover how immune and metabolic pathways shape health and disease",
+    body: "Today I'm a PhD candidate in the Ron-Harel Lab at the Technion, working to uncover how immune and metabolic pathways shape health and disease.",
   },
 ];
 
@@ -33,21 +33,21 @@ const TEASERS = [
   {
     eyebrow: "Foundations",
     title: "Education",
-    body: "Degrees and labs from undergrad through the PhD in progress, UCSC and the Technion",
+    body: "Degrees and labs from undergrad through the PhD in progress, UCSC and the Technion.",
     href: "/education",
     cta: "See the path",
   },
   {
     eyebrow: "Track record",
     title: "Work experience",
-    body: "Four years across CRISPR Therapeutics, UCSC Genomics Institute, CZ Biohub, and the Technion",
+    body: "Four years across CRISPR Therapeutics, UCSC Genomics Institute, CZ Biohub, and the Technion.",
     href: "/work-experience",
     cta: "See the lineage",
   },
   {
     eyebrow: "Recent work",
     title: "Projects",
-    body: "Motorsport AI, soccer prediction, and lyric analysis, all open source, all live",
+    body: "Motorsport AI, soccer prediction, and lyric analysis, all open source, all live.",
     href: "/projects",
     cta: "Browse the build",
   },
@@ -104,11 +104,11 @@ export default function Home() {
               </a>{" "}
               at the Technion. I work at the seam between biology and code, close
               enough to the bench to know what the data means and fluent enough
-              in code to make it scale
+              in code to make it scale.
             </FadeUp>
             <FadeUp whileInView delay={0.2} as="p" className="mt-4 text-base leading-relaxed text-ink-muted md:text-lg">
               Outside the lab, I race endurance events and have played soccer my
-              whole life. Both keep me sharp, both keep me sane
+              whole life. Both keep me sharp, both keep me sane.
             </FadeUp>
 
             <FadeUp whileInView delay={0.35} className="mt-8 flex gap-3 text-xl text-ink-subtle">

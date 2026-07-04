@@ -79,7 +79,7 @@ export default function V3Hero() {
           style={{ minWidth: `${longest.length * 0.55}ch` }}
         >
           <span className="invisible" aria-hidden="true">
-            {longest}
+            {longest}.
           </span>
           <AnimatePresence mode="wait" initial={false}>
             <motion.span
@@ -91,6 +91,7 @@ export default function V3Hero() {
               className="absolute left-0 top-0 whitespace-nowrap text-linear-accent"
             >
               {current}
+              <span className="text-ink-muted">.</span>
             </motion.span>
           </AnimatePresence>
         </span>
