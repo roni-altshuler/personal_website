@@ -95,7 +95,7 @@ export default function Home() {
               I&apos;m a biomolecular engineer and bioinformatician, and a PhD
               candidate in the{" "}
               <a
-                href="https://www.ronharellab.com/"
+                href="https://ronharellab.technion.ac.il/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-linear-accent hover:underline"

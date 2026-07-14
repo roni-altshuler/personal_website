@@ -10,7 +10,7 @@ export const RESEARCH = [
     date: '2025 – Present',
     logo: '/logo/Technion_logo.svg',
     logoAlt: 'Technion Logo',
-    link: 'https://www.ronharellab.com/',
+    link: 'https://ronharellab.technion.ac.il/',
     summary:
       'First-year PhD student in the Ron-Harel Lab studying immunometabolism and aging',
     bullets: [
