@@ -14,12 +14,18 @@ import LinearCard from "../cards/LinearCard";
  * project was added, which reads as a broken grid rather than as
  * whitespace.
  *
- * Stars and forks render LIVE from /api/github and are ALWAYS shown, zero
- * included. A repo with no stars is a fact about the repo; hiding the row
- * when the count is 0 makes "nobody has starred this" and "we could not
- * reach GitHub" look identical, and it is the second one that is a bug.
- * When the API fails it returns null and the static fallback — the last
- * known real count — is kept.
+ * Stars and forks render LIVE from /api/github, and a count is shown ONLY
+ * when it is at least one. This page is a showcase, not a dashboard: a row
+ * of zeros is not information a reader can use, and printing it on every
+ * card makes the repos that have actually been starred harder to spot
+ * rather than easier.
+ *
+ * Each chip is gated on its own count, so a repo with 3 stars and no forks
+ * shows the stars alone rather than "3 · 0".
+ *
+ * The failure case is still not a zero: when the API fails it returns null
+ * and the static fallback — the last known real count — is kept, so a
+ * rate-limited fetch never silently demotes a starred repo to unstarred.
  */
 
 const StarIcon = () => (
@@ -44,6 +50,20 @@ function plural(count, singular) {
   return `${count} ${singular}${count === 1 ? "" : "s"}`;
 }
 
+/* One social-proof chip. Renders nothing below 1 — see the file header.
+   The label carries the meaning; the icon is decorative, because a screen
+   reader announcing "star 3" is not a sentence. */
+function CountChip({ count, noun, children }) {
+  if (!count || count < 1) return null;
+  return (
+    <span className="flex items-center gap-1.5 mono" title={plural(count, noun)}>
+      {children}
+      <span aria-hidden="true">{count}</span>
+      <span className="sr-only">{plural(count, `GitHub ${noun}`)}</span>
+    </span>
+  );
+}
+
 function ProjectMeta({ project }) {
   return (
     <div className="mt-auto flex flex-wrap items-center gap-x-4 gap-y-2 pt-6 text-xs text-ink-subtle">
@@ -58,25 +78,13 @@ function ProjectMeta({ project }) {
         <span className="mono">{project.language}</span>
       </span>
 
-      {/* aria-label carries the meaning; the icon is decorative. A screen
-          reader announcing "star 3" is not a sentence. */}
-      <span
-        className="flex items-center gap-1.5 mono"
-        title={plural(project.stars ?? 0, "star")}
-      >
+      <CountChip count={project.stars} noun="star">
         <StarIcon />
-        <span aria-hidden="true">{project.stars ?? 0}</span>
-        <span className="sr-only">{plural(project.stars ?? 0, "GitHub star")}</span>
-      </span>
+      </CountChip>
 
-      <span
-        className="flex items-center gap-1.5 mono"
-        title={plural(project.forks ?? 0, "fork")}
-      >
+      <CountChip count={project.forks} noun="fork">
         <ForkIcon />
-        <span aria-hidden="true">{project.forks ?? 0}</span>
-        <span className="sr-only">{plural(project.forks ?? 0, "GitHub fork")}</span>
-      </span>
+      </CountChip>
 
       <span className="ml-auto inline-flex items-center gap-1 text-ink-subtle transition-colors group-hover:text-linear-accent">
         github <ArrowIcon />

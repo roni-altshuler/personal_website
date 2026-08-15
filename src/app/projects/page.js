@@ -26,8 +26,8 @@ export default function Projects() {
           Side projects where I get to chase whatever&apos;s pulling at me,
           calibrated forecasting across basketball, football and motorsport,
           and NLP on song lyrics. Every prediction project is scored against
-          a real benchmark rather than against itself. Stars and forks update
-          live from GitHub.
+          a real benchmark rather than against itself. Stars and forks come
+          live from GitHub, on the repos that have them.
         </p>
       </FadeUp>
 
