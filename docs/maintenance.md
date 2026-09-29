@@ -28,7 +28,7 @@ With the server running, `npm run check:links` checks internal destinations and 
 
 ## Dependencies and security
 
-Dependabot checks npm weekly and GitHub Actions monthly. Review update pull requests promptly and run the complete checks before merging. Next.js and its ESLint configuration are grouped, as are React and React DOM. Read upstream advisories and prioritize security updates; a clean dependency audit alone does not establish that the application is secure. Keep the lockfile committed and never place tokens or private source material in public assets.
+Dependabot checks npm weekly and GitHub Actions monthly. Review update pull requests promptly and run the complete checks before merging. Next.js and its ESLint configuration are grouped, as are React and React DOM. Major updates to Next.js, its ESLint configuration, and ESLint require a coordinated migration and are excluded from automatic version proposals. Minor and patch proposals remain enabled. Revisit these exclusions during framework upgrades. See the [Dependabot ignore option](https://docs.github.com/en/code-security/reference/supply-chain-security/dependabot-options-reference#ignore) for the update policy. Read upstream advisories and prioritize security updates; a clean dependency audit alone does not establish that the application is secure. Keep the lockfile committed and never place tokens or private source material in public assets.
 
 ## Performance review
 
