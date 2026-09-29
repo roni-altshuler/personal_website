@@ -2,7 +2,7 @@
 // Consumed by the contact page, footer, home social row, and the dynamic OG
 // image — so a value only ever lives here, never diverges across the site.
 
-export const SITE_URL = "https://ronialtshuler.com";
+export const SITE_URL = "https://www.ronialtshuler.com";
 export const NAME = "Roni Altshuler";
 export const ROLE = "Biomolecular Engineer & Bioinformatician";
 

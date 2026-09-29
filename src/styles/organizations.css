@@ -1,0 +1,53 @@
+.organization-logo {
+  width: 176px;
+  height: 112px;
+  padding: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  border: 1px solid var(--hairline);
+  border-radius: 12px;
+  background: #fff;
+}
+.organization-logo img {
+  display: block;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+.organization-logo-wide {
+  padding: 12px;
+}
+.organization-entry-heading {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: start;
+  gap: 28px;
+  margin-bottom: 24px;
+}
+.organization-entry-heading > div:first-child {
+  min-width: 0;
+}
+.organization-entry-heading h2,
+.organization-entry-heading h3 {
+  margin-top: 8px;
+}
+.organization-entry-heading p:last-child {
+  margin-bottom: 0;
+}
+@media (max-width: 639px) {
+  .organization-entry-heading {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 22px;
+  }
+  .organization-entry-heading > .organization-logo {
+    grid-row: 1;
+  }
+  .organization-logo {
+    width: 160px;
+    height: 100px;
+  }
+}

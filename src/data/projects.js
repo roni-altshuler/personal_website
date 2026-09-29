@@ -1,71 +1,85 @@
-export const LANGUAGE_COLORS = {
-  TypeScript: '#3178c6',
-  Python: '#3572A5',
-  CSS: '#563d7c',
-  JavaScript: '#f1e05a',
-};
-
-/*
- * Side projects, newest-first by significance.
- *
- * `name` MUST be the exact GitHub repo name — /api/github derives its fetch
- * list from this array, so a typo here means that card silently keeps its
- * static defaults forever. That drift is exactly what happened before: the
- * API had a hardcoded list that had fallen out of sync with this one, so
- * `motorsportverse` was never fetched (and its star never showed) while
- * `f1_predictions` was fetched and never rendered.
- *
- * `stars`, `forks` and `language` are the STATIC FALLBACKS shown when the
- * GitHub call fails. They are the last known real values, not zeros — a card
- * that falls back to 0 stars is asserting something false about the repo.
- */
+/* Public project names also drive the optional /api/github endpoint. */
 export const PROJECTS = [
   {
     name: 'motorsportverse',
     displayName: 'MotorsportVerse',
+    category: 'Motorsport · shared infrastructure',
     description:
-      'A unified, open-source motorsport AI ecosystem — a monorepo with a shared ML and data core powering sport-specific race-prediction projects across Formula 1, Formula 2 and beyond, each calibrated and graded against real race results',
+      'Race forecasts and dashboards for several motorsport series. I brought the models and dashboards for each sport together around shared data, calibration and evaluation tools.',
+    evidence:
+      'The public catalog distinguishes working prediction projects from series still in development.',
+    methods: ['Python', 'Forecast evaluation', 'Next.js'],
+    image: '/projects/motorsportverse.webp',
+    imageAlt: 'MotorsportVerse live website and motorsport project catalog.',
     link: 'https://github.com/roni-altshuler/motorsportverse',
     demo: 'https://roni-altshuler.github.io/motorsportverse/',
-    language: 'TypeScript',
-    stars: 1,
-    forks: 0,
+    evidenceLink: 'https://github.com/roni-altshuler/motorsportverse#project-catalog',
+    evidenceLabel: 'Project catalog',
   },
   {
     name: 'nba_predictor',
-    displayName: 'Hardwood — NBA Predictor',
+    displayName: 'Hardwood',
+    category: 'Basketball · probabilistic forecasting',
     description:
-      'Calibrated NBA game and season forecasting scored against the closing line. A margin/total model over 31,844 games since 2004, benchmarked on 14,600 priced games, with season projections, a value surface and a playoff-series layer',
+      'NBA game forecasts, season simulations and an interactive history of the league. I built a Python modeling pipeline and a dashboard for exploring the published predictions.',
+    evidence:
+      'In the documented historical benchmark, the margin model improves on a constant baseline but trails forecasts from closing market odds.',
+    methods: ['Python', 'Monte Carlo', 'Next.js'],
+    image: '/projects/hardwood.webp',
+    imageAlt: 'Hardwood live NBA forecasting website with matchup and season information.',
     link: 'https://github.com/roni-altshuler/nba_predictor',
     demo: 'https://nba-predictor-iota.vercel.app',
-    language: 'Python',
-    stars: 0,
-    forks: 0,
+    evidenceLink: 'https://github.com/roni-altshuler/nba_predictor#measured-state',
+    evidenceLabel: 'Read the benchmark',
+  },
+  {
+    name: 'nfl_predictor',
+    displayName: 'Gridiron',
+    category: 'American Football · NFL Forecasting',
+    description:
+      'NFL game probabilities, season projections, and playoff scenarios. I built a model that accounts for football scoring patterns and an interactive Forecast Lab for exploring matchups and possible outcomes.',
+    evidence:
+      'The documentation compares forecasts with Elo and historical market prices, and explains the limits of its evaluation and playoff simulations.',
+    methods: ['Python', 'Monte Carlo', 'Probability Calibration', 'Next.js'],
+    image: '/projects/gridiron.webp',
+    imageAlt: 'Gridiron NFL forecasting dashboard showing weekly matchups and the Forecast Lab',
+    link: 'https://github.com/roni-altshuler/nfl_predictor',
+    demo: 'https://nfl-predictor-five.vercel.app',
+    evidenceLink: 'https://github.com/roni-altshuler/nfl_predictor#the-record',
+    evidenceLabel: 'Read the Evaluation',
   },
   {
     name: 'soccer_predictor',
-    displayName: 'Pitchverse — Soccer Predictor',
+    displayName: 'Pitchverse',
+    category: 'Football · matches and tournaments',
     description:
-      'Calibrated football forecasting across nine leagues and fourteen knockout competitions: match probabilities, season projections, a model-vs-market value surface and tournament brackets, every claim scored against closing odds',
+      'Match probabilities, season projections and knockout brackets. I connected football data and forecasting models to an interface for following teams and exploring possible outcomes.',
+    evidence:
+      'Published evaluations separate match, season and tournament performance. The historical match benchmark trails the market.',
+    methods: ['Python', 'Temporal evaluation', 'Next.js'],
+    image: '/projects/pitchverse.webp',
+    imageAlt: 'Pitchverse live football forecasting website with matchday and competition information.',
     link: 'https://github.com/roni-altshuler/soccer_predictor',
     demo: 'https://soccer-stats-predictor-sigma.vercel.app',
-    language: 'Python',
-    stars: 3,
-    forks: 1,
+    evidenceLink: 'https://github.com/roni-altshuler/soccer_predictor#where-the-model-actually-stands',
+    evidenceLabel: 'Read the evaluation',
   },
   {
     name: 'SongAnalyzer',
-    displayName: 'Song Lyric Analyzer',
+    displayName: 'SongAnalyzer',
+    category: 'Music · language and audio',
     description:
-      'A minimalist web app that reads song lyrics and surfaces mood, vibe and emotional insight. Built with Next.js, TypeScript and Tailwind CSS',
+      'A web application for exploring songs through lyrics and sound. I combined language analysis, audio features processed in the browser and a music discovery interface in one application.',
+    evidence:
+      'The source documents its transformer and keyword engines, audio processing, and fallbacks. Mood labels are exploratory interpretations.',
+    methods: ['TypeScript', 'NLP', 'Web Audio'],
+    image: '/projects/song-analyzer.webp',
+    imageAlt: 'SongAnalyzer live website for exploring the mood of lyrics and audio.',
     link: 'https://github.com/roni-altshuler/SongAnalyzer',
     demo: 'https://song-analyzer-pi.vercel.app',
-    language: 'TypeScript',
-    stars: 0,
-    forks: 0,
+    evidenceLink: 'https://github.com/roni-altshuler/SongAnalyzer#the-hybrid-analysis-engine',
+    evidenceLabel: 'How the analysis works',
   },
 ];
 
-/* The single source of truth for which repos /api/github fetches. Derived
-   rather than duplicated so the two can never drift apart again. */
-export const PROJECT_REPOS = PROJECTS.map((p) => p.name);
+export const PROJECT_REPOS = PROJECTS.map((project) => project.name);

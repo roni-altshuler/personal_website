@@ -1,93 +1,25 @@
-# CLAUDE.md
+# Project guidance
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+See README.md for setup and docs/maintenance.md for required verification. The current design is a modern research portfolio with editorial spacing; docs/linear-design.md and unused legacy components describe the previous design only.
 
-## Commands
+## Current architecture
 
-```bash
-npm run dev          # next dev — local at http://localhost:3000
-npm run build        # next build — required before checking route map / SSG output
-npm run start        # serve the production build
-npm run screenshots  # Playwright capture of every route × {desktop,mobile} × {dark} → screenshots/<phase>/
-npx eslint src       # lint (the package.json "lint" script is bare `eslint` with no path, which prints help; use this instead)
-```
+Next.js App Router and React. Routes: `/`, `/research`, `/projects`, `/about`, `/contact`. Old education/skills/experience/build URLs redirect in next.config.mjs; keep those inbound links working. Publications are intentionally absent. No public CV/resume download.
 
-There is no test suite. Verification on UI changes is `npm run build` + `npm run screenshots` + manual smoke test in `npm run dev` (the site is forced-dark, mobile width 375px, keyboard nav, and `prefers-reduced-motion: reduce`). `next/image` is strict about string-`src` requiring explicit `width`/`height`: dev throws if you forget, while prod prerender is lenient — always smoke-test in `dev`, not just `build`. **Heads-up:** running `npm run build` while `npm run dev` is up can corrupt the `.next` cache for the dev server — if dev starts serving unstyled HTML or webpack module errors after a build, `rm -rf .next` and restart `npm run dev`.
+Content source of truth: src/data/site.js, research.js, skills.js, projects.js. Read docs/content-sources.md before changing scientific claims. Do not reintroduce historical segmentation metrics without validating their evaluation context. Do not publish private source datasets, research outputs, or local PDFs.
 
-## High-level architecture
+## UI
 
-Next.js 15 (App Router) + React 19. Live site: ronialtshuler.com. Deploys from `main` on Vercel. The current visual identity is the **v3 Linear redesign** — anchored to Linear's `DESIGN.md` (cached at [docs/linear-design.md](docs/linear-design.md)) with components in the spirit of the 21st.dev catalog. The shape is intentionally **resume-style** — Linear-themed cards and a bento projects grid; no MDX/case-study deep dives.
+Shared semantic CSS lives in src/styles/globals.css. The website uses one light theme with fixed CSS tokens and a server-rendered light theme attribute. No theme or motion initialization script is needed. Inter is served locally via next/font/local for body text and headings. Tailwind preflight stays disabled; the global border reset supplies border-style explicitly.
 
-### Information architecture
+Pages are server-rendered and readable without JavaScript. Native dialog handles mobile navigation; Navbar manages focus, Escape/backdrop, resize and scroll lock. CopyEmail is a small client component. The background and content remain still. Motion is limited to brief hover transitions on links, buttons, and project images, with reduced motion support. Do not reintroduce animated backgrounds, cursor glows, letter reveals, or scroll reveals. HeroHeadline displays the owner's name as ordinary accessible text. ResearchMethods uses decorative schematic icons to describe methods; these are not experimental data. The homepage uses genuine project screenshots and links to anchored descriptions on the projects page. All text stays readable without JavaScript. No rotating live regions or external icon fonts are mounted. Use inline SVG for small icons. Static cards should not tilt or act like controls.
 
-Routes: `/`, `/education`, `/work-experience`, `/projects`, `/skills`, `/contact`. Plus API route `/api/github`. Custom `not-found.js` and `error.js`. `template.js` wraps every route in a Framer Motion fade-in for client-side transitions.
+## Checks
 
-[next.config.mjs](next.config.mjs) carries 301 redirects from prior URLs (`/research`, `/experience`, `/build`, `/cv`) so existing inbound links keep resolving. Adding a new top-level route generally means: a folder under `src/app/`, a `layout.js` exporting `metadata` (canonical, OG, title — picked up by the title template in [src/app/layout.js](src/app/layout.js)), a `page.js`, and a Navbar entry in the `NAV_ITEMS` array of [src/components/Navbar.js](src/components/Navbar.js). There is no `/resume` route (the page and its PDF were removed for privacy).
+`npm run lint`, `npm run build`, `npm run test:e2e`. Test desktop and 390/320px widths, light mode under both device color preferences, no-JS, reduced motion, keyboard focus and contact copying. Also smoke-test in dev: next/image requires explicit width/height and appropriate sizes. Never run build against the same .next directory while dev is running. `npm run screenshots` and `npm run check:links` use an already-running server; environment overrides are documented in docs/maintenance.md.
 
-### Data flow
+No required env vars; GITHUB_TOKEN is optional and server-only. Do not read or expose .env files. /api/github is retained as an optional cached endpoint, not used by current project cards.
 
-Timeline data is the single source of truth — pages render filtered views, never their own hardcoded arrays. To add a job/degree/internship, edit [src/data/research.js](src/data/research.js): each entry has an `area` field (`'education'` or `'work'`), and the page-level helpers `educationEntries()` and `workEntries()` filter by it. Side projects live in [src/data/projects.js](src/data/projects.js) and skills in [src/data/skills.js](src/data/skills.js).
+## Editorial style
 
-The `/projects` page client-fetches `/api/github` on mount to merge live stars/forks/language into the static defaults; failures are silent (the static defaults render). The home page is a single composed flow: `<V3Hero>` → affiliations marquee → about + profile photo → three-card "Pick where to start" teaser linking to /projects, /work-experience, /skills.
-
-### Styling: dual system
-
-CSS Modules and Tailwind both work, intentionally. [Card.module.css](src/styles/Card.module.css) (used by the timeline pages via `Card.js`) and [Navbar.module.css](src/styles/Navbar.module.css) are the remaining CSS Modules; everything else is Tailwind. **Tailwind preflight is disabled** in [tailwind.config.js](tailwind.config.js) so it doesn't reset what the CSS Modules established. Don't re-enable preflight. If you ever pull a shadcn / 21st.dev component via the CLI, audit the diff and revert any preflight reactivation — copy-paste the source instead.
-
-#### Linear-anchored tokens
-
-Colors, type, spacing, radius all derive from Linear's `DESIGN.md` (see [docs/linear-design.md](docs/linear-design.md)). Tokens live as CSS variables in [src/styles/globals.css](src/styles/globals.css). The site is **dark-only** (v3.1): Linear's canonical near-black canvas (`#010102`) + a **violet ombre** accent (`--linear-accent` `#a78bfa` → `--linear-accent-deep` `#7c3aed`), which replaced the earlier lavender-blue. There is no light theme — an earlier `ThemeToggle` was removed and the theme is forced dark (see Background / the inline script in `layout.js`).
-
-| Token group | CSS var pattern | Tailwind class pattern | Notes |
-|---|---|---|---|
-| Surfaces | `--canvas`, `--surface-1..4` | `bg-canvas`, `bg-surface-1`, `bg-surface-2` | Linear's surface ladder; cards lift to surface-2 on hover |
-| Hairlines | `--hairline`, `--hairline-strong`, `--hairline-tertiary` | `border-hairline`, `border-hairline-strong` | 1px borders; never use Tailwind's default border color |
-| Ink | `--ink`, `--ink-muted`, `--ink-subtle`, `--ink-tertiary` | `text-ink`, `text-ink-muted`, `text-ink-subtle`, `text-ink-tertiary` | Display + body use `--ink`; secondary copy `--ink-muted`; meta `--ink-subtle` |
-| Accent | `--linear-accent`, `--linear-accent-hover`, `--linear-accent-focus` | `text-linear-accent`, `bg-linear-accent`, `border-linear-accent-focus` | Used scarcely per Linear's discipline: brand mark, focus ring, primary CTA, link emphasis |
-| Legacy aliases | `--background-color`, `--primary-color`, etc. | `bg-bg`, `text-primary`, `border-border` | Preserved for backward compat — they resolve to the Linear tokens above |
-
-The theme is forced dark: an inline script in [layout.js](src/app/layout.js) sets `data-theme="dark"` pre-paint, overriding any stale `localStorage` value. The old `ThemeToggle` component and its CSS Module have been deleted; `globals.css` keeps a small `html[data-theme="light"] { color-scheme: dark }` guard for any lingering saved value.
-
-Fonts are loaded with `next/font/google`: Inter (display + body via the `--font-display` CSS variable) and JetBrains Mono (`--font-mono`). Linear's actual faces are proprietary; Inter is the recommended open-source substitute per Linear's own DESIGN.md note.
-
-#### The Card / Modal pattern
-
-[Card.js](src/components/Card.js) is the timeline primitive used on Education and Work Experience. Pass `lead={summary}` to surface a lead paragraph above the bullets, and `disableModal` to make the card static (bullets show inline, no click-to-open). Both Education and Work Experience currently pass `disableModal`, so [Modal.js](src/components/Modal.js) is effectively unreachable from any route — keep the file (ESC + click-outside + body-scroll-lock are non-trivial), but don't expect to debug a modal in normal usage. Card is a client component that uses Framer Motion `whileInView` for one-shot scroll-reveal.
-
-The Linear re-skin (in [Card.module.css](src/styles/Card.module.css)) replaces the prior glow-on-hover with a hairline-to-accent border swap + surface lift (`surface-1` → `surface-2`). No 3D tilt — Linear's design language doesn't do it. Bullets render with an em-dash in the accent color. Logos still sit on a parchment-tile backplate (now `#f5f6f6` to match Linear's inverse-surface-1 tint).
-
-#### The Linear card primitive — LinearCard
-
-[src/components/cards/LinearCard.js](src/components/cards/LinearCard.js) is the canonical card primitive for Skills, Contact, Projects (via `BentoProjects`), and the home page teaser. It's a thin wrapper around a Tailwind-styled `<div>`/`<a>`: hairline border, surface-1 fill, rounded-lg, optional `whileHover={{ y: -2 }}` lift. Pass `interactive={false}` for static cards (Skills pillars). Compose inside `<FadeUp whileInView>` for entry stagger.
-
-### Background
-
-The site-wide ambient background is an animated `<canvas>` mounted in [layout.js](src/app/layout.js) via [ParticleFieldLoader.js](src/components/background/ParticleFieldLoader.js) (a `dynamic(..., { ssr: false })` wrapper so the canvas never runs on the server and adds zero CLS — it's `position: fixed; inset: 0; z-index: -1; pointer-events: none`). The current field is [NetworkField.js](src/components/background/NetworkField.js): a cursor-reactive, abstract node/network graph (synthetic nodes only — never real research data). [ParticleField.js](src/components/background/ParticleField.js) is the earlier violet dot-wave, preserved for rollback — swap the import in the loader to switch. Both follow the same lifecycle discipline: DPR capped at 2, rAF paused on `visibilitychange` (hidden tab), relayout via `ResizeObserver`, a single static frame under `prefers-reduced-motion: reduce` (no loop), and colors read from the `--linear-accent` CSS vars so the accent cascades. Keep the canvas `pointer-events: none` so hero CTAs stay clickable; cursor interaction attaches to `window`, not the canvas, and is disabled on coarse pointers.
-
-### Motion conventions
-
-Framer Motion is used for the kinetic hero (`V3Hero`'s rotating focus phrase), page transitions, scroll reveals (via `FadeUp` / `Card`), and the marquee. Every motion-using component calls `useReducedMotion()` and degrades to a static/instant variant when the user prefers reduced motion. The site-wide ease is `cubic-bezier(0.16, 1, 0.3, 1)` (Tailwind: `ease-out-expo`). Keep new motion under ~350ms.
-
-[Reveal.js](src/components/anim/Reveal.js) exports `FadeUp` (block-level fade + 16 px lift) and `TypeIn` (word-by-word stagger that preserves line-wrapping). Both respect `useReducedMotion()`. `FadeUp` defaults to firing on mount; pass `whileInView` to switch it to scroll-trigger (used for staggering Skills pillars and Projects cards, ~60–80 ms apart). Use `FadeUp` for new page titles + intro paragraphs so the whole site has consistent entry motion.
-
-### API routes
-
-[/api/github](src/app/api/github/route.js) is a small public-GitHub passthrough with server-side caching. There is no contact-form API — `/contact` is a static Linear card stack with three channel rows (email, LinkedIn, GitHub).
-
-### Analytics
-
-`@vercel/analytics` is mounted in [layout.js](src/app/layout.js). No custom events currently wired (the resume download event was removed when the resume route was removed for privacy).
-
-### Screenshots & visual verification
-
-[scripts/screenshot.mjs](scripts/screenshot.mjs) drives Playwright Chromium across every route × {desktop 1440×900, mobile 390×844}. The site is forced-dark, so `THEMES` is `["dark"]` only (a `light` value would just produce dark duplicates, since the inline script overrides `localStorage`). Output goes to `screenshots/<SCREENSHOT_PHASE>/` (gitignored). The script scrolls every page top-to-bottom before capturing so framer-motion `whileInView` reveals fire — otherwise content below the initial 900px viewport would render as `opacity: 0`. Use `SCREENSHOT_PHASE=99-final npm run screenshots` to write to a named bucket. The baseline (pre-v3) lives at `screenshots/00-baseline/` for before/after comparison.
-
-Playwright's bundled Chromium needs `libnspr4`/`libnss3`/`libatk` on Linux; install via `sudo npx playwright install-deps chromium` if `npm run screenshots` fails with a shared-library error.
-
-### Path aliases
-
-`@/*` → `src/*` (jsconfig.json). Some older imports still use `../../` relative paths — both work; prefer `@/` for new code.
-
-## Environment variables
-
-No required environment variables. Optional: `GITHUB_TOKEN` raises the unauthenticated rate limit on `/api/github`.
+Use direct, personal language appropriate to a research and career profile. Use Title Case for headings and omit terminal periods. Do not use numbered section labels or dash punctuation in prose. Preserve the spelling of official names such as Ron-Harel and CRISPR-X. Display original institutional logos without cropping or recoloring. Publications remain intentionally absent.

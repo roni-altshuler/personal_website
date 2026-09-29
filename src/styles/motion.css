@@ -1,0 +1,10 @@
+/* Keep the page still. Motion belongs to brief, intentional interactions. */
+.button { transition: background-color 160ms ease, border-color 160ms ease, color 160ms ease; }
+.text-link { transition: color 160ms ease, text-decoration-color 160ms ease; }
+.selected-project-image img { transition: transform 260ms ease; }
+@media (hover: hover) and (pointer: fine) {
+  .selected-project-image:hover img { transform: scale(1.025); }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+}

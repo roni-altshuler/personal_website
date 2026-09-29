@@ -31,6 +31,7 @@ export async function GET() {
                 }),
               },
               next: { revalidate: 300 },
+              signal: AbortSignal.timeout(5000),
             }
           );
 

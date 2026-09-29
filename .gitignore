@@ -50,3 +50,8 @@ next-env.d.ts
 /playwright-report/
 /test-results/
 
+
+# Local design studies and private source/edit history
+/assets/
+/design-studies/
+/docs/portrait-edit.md

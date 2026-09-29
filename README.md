@@ -1,20 +1,31 @@
-# Personal Portfolio Website
+# Roni Altshuler — personal website
 
-This repository contains the source code for the personal portfolio of Roni Altshuler, a Biomolecular Engineer and Bioinformatician. The website showcases Roni's professional profile, including experience, education, and technical skills.
+Research, experience, open-source projects, and personal background at [www.ronialtshuler.com](https://www.ronialtshuler.com).
 
-The live website can be viewed at: [ronialtshuler.com](https://ronialtshuler.com)
+## Development
 
-## Overview
+Use Node.js 22+. Run `npm ci` and `npm run dev`. The site uses Next.js App Router, React, local Inter fonts, and a guided research portfolio with a single light theme, crisp white surfaces, near black typography, cool gray borders, and electric blue accents. The background and content stay still. Brief link, button, and project image interactions respect reduced motion preferences.
 
-*   **Professional Summary**: A concise introduction to Roni's background and expertise.
-*   **Experience**: A detailed timeline of professional roles and accomplishments.
-*   **Education**: An overview of academic background and qualifications.
-*   **Technical Skills**: A comprehensive list of programming languages, software tools, and laboratory techniques.
-*   **Minimalist & Responsive Design**: The site is designed to be clean, organized, and accessible on all devices.
+## Pages and content
 
-## Built With
+- `/`: introduction and selected contributions
+- `/research`: current PhD and previous research experience
+- `/projects`: public software projects with real demo screenshots
+- `/about`: biography, education, and methods linked to work
+- `/contact`: email, clipboard action, LinkedIn, GitHub
 
-*   [Next.js](https://nextjs.org/) - React framework for server-rendered applications.
-*   [React](https://reactjs.org/) - A JavaScript library for building user interfaces.
-*   [CSS Modules](https://github.com/css-modules/css-modules) - For modular and locally scoped CSS.
-*   [Font Awesome](https://fontawesome.com/) - For social media and other icons.
+Publications are intentionally absent. Education, skills, and experience URLs redirect to their current destinations. There is no public CV or resume download.
+
+Content lives in `src/data/`. Shared visual styles are in `src/styles/globals.css`. Public demo screenshots and provenance are in `public/projects/`. Research source limitations and editorial decisions are documented in `docs/content-sources.md`; no private research data or PDFs are served.
+
+## Verification
+
+Run `npm run lint`, `npm run build`, then `npm run test:e2e`. Browser tests start a production server on port 3100. Do not build into `.next` while a development server uses it.
+
+With a server on port 3000, `npm run screenshots` captures all pages at desktop and mobile sizes. `npm run check:links` validates internal links and fragments; add `-- --external` to check external destinations. See [maintenance](docs/maintenance.md) for configuration and ongoing checks.
+
+## Deployment and configuration
+
+The site is configured for Vercel. No environment variables are required. An optional server-only `GITHUB_TOKEN` improves rate limits for the retained `/api/github` endpoint; the project showcase uses static, curated content and does not depend on that endpoint. Vercel Analytics and Speed Insights remain enabled.
+
+GitHub Actions runs lint, build and browser checks. Dependabot proposes dependency updates. Changes must pass checks before publication.

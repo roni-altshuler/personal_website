@@ -1,9 +1,14 @@
 export const metadata = {
   title: 'Projects',
   description:
-    'Code projects by Roni Altshuler: soccer_predictor, SongAnalyzer, f1_predictions, and more, with live GitHub stats',
+    'Independent projects by Roni Altshuler: MotorsportVerse race forecasting, Hardwood NBA predictions, Pitchverse football forecasts, and SongAnalyzer music analysis.',
   alternates: { canonical: '/projects' },
-  openGraph: { title: 'Projects · Roni Altshuler', url: '/projects' },
+  openGraph: {
+    title: 'Projects · Roni Altshuler',
+    description:
+      'Explore open source projects in sports forecasting and music analysis, with live demos, source code, and documented methods.',
+    url: '/projects',
+  },
 };
 
 export default function ProjectsLayout({ children }) {

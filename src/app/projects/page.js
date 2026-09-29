@@ -1,39 +1,21 @@
-"use client";
-
-import BentoProjects from "../../components/projects/BentoProjects";
-import { FadeUp } from "../../components/anim/Reveal";
+import BentoProjects from '../../components/projects/BentoProjects';
 
 export default function Projects() {
   return (
-    <section className="mx-auto max-w-6xl px-6 pb-32 pt-24 md:pt-32">
-      <FadeUp>
-        <span className="eyebrow">Open source · live builds</span>
-      </FadeUp>
-      <FadeUp delay={0.05}>
-        <h1
-          className="mt-2 max-w-3xl font-display font-semibold text-ink"
-          style={{
-            fontSize: "clamp(2.5rem, 5.5vw, 4.5rem)",
-            letterSpacing: "-0.04em",
-            lineHeight: 1.05,
-          }}
-        >
-          Things I&apos;m building
-        </h1>
-      </FadeUp>
-      <FadeUp delay={0.1}>
-        <p className="mt-5 max-w-2xl text-base leading-relaxed text-ink-muted md:text-lg">
-          Side projects where I get to chase whatever&apos;s pulling at me,
-          calibrated forecasting across basketball, football and motorsport,
-          and NLP on song lyrics. Every prediction project is scored against
-          a real benchmark rather than against itself. Stars and forks come
-          live from GitHub, on the repos that have them.
+    <div className="page-shell">
+      <header className="page-header">
+        <h1>Software Projects</h1>
+        <p className="lead">
+          I build forecasting tools and interactive applications around sports and
+          music. These projects bring together data analysis, statistical modeling,
+          and web development.
         </p>
-      </FadeUp>
-
-      <div className="mt-14 md:mt-16">
-        <BentoProjects />
-      </div>
-    </section>
+        <p>
+          These are ongoing personal projects. Each links to a public demo and
+          source code, with documentation explaining its methods and limitations.
+        </p>
+      </header>
+      <BentoProjects />
+    </div>
   );
 }
