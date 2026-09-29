@@ -1,6 +1,7 @@
 import localFont from 'next/font/local';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
+import CardInteractions from '../components/CardInteractions';
 import '../styles/globals.css';
 import '../styles/organizations.css';
 import '../styles/motion.css';
@@ -103,6 +104,7 @@ export default function RootLayout({ children }) {
         <Navbar />
         <main id="main-content" tabIndex={-1}>{children}</main>
         <Footer />
+        <CardInteractions />
         <Analytics />
         <SpeedInsights />
       </body>

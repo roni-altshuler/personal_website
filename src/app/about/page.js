@@ -39,7 +39,7 @@ export default function AboutPage() {
         <h2 id="education-heading">Education</h2>
         <div className="timeline">
           {educationEntries().map((entry) => (
-            <article className="timeline-entry surface-card" key={entry.id}>
+            <article data-motion-card={entry.id === "ucsc-bs" ? undefined : "subtle"} className="timeline-entry surface-card" key={entry.id}>
               <div className="organization-entry-heading">
                 <div>
                   <p className="eyebrow">{entry.date}</p>
@@ -60,7 +60,7 @@ export default function AboutPage() {
         <h2 id="skills-heading">Research Skills</h2>
         <div className="content-grid">
           {SKILLS.map((skill) => (
-            <article className="surface-card" key={skill.pillar}>
+            <article data-motion-card="subtle" className="surface-card" key={skill.pillar}>
               <h3>{skill.pillar}</h3>
               <p>{skill.description}</p>
               <ul className="tag-list" aria-label={`${skill.pillar} tools`}>

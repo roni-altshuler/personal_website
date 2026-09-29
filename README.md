@@ -4,7 +4,7 @@ Research, experience, open-source projects, and personal background at [www.roni
 
 ## Development
 
-Use Node.js 22+. Run `npm ci` and `npm run dev`. The site uses Next.js App Router, React, local Inter fonts, and a guided research portfolio with a single light theme, crisp white surfaces, near black typography, cool gray borders, and electric blue accents. The background and content stay still. Project cards lift in 3D with a blue hue on mouse hover. Keyboard focus receives a static highlight, and reduced motion disables the transform and transitions. The original lion favicon is served at a distinct URL for browser cache refresh.
+Use Node.js 22+. Run `npm ci` and `npm run dev`. The site uses Next.js App Router, React, local Inter fonts, and a guided research portfolio with a single light theme, crisp white surfaces, near black typography, cool gray borders, and electric blue accents. The page background stays still. Research and project cards follow the mouse with bounded 3D tilt and a blue light. Clickable affiliation and contact tiles share subtler feedback. Keyboard focus receives a static highlight, and reduced motion disables the transform and transitions. The original lion favicon is served at a distinct URL for browser cache refresh.
 
 ## Pages and content
 

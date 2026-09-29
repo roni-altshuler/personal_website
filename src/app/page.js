@@ -44,7 +44,7 @@ export default function Home() {
           {affiliations.map(({ id, label, href }) => {
             const entry = RESEARCH.find(item => item.id === id);
             return (
-              <Link className="affiliation" href={href} key={id}>
+              <Link data-motion-card="compact" className="affiliation" href={href} key={id}>
                 <OrganizationLogo entry={entry} className="affiliation-logo" />
                 <span>{label}</span>
               </Link>
@@ -58,7 +58,7 @@ export default function Home() {
           <div><p className="eyebrow">Experimental Biology & Computation</p><h2 id="selected-work">Research in Focus</h2></div>
           <Link href="/research" className="text-link">Research & Experience <span aria-hidden="true">↗</span></Link>
         </div>
-        <article className="current-research" aria-labelledby="current-research-title">
+        <article data-motion-card="subtle" className="current-research" aria-labelledby="current-research-title">
           <div className="research-copy">
             <div className="research-affiliation">
               <OrganizationLogo entry={RESEARCH.find(entry => entry.id === "technion-phd")} className="work-logo" />
@@ -71,14 +71,14 @@ export default function Home() {
           <ResearchMethods />
         </article>
         <div className="content-grid research-highlights">
-          <article className="work-card">
+          <article data-motion-card="subtle" className="work-card">
             <OrganizationLogo entry={RESEARCH.find(entry => entry.id === "cz-biohub")} className="work-logo" />
             <p className="eyebrow">Chan Zuckerberg Biohub</p>
             <h3>Cell Segmentation</h3>
             <p>I developed Cellpose models and training datasets to identify cells in zebrafish embryo images collected with MERFISH.</p>
             <Link href="/research#cz-biohub" className="text-link">Explore the Work <span aria-hidden="true">↗</span></Link>
           </article>
-          <article className="work-card">
+          <article data-motion-card="subtle" className="work-card">
             <OrganizationLogo entry={RESEARCH.find(entry => entry.id === "ucsc-genomics")} className="work-logo" />
             <p className="eyebrow">UC Santa Cruz</p>
             <h3>Spatial Transcriptomics</h3>
@@ -95,7 +95,7 @@ export default function Home() {
         </div>
         <div className="selected-projects">
           {selectedProjects.map(project => (
-            <article className="selected-project" key={project.name}>
+            <article data-motion-card="standard" className="selected-project" key={project.name}>
               <Link className="selected-project-image" href={`/projects#${project.name}`} aria-label={`Explore ${project.displayName}`}>
                 <Image src={project.image} alt={project.imageAlt} width={1280} height={800} sizes="(max-width: 639px) calc(100vw - 44px), (max-width: 1319px) 46vw, 604px" />
               </Link>
@@ -120,7 +120,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="home-contact" aria-labelledby="home-contact-heading">
+      <section data-motion-card="subtle" className="home-contact" aria-labelledby="home-contact-heading">
         <div><p className="eyebrow">Research, Collaboration & Opportunities</p><h2 id="home-contact-heading">Let&apos;s Connect</h2></div>
         <Link href="/contact" className="button">Get in Touch <span aria-hidden="true">↗</span></Link>
       </section>

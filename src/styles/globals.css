@@ -127,8 +127,8 @@ main:focus { outline: none; }
 .method-symbol svg { display: block; width: 100%; height: 100%; }
 .research-methods h4 { margin-bottom: 6px; }
 .research-methods li p { font-size: 12px; line-height: 1.6; }
-.research-highlights { margin-top: 28px; gap: 48px; }
-.work-card { display: flex; flex-direction: column; align-items: start; min-width: 0; padding: 26px 0 0; }
+.research-highlights { margin-top: 28px; gap: 24px; }
+.work-card { display: flex; flex-direction: column; align-items: start; min-width: 0; padding: 24px; border: 1px solid var(--hairline); border-radius: 12px; background: var(--surface-1); }
 .work-card .work-logo { width: 224px; height: 106px; margin-bottom: 22px; border-radius: 0; border: 0; padding: 10px 0; background: transparent; justify-content: flex-start; }
 .work-card .eyebrow { margin-bottom: 10px; }
 .work-card h3 { font-size: 1.4rem; margin-bottom: 14px; }
@@ -239,8 +239,8 @@ main:focus { outline: none; }
  .research-methods li { grid-template-columns: 44px minmax(0,1fr); gap: 18px; padding: 18px 0; }
  .method-symbol { width: 44px; height: 44px; }
  .research-highlights { gap: 28px; margin-top: 22px; }
- .work-card { padding-top: 18px; }
- .work-card + .work-card { border-top: 1px solid var(--hairline); padding-top: 28px; }
+ .work-card { padding: 24px; }
+
  .work-card .work-logo { margin-bottom: 14px; }
  .selected-projects { gap: 36px; }
  .selected-project-copy { padding: 22px; }

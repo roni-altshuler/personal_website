@@ -36,7 +36,7 @@ export default function ResearchPage() {
 
       <div className="timeline">
         {researchEntries().map((entry) => (
-          <article className="timeline-entry surface-card" id={entry.id} key={entry.id} aria-labelledby={`${entry.id}-title`}>
+          <article data-motion-card="subtle" className="timeline-entry surface-card" id={entry.id} key={entry.id} aria-labelledby={`${entry.id}-title`}>
             <div className="organization-entry-heading">
               <div>
                 <p className="eyebrow">{entry.date}</p>

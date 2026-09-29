@@ -5,7 +5,7 @@ export default function BentoProjects() {
   return (
     <div className="project-grid">
       {PROJECTS.map((project) => (
-        <article className="project-card" id={project.name} key={project.name}>
+        <article data-motion-card="standard" className="project-card" id={project.name} key={project.name}>
           <Image
             className="project-image"
             src={project.image}
