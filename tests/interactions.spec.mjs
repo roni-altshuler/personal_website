@@ -59,7 +59,12 @@ test('changing motion preferences clears pointer effects immediately', async ({ 
   await page.emulateMedia({ reducedMotion: 'no-preference' });
   await ready(page, '/research');
   const card = page.locator('#technion-phd');
-  await card.hover();
+  // Finish scrolling before pointer input; scroll intentionally clears card tilt.
+  await card.scrollIntoViewIfNeeded();
+  await page.evaluate(() => new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve))));
+  await page.mouse.move(1, 1);
+  const box = await card.boundingBox();
+  await page.mouse.move(box.x + box.width * 0.6, Math.max(120, Math.min(box.y + box.height * 0.5, page.viewportSize().height - 30)));
   await expect.poll(async () => (await readVisuals(card)).transform).not.toBe('none');
   await page.emulateMedia({ reducedMotion: 'reduce' });
   await expect(card).toHaveCSS('transform', 'none');
