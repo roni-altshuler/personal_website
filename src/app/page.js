@@ -33,7 +33,7 @@ export default function Home() {
           </div>
         </div>
         <figure className="hero-portrait">
-          <Image src="/portraits/roni-altshuler-face-refined.webp" alt="Portrait of Roni Altshuler wearing a cream sweater against a gray background" width={1122} height={1402} sizes="(max-width: 639px) 250px, (max-width: 899px) 35vw, 360px" priority />
+          <Image src="/portraits/roni-altshuler-face-refined.webp" alt="Portrait of Roni Altshuler wearing a cream sweater against a gray background" width={1122} height={1402} sizes="(max-width: 639px) min(310px, calc(100vw - 44px)), (max-width: 899px) 35vw, 420px" priority />
           <figcaption><span>Ron-Harel Lab</span><span>Technion, Israel</span></figcaption>
         </figure>
       </section>
@@ -97,7 +97,7 @@ export default function Home() {
           {selectedProjects.map(project => (
             <article className="selected-project" key={project.name}>
               <Link className="selected-project-image" href={`/projects#${project.name}`} aria-label={`Explore ${project.displayName}`}>
-                <Image src={project.image} alt={project.imageAlt} width={1280} height={800} sizes="(max-width: 639px) calc(100vw - 44px), (max-width: 1200px) 45vw, 540px" />
+                <Image src={project.image} alt={project.imageAlt} width={1280} height={800} sizes="(max-width: 639px) calc(100vw - 44px), (max-width: 1319px) 46vw, 604px" />
               </Link>
               <div className="selected-project-copy">
                 <p className="eyebrow">{project.name === "nfl_predictor" ? "NFL Forecasting" : "Music & Audio"}</p>

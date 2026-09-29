@@ -1,9 +1,39 @@
-/* Keep the page still. Motion belongs to brief, intentional interactions. */
+/* Motion responds to deliberate interaction; the page background stays still. */
 .button { transition: background-color 160ms ease, border-color 160ms ease, color 160ms ease; }
 .text-link { transition: color 160ms ease, text-decoration-color 160ms ease; }
-.selected-project-image img { transition: transform 260ms ease; }
+.project-card, .selected-project {
+  position: relative;
+  isolation: isolate;
+  transition: transform 240ms ease, box-shadow 240ms ease, border-color 180ms ease;
+}
+.project-card::before, .selected-project::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background: radial-gradient(ellipse at 100% 100%, #2454ff20, transparent 70%), linear-gradient(135deg, #00b8ff0c, transparent 65%);
+  opacity: 0;
+  transition: opacity 240ms ease;
+}
+.project-card > *, .selected-project > * { position: relative; z-index: 1; }
+.project-card:focus-within, .selected-project:focus-within {
+  border-color: var(--linear-accent);
+  box-shadow: 0 12px 36px -20px #2454ff55;
+}
+.project-card:focus-within::before, .selected-project:focus-within::before { opacity: 1; }
 @media (hover: hover) and (pointer: fine) {
-  .selected-project-image:hover img { transform: scale(1.025); }
+  .project-card:hover, .selected-project:hover {
+    border-color: #809aff;
+    box-shadow: 0 24px 52px -22px #2454ff66, 0 8px 20px -12px #0b0d1233;
+  }
+  .project-card:hover::before, .selected-project:hover::before { opacity: 1; }
+}
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .project-card:hover, .selected-project:hover {
+    transform: perspective(1100px) translateY(-9px) rotateX(2deg) rotateY(-1.5deg) scale(1.015);
+  }
 }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }

@@ -12,7 +12,7 @@ export default function BentoProjects() {
             alt={project.imageAlt}
             width={1280}
             height={800}
-            sizes="(max-width: 720px) calc(100vw - 40px), (max-width: 1200px) 45vw, 520px"
+            sizes="(max-width: 639px) calc(100vw - 44px), (max-width: 1319px) 46vw, 604px"
           />
           <div className="project-body">
             <p className="project-meta">{project.category}</p>

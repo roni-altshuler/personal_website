@@ -14,7 +14,7 @@ export default function OrganizationLogo({ entry, src = entry?.logo, alt = entry
   const [width, height] = DIMENSIONS[src] || [240, 160];
   return (
     <div className={`organization-logo${width / height > 3 ? ' organization-logo-wide' : ''}${className ? ` ${className}` : ''}`}>
-      <Image src={src} alt={alt} width={width} height={height} sizes="(max-width: 639px) 160px, 176px" />
+      <Image src={src} alt={alt} width={width} height={height} sizes="(max-width: 639px) 200px, 240px" />
     </div>
   );
 }
