@@ -7,8 +7,7 @@ async function ready(page, route) {
 async function readVisuals(card) {
   return card.evaluate(element => ({
     transform: getComputedStyle(element).transform,
-    light: getComputedStyle(element, '::before').transform,
-    opacity: getComputedStyle(element, '::before').opacity,
+    decoration: getComputedStyle(element, '::before').content,
   }));
 }
 async function moveAcross(page, card) {
@@ -20,15 +19,15 @@ async function moveAcross(page, card) {
   const top = Math.max(box.y + 30, 120);
   const bottom = Math.min(box.y + box.height - 30, viewport.height - 30);
   await page.mouse.move(box.x + box.width * 0.28, top + (bottom - top) * 0.3);
-  await expect.poll(async () => (await readVisuals(card)).opacity).toBe('1');
+  await expect.poll(async () => (await readVisuals(card)).transform).not.toBe('none');
   const first = await readVisuals(card);
   expect(first.transform).not.toBe('none');
   await page.mouse.move(box.x + box.width * 0.72, top + (bottom - top) * 0.7);
-  await expect.poll(async () => (await readVisuals(card)).light).not.toBe(first.light);
+  expect(first.decoration).toBe('none');
   await expect.poll(async () => (await readVisuals(card)).transform).not.toBe(first.transform);
   await page.mouse.move(1, 1);
   await expect(card).toHaveCSS('transform', 'none');
-  await expect.poll(async () => (await readVisuals(card)).opacity).toBe('0');
+  expect((await readVisuals(card)).decoration).toBe('none');
 }
 
 test('research and software cards follow the mouse and settle on exit', async ({ page }, testInfo) => {

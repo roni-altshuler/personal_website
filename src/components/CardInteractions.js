@@ -26,7 +26,6 @@ export default function CardInteractions() {
       frame = 0;
       if (active) {
         active.removeAttribute('data-pointer-active');
-        // Leave the last light position in place while it fades out.
         for (const key of ['--card-rx', '--card-ry']) active.style.removeProperty(key);
       }
       active = null;
@@ -45,8 +44,6 @@ export default function CardInteractions() {
       const ry = Math.min(profile.angle, 1800 / bounds.width);
       active.style.setProperty('--card-rx', `${(-(y / bounds.height * 2 - 1) * rx).toFixed(3)}deg`);
       active.style.setProperty('--card-ry', `${((x / bounds.width * 2 - 1) * ry).toFixed(3)}deg`);
-      active.style.setProperty('--spot-x', `${x.toFixed(1)}px`);
-      active.style.setProperty('--spot-y', `${y.toFixed(1)}px`);
       active.setAttribute('data-pointer-active', 'true');
     };
 

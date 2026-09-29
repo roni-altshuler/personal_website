@@ -1,8 +1,7 @@
-/* One interaction language: a tracked light and tilt for cards, small cues for controls. */
+/* One interaction language: pointer-following depth for cards, small cues for controls. */
 [data-motion-card] {
   --card-lift: -4px;
   --card-scale: 1.002;
-  --spotlight: #2454ff20;
   position: relative;
   isolation: isolate;
   overflow: hidden;
@@ -10,32 +9,16 @@
 }
 [data-motion-card="standard"] { --card-lift: -8px; --card-scale: 1.012; }
 [data-motion-card="compact"] { --card-lift: -3px; --card-scale: 1.008; }
-[data-motion-card]::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 520px;
-  height: 520px;
-  z-index: 0;
-  border-radius: 50%;
-  pointer-events: none;
-  background: radial-gradient(circle, var(--spotlight), #00b8ff09 42%, transparent 70%);
-  transform: translate3d(calc(var(--spot-x, 0px) - 50%), calc(var(--spot-y, 0px) - 50%), 0);
-  opacity: 0;
-  transition: opacity 220ms ease;
-}
 [data-motion-card] > * { position: relative; z-index: 1; }
 [data-motion-card]:focus-within {
   border-color: var(--linear-accent);
-  box-shadow: 0 0 0 1px #2454ff44, 0 12px 32px -22px #2454ff55;
+  box-shadow: 0 0 0 1px #2454ff44, 0 12px 32px -22px #0b0d1233;
 }
 .affiliation { padding: 14px 10px; border: 1px solid transparent; border-radius: 12px; }
 .contact-channel { padding: 22px; border: 1px solid var(--hairline); border-radius: 10px; background: var(--surface-1); }
 .contact-channel:first-child { padding-top: 22px; }
 .contact-secondary { gap: 14px; }
-.home-contact[data-motion-card] { --spotlight: #ffffff35; }
-.home-contact[data-motion-card]:focus-within { box-shadow: 0 14px 40px -22px #2454ff88; }
+.home-contact[data-motion-card]:focus-within { box-shadow: 0 14px 40px -22px #0b0d1255; }
 
 .button, .menu-button, .icon-button {
   transition: background-color 160ms ease, border-color 160ms ease, color 160ms ease, box-shadow 180ms ease, transform 180ms ease;
@@ -56,9 +39,9 @@
 @media (hover: hover) and (pointer: fine) {
   [data-motion-card]:hover {
     border-color: #809aff;
-    box-shadow: 0 22px 48px -26px #2454ff66, 0 6px 16px -12px #0b0d1233;
+    box-shadow: 0 22px 48px -26px #0b0d1244, 0 6px 16px -12px #0b0d1226;
   }
-  .affiliation:hover, .contact-channel:hover { background: #f8faff; }
+  .affiliation:hover, .contact-channel:hover { background: #fafbfc; }
   .button:hover { box-shadow: 0 8px 20px -10px #2454ff77; }
 }
 @media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
@@ -66,7 +49,6 @@
     transform: perspective(1200px) translateY(var(--card-lift)) rotateX(var(--card-rx, 0deg)) rotateY(var(--card-ry, 0deg)) scale(var(--card-scale));
     transition-duration: 140ms, 220ms, 180ms, 180ms;
   }
-  [data-pointer-active="true"]::before { opacity: 1; }
   .button:hover { transform: translateY(-2px); }
   .button:active { transform: translateY(0) scale(.985); }
   .button:hover > [aria-hidden], .text-link:hover > [aria-hidden], .contact-channel:hover > [aria-hidden] { transform: translate(2px, -2px); }
@@ -74,9 +56,7 @@
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
   [data-motion-card] { transform: none !important; }
-  [data-motion-card]::before { display: none; }
 }
 @media print {
   [data-motion-card] { transform: none !important; box-shadow: none !important; }
-  [data-motion-card]::before { display: none; }
 }
