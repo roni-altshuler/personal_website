@@ -12,6 +12,7 @@ No forms were submitted or accounts accessed.
 | `gridiron.webp` | https://nfl-predictor-five.vercel.app/ |
 | `pitchverse.webp` | https://soccer-stats-predictor-sigma.vercel.app/ |
 | `song-analyzer.webp` | https://song-analyzer-pi.vercel.app/ |
+| `march-lab.webp` | https://roni-altshuler.github.io/march_madness_predictor/#archive |
 
 Project descriptions were checked against the sibling repositories' public
 README files. The soccer project's September 18 improvement audit was also
@@ -19,3 +20,8 @@ consulted; coverage counts and current live performance were deliberately not
 copied because the documentation distinguishes versions and evaluation cohorts.
 
 The Gridiron preview was exported from the NFL project’s existing public demo screenshot at the same dimensions.
+
+The March Lab preview was captured from the verified public app on 3 October
+2026 at 1280 x 800 with reduced motion, then encoded as WebP at quality 82. It
+shows the real 2026 historical bracket, not invented 2027 entrants. Its card's
+coverage and evaluation statements match the public release documentation.

@@ -33,6 +33,22 @@ export const PROJECTS = [
     evidenceLabel: 'Read the benchmark',
   },
   {
+    name: 'march_madness_predictor',
+    displayName: 'March Lab',
+    category: 'Basketball · NCAA Tournament Forecasting',
+    description:
+      'Men’s NCAA tournament history, seed probabilities and interactive brackets. I built a trained prediction pipeline and a browser app for comparing matchups and exploring the road through a tournament. The 2027 field awaits announcement.',
+    evidence:
+      'The documented rolling evaluation covers 377 games from 2021 through 2026. The seed model improves probability scores over a fixed seed heuristic; the team form challenger does not improve the primary model.',
+    methods: ['Python', 'NumPy', 'Temporal Evaluation', 'JavaScript'],
+    image: '/projects/march-lab.webp',
+    imageAlt: 'March Lab live men’s NCAA tournament app showing the historical bracket and model probabilities',
+    link: 'https://github.com/roni-altshuler/march_madness_predictor',
+    demo: 'https://roni-altshuler.github.io/march_madness_predictor/',
+    evidenceLink: 'https://github.com/roni-altshuler/march_madness_predictor#measured-prediction-record',
+    evidenceLabel: 'Read the Evaluation',
+  },
+  {
     name: 'nfl_predictor',
     displayName: 'Gridiron',
     category: 'American Football · NFL Forecasting',
